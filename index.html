@@ -4,607 +4,261 @@
   <meta charset="UTF-8" />
   <title>celnu.com · Premium 5 Letter Domain For Sale</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="celnu.com is a premium 5 letter dot com brand name for sale. Short, memorable, and versatile, perfect for your next startup, app, or brand." />
+  <meta name="description" content="celnu.com is a premium 5 letter dot com brand name for sale. Short, memorable, and versatile." />
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "celnu.com",
+    "description": "Premium 5-letter .com domain name suitable for tech, finance, or fashion brands.",
+    "brand": {
+      "@type": "Brand",
+      "name": "Celnu"
+    },
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "priceCurrency": "USD",
+      "price": "0", 
+      "url": "https://celnu.com"
+    }
+  }
+  </script>
+
   <style>
     :root {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
       color-scheme: dark;
       --bg: #050508;
-      --bg-soft: #0b0b12;
       --accent: #4f8cff;
-      --accent-soft: rgba(79, 140, 255, 0.12);
-      --accent-strong: rgba(79, 140, 255, 0.4);
-      --text: #f7f7ff;
-      --muted: #9ca3b6;
-      --border: #202334;
-      --card-radius: 20px;
-      --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.65);
+      --text: #f2f4f8;
+      --text-muted: #94a3b8;
+      --border: rgba(148, 163, 184, 0.12);
+      --card-bg: rgba(15, 23, 42, 0.6);
+      --shadow-soft: 0 24px 60px -12px rgba(0, 0, 0, 0.7);
+      --noise-url: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       min-height: 100vh;
-      background: radial-gradient(circle at top left, #111827 0, var(--bg) 50%);
+      background-color: var(--bg);
+      background-image: radial-gradient(circle at top left, #1e293b 0, #020617 100%);
       color: var(--text);
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 24px 16px;
+      position: relative;
+    }
+
+    /* Noise Overlay for Texture */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: var(--noise-url);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.4;
     }
 
     .frame {
       width: 100%;
-      max-width: 1120px;
-      background: linear-gradient(140deg, #020617, #020617 40%, #020617 60%, #050816);
-      border-radius: 28px;
-      border: 1px solid rgba(148, 163, 184, 0.15);
-      box-shadow: var(--shadow-soft);
-      padding: 24px;
+      max-width: 1080px;
+      background: rgba(2, 6, 23, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow-soft), inset 0 0 0 1px rgba(255,255,255,0.03);
+      padding: 32px;
       position: relative;
       overflow: hidden;
-      isolation: isolate;
+      z-index: 2;
     }
 
-    /* Glow accents */
+    /* Ambient Glows */
     .glow {
       position: absolute;
-      width: 420px;
-      height: 420px;
-      border-radius: 999px;
-      background: radial-gradient(circle, rgba(79, 140, 255, 0.12), transparent 60%);
-      filter: blur(1px);
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      filter: blur(80px);
       z-index: -1;
+      opacity: 0.4;
       pointer-events: none;
     }
-
-    .glow.glow-1 {
-      top: -120px;
-      right: -80px;
-    }
-
-    .glow.glow-2 {
-      bottom: -160px;
-      left: -120px;
-      background: radial-gradient(circle, rgba(52, 211, 153, 0.10), transparent 60%);
-    }
+    .glow-1 { top: -200px; right: -100px; background: radial-gradient(#3b82f6, transparent 70%); }
+    .glow-2 { bottom: -200px; left: -100px; background: radial-gradient(#10b981, transparent 70%); }
 
     header {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      align-items: center;
       padding-bottom: 24px;
       border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
     }
 
-    .brand-lockup {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
+    .brand-lockup { display: flex; align-items: center; gap: 12px; }
     .brand-mark {
-      width: 32px;
-      height: 32px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #93c5fd, #1d4ed8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #e5edff;
-      font-weight: 700;
-      font-size: 16px;
-      box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.35);
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #60a5fa, #2563eb);
+      display: grid; place-items: center;
+      font-weight: 700; font-size: 18px; color: white;
+      box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
     }
+    .brand-name { font-weight: 600; letter-spacing: 0.05em; font-size: 15px; color: #fff; }
 
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .brand-name {
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      font-size: 13px;
-      text-transform: uppercase;
-      color: #e5edff;
-    }
-
-    .brand-tagline {
+    .status-badge {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #6ee7b7;
+      padding: 6px 12px;
+      border-radius: 99px;
       font-size: 12px;
-      color: var(--muted);
+      font-weight: 500;
+      display: flex; align-items: center; gap: 6px;
     }
-
-    .for-sale-pill {
-      border-radius: 999px;
-      border: 1px solid rgba(74, 222, 128, 0.4);
-      background: radial-gradient(circle, rgba(34, 197, 94, 0.16), rgba(15, 23, 42, 0.9));
-      padding: 6px 14px;
-      font-size: 12px;
-      color: #bbf7d0;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      white-space: nowrap;
-    }
-
-    .for-sale-pill-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.25);
-    }
+    .status-dot { width: 6px; height: 6px; background: #34d399; border-radius: 50%; box-shadow: 0 0 8px #34d399; }
 
     main {
       display: grid;
-      grid-template-columns: minmax(0, 3.2fr) minmax(0, 2.3fr);
-      gap: 32px;
-      padding-top: 24px;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 48px;
     }
 
-    /* Left column */
-    .hero {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .label-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .meta-pill {
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      padding: 6px 12px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #9ca3b6;
-    }
-
-    .meta-pill strong {
-      color: #e2e8f0;
-    }
-
-    .hero-title {
-      font-size: clamp(2.4rem, 4vw, 3.1rem);
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-      font-weight: 650;
-    }
-
-    .hero-title span.accent {
-      background: linear-gradient(120deg, #60a5fa, #a855f7, #22c55e);
+    /* Left Column */
+    .hero { display: flex; flex-direction: column; gap: 24px; }
+    
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      line-height: 1.05;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      background: linear-gradient(to bottom right, #ffffff, #94a3b8);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
 
-    .hero-subtitle {
-      font-size: 15px;
-      color: var(--muted);
-      max-width: 520px;
-    }
-
-    .hero-subtitle strong {
-      color: #e5edff;
-      font-weight: 500;
+    .subtitle {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-width: 480px;
     }
 
     .ticker {
-      margin-top: 6px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      color: var(--muted);
+      font-size: 13px;
+      color: #64748b;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      display: flex; gap: 8px; align-items: center;
+      min-height: 20px;
     }
+    .ticker-word { color: #93c5fd; transition: opacity 0.3s ease; }
 
-    .ticker-label {
-      padding: 4px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.40);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-    }
-
-    .ticker-words {
-      min-height: 16px;
-      font-size: 12px;
-    }
-
-    .hero-cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-      margin-top: 8px;
-    }
+    /* Actions */
+    .actions { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 8px; }
 
     .btn-primary {
-      border-radius: 999px;
-      padding: 11px 20px;
-      border: none;
-      outline: none;
-      background: radial-gradient(circle at 0 0, #bfdbfe, #1d4ed8);
-      color: #ecf3ff;
-      font-size: 14px;
+      background: white;
+      color: #0f172a;
+      padding: 14px 28px;
+      border-radius: 12px;
       font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-      box-shadow: 0 16px 35px rgba(37, 99, 235, 0.55);
-      transform: translateY(0);
-      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
       text-decoration: none;
-      -webkit-tap-highlight-color: transparent;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      border: none; cursor: pointer;
     }
-
-    .btn-primary span.icon {
-      font-size: 18px;
-      line-height: 0;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 20px 50px rgba(37, 99, 235, 0.70);
-      filter: brightness(1.02);
-    }
-
-    .btn-primary:active {
-      transform: translateY(1px) scale(0.99);
-      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.55);
-    }
-
-    .cta-note {
-      font-size: 13px;
-      color: var(--muted);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .cta-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: rgba(148, 163, 184, 0.9);
-    }
-
-    .details-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      margin-top: 20px;
-      gap: 10px;
-      font-size: 11px;
-    }
-
-    .details-item {
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.30);
-      padding: 8px 10px;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(15, 23, 42, 0.9);
-    }
-
-    .details-item span.label {
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 10px;
-      color: #9ca3b6;
-    }
-
-    .details-item span.value {
-      font-size: 11px;
-      color: #e5edff;
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(255,255,255,0.2); }
+    
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      color: #e2e8f0;
+      padding: 14px 24px;
+      border-radius: 12px;
       font-weight: 500;
-    }
-
-    /* Right column */
-    .panel {
-      background: rgba(15, 23, 42, 0.95);
-      border-radius: 24px;
-      border: 1px solid rgba(148, 163, 184, 0.28);
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.8);
-      padding: 18px 18px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .panel-title {
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #e5edff;
-    }
-
-    .panel-chip {
-      font-size: 11px;
-      padding: 4px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(79, 140, 255, 0.6);
-      background: rgba(15, 23, 42, 0.95);
-      color: #bfdbfe;
-    }
-
-    .use-cards {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      font-size: 12px;
-    }
-
-    .use-card {
-      background: radial-gradient(circle at 0 0, rgba(79, 140, 255, 0.22), rgba(15, 23, 42, 0.98));
-      border-radius: 18px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      padding: 10px 10px 11px;
-      position: relative;
-      overflow: hidden;
-      cursor: default;
-      transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease, background 0.2s ease;
-    }
-
-    .use-card:nth-child(2),
-    .use-card:nth-child(4) {
-      background: radial-gradient(circle at 100% 0, rgba(251, 113, 133, 0.18), rgba(15, 23, 42, 0.98));
-    }
-
-    .use-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(248, 250, 252, 0.9);
-      box-shadow: 0 14px 32px rgba(15, 23, 42, 0.85);
-      background: radial-gradient(circle at 0 0, rgba(79, 140, 255, 0.26), rgba(15, 23, 42, 0.98));
-    }
-
-    .use-card-label {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: rgba(226, 232, 240, 0.9);
-      margin-bottom: 4px;
-    }
-
-    .use-card-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: #e5edff;
-      margin-bottom: 3px;
-    }
-
-    .use-card-text {
-      font-size: 11px;
-      color: #cbd5f5;
-      line-height: 1.4;
-      opacity: 0.96;
-    }
-
-    .use-card-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      margin-top: 7px;
-      font-size: 10px;
-      color: #9ca3b6;
-    }
-
-    .use-card-tag-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: rgba(148, 163, 184, 0.9);
-    }
-
-    .line {
-      height: 1px;
-      background: radial-gradient(circle, rgba(148, 163, 184, 0.75), rgba(15, 23, 42, 0));
-      opacity: 0.85;
-    }
-
-    .signal-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .signal-row strong {
-      color: #e5edff;
-    }
-
-    .bullet-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .bullet-pill {
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      padding: 4px 8px;
-      font-size: 10px;
-      color: #9ca3b6;
-    }
-
-    .contact-box {
-      margin-top: 6px;
-      padding: 10px 10px 9px;
-      border-radius: 16px;
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 1));
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      font-size: 12px;
-    }
-
-    .contact-box-title {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #e5edff;
-    }
-
-    .contact-box-text {
-      color: var(--muted);
-    }
-
-    .phone-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      margin-top: 2px;
-    }
-
-    .phone-number {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 13px;
-      color: #e5edff;
-      letter-spacing: 0.06em;
-    }
-
-    .copy-btn {
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      padding: 5px 10px;
-      background: rgba(15, 23, 42, 1);
-      font-size: 11px;
-      color: #e5edff;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      transition: background 0.16s ease, border-color 0.16s ease, transform 0.12s ease;
-    }
-
-    .copy-btn:hover {
-      background: rgba(30, 64, 175, 0.75);
-      border-color: rgba(191, 219, 254, 0.9);
-      transform: translateY(-0.5px);
-    }
-
-    .copy-btn:active {
-      transform: translateY(0.5px) scale(0.99);
-    }
-
-    .copy-status {
-      font-size: 11px;
-      color: #a5b4fc;
-      min-height: 14px;
-      margin-top: 2px;
-    }
-
-    footer {
-      margin-top: 22px;
-      font-size: 11px;
-      color: #6b7280;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    footer a {
-      color: #9ca3ff;
       text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 8px;
+      cursor: pointer;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+
+    .specs {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .spec-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 12px;
+      border-radius: 12px;
+    }
+    .spec-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #64748b; margin-bottom: 4px; }
+    .spec-value { font-size: 14px; font-weight: 500; color: #f1f5f9; }
+
+    /* Right Panel */
+    .card-3d {
+      background: linear-gradient(160deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.9));
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 24px;
+      display: flex; flex-direction: column; gap: 20px;
+      transition: transform 0.1s ease-out;
+      transform-style: preserve-3d;
     }
 
-    footer a:hover {
-      text-decoration: underline;
+    .use-case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    
+    .use-case {
+      background: rgba(0,0,0,0.3);
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.03);
+      transition: border-color 0.3s;
     }
+    .use-case:hover { border-color: rgba(96, 165, 250, 0.4); }
+    .uc-icon { font-size: 18px; margin-bottom: 8px; display: block; }
+    .uc-title { font-size: 13px; font-weight: 600; color: #e2e8f0; margin-bottom: 4px; }
+    .uc-desc { font-size: 11px; color: #94a3b8; line-height: 1.4; }
 
-    /* Responsiveness */
-    @media (max-width: 880px) {
-      main {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .panel {
-        order: -1;
-      }
-
-      header {
-        padding-bottom: 18px;
-      }
-
-      .frame {
-        padding: 20px;
-        border-radius: 22px;
-      }
+    .contact-mini {
+      margin-top: auto;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 12px;
+      color: #94a3b8;
+      display: flex; justify-content: space-between; align-items: center;
     }
+    .phone-display { font-family: monospace; color: #fff; font-size: 13px; }
 
-    @media (max-width: 600px) {
-      body {
-        padding: 12px;
-      }
+    footer { margin-top: 40px; font-size: 11px; color: #475569; text-align: center; width: 100%; }
 
-      .frame {
-        padding: 18px 16px;
-        border-radius: 18px;
-      }
-
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-      }
-
-      .hero-title {
-        font-size: 2.1rem;
-      }
-
-      .details-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .use-cards {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-cta-row {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      footer {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
-      }
+    @media (max-width: 900px) {
+      main { grid-template-columns: 1fr; }
+      .card-3d { order: -1; margin-bottom: 20px; transform: none !important; }
+      h1 { font-size: 2.5rem; }
+    }
+    @media (max-width: 500px) {
+      .frame { padding: 20px; }
+      .specs { grid-template-columns: 1fr; }
+      .use-case-grid { grid-template-columns: 1fr; }
+      .actions { flex-direction: column; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
     }
   </style>
 </head>
 <body>
+
   <div class="frame">
     <div class="glow glow-1"></div>
     <div class="glow glow-2"></div>
@@ -614,249 +268,144 @@
         <div class="brand-mark">C</div>
         <div class="brand-text">
           <div class="brand-name">CELNU.COM</div>
-          <div class="brand-tagline">Short, clean, ready for your next move</div>
         </div>
       </div>
-
-      <div class="for-sale-pill">
-        <div class="for-sale-pill-dot"></div>
-        <span>Premium 5 letter .com available now</span>
+      <div class="status-badge">
+        <span class="status-dot"></span> Available
       </div>
     </header>
 
     <main>
-      <!-- Left -->
       <section class="hero">
-        <div class="label-row">
-          <div class="meta-pill">
-            <strong>For sale</strong> · direct from owner
-          </div>
-          <div class="meta-pill">
-            <strong>Category</strong> · brandable .com
+        <div>
+          <h1>The perfect name for your next <span id="ticker-word" class="ticker-word">venture</span>.</h1>
+          <div class="ticker">
+            <span>Ideal for:</span>
+            <span id="ticker-display">Startup, SaaS, Agency, Fintech</span>
           </div>
         </div>
 
-        <h1 class="hero-title">
-          Own <span class="accent">celnu.com</span> before someone else does.
-        </h1>
-
-        <p class="hero-subtitle">
-          A rare, five letter <strong>.com</strong> that is easy to say, easy to spell, and easy to remember. Ideal for a modern brand, product, or app that wants to feel clean, global, and digital native.
+        <p class="subtitle">
+          Short, pronounceable 5-letter domains are the gold standard of digital real estate. 
+          <strong>Celnu</strong> is clean, global, and ready for acquisition.
         </p>
 
-        <div class="ticker">
-          <div class="ticker-label">Perfect for</div>
-          <div class="ticker-words" id="ticker-words">
-            brand, product, app, studio, fund, you decide.
-          </div>
-        </div>
-
-        <div class="hero-cta-row">
-          <button class="btn-primary" id="call-button">
-            <span class="icon">☎️</span>
-            <span>Call or text now · 828&nbsp;553&nbsp;7927</span>
+        <div class="actions">
+          <a href="mailto:?subject=Offer for celnu.com&body=Hi, I am interested in acquiring celnu.com. My offer is..." class="btn-primary">
+            <span>📩 Make an Offer</span>
+          </a>
+          <button class="btn-secondary" id="copy-btn">
+            <span>📞 828 553 7927</span>
           </button>
-          <div class="cta-note">
-            <span class="cta-dot"></span>
-            Serious offers only, direct negotiation with the owner
-          </div>
         </div>
+        <div id="copy-feedback" style="height:14px; font-size:11px; color:#4ade80; opacity:0; transition:opacity 0.3s;">Copied to clipboard</div>
 
-        <div class="details-grid">
-          <div class="details-item">
-            <span class="label">Length</span>
-            <span class="value">5 letters</span>
+        <div class="specs">
+          <div class="spec-item">
+            <div class="spec-label">Length</div>
+            <div class="spec-value">5 Letters</div>
           </div>
-          <div class="details-item">
-            <span class="label">Extension</span>
-            <span class="value">.com</span>
+          <div class="spec-item">
+            <div class="spec-label">Extension</div>
+            <div class="spec-value">.com</div>
           </div>
-          <div class="details-item">
-            <span class="label">Style</span>
-            <span class="value">Brandable, clean</span>
-          </div>
-          <div class="details-item">
-            <span class="label">Use cases</span>
-            <span class="value">Tech, AI, fintech, studio</span>
-          </div>
-          <div class="details-item">
-            <span class="label">Feel</span>
-            <span class="value">Modern, global, minimal</span>
-          </div>
-          <div class="details-item">
-            <span class="label">Transfer</span>
-            <span class="value">Fast, registrar of choice</span>
+          <div class="spec-item">
+            <div class="spec-label">Transfer</div>
+            <div class="spec-value">Immediate</div>
           </div>
         </div>
       </section>
 
-      <!-- Right -->
-      <aside class="panel" id="info-panel">
-        <div class="panel-header">
-          <div class="panel-title">What could celnu.com be?</div>
-          <div class="panel-chip">Imagine the brand first</div>
+      <aside class="card-3d" id="tilt-card">
+        <div style="display:flex; justify-content:space-between; align-items:baseline;">
+          <div style="font-size:11px; text-transform:uppercase; letter-spacing:1px; color:#64748b;">Potential</div>
+          <div style="font-size:11px; color:#3b82f6;">Brand Concepts</div>
         </div>
 
-        <div class="use-cards">
-          <article class="use-card">
-            <div class="use-card-label">Digital product</div>
-            <div class="use-card-title">AI or SaaS platform</div>
-            <p class="use-card-text">
-              celnu feels native to tech, perfect for an AI assistant, creator tool, or productivity platform that wants a short and neutral name.
-            </p>
-            <div class="use-card-tag">
-              <span class="use-card-tag-dot"></span>
-              <span>Subdomains like app.celnu.com or studio.celnu.com</span>
-            </div>
-          </article>
-
-          <article class="use-card">
-            <div class="use-card-label">Finance, crypto</div>
-            <div class="use-card-title">Fintech, fund, or token</div>
-            <p class="use-card-text">
-              Clean, confident, and abstract enough for a modern fund, digital bank, or token brand without geographic or industry limits.
-            </p>
-            <div class="use-card-tag">
-              <span class="use-card-tag-dot"></span>
-              <span>Works for a serious or playful identity</span>
-            </div>
-          </article>
-
-          <article class="use-card">
-            <div class="use-card-label">Consumer brand</div>
-            <div class="use-card-title">Fashion, beauty, lifestyle</div>
-            <p class="use-card-text">
-              As a label, celnu fits on tags, ads, and packaging. Simple lettering, easy pronunciation, and room to build a story around.
-            </p>
-            <div class="use-card-tag">
-              <span class="use-card-tag-dot"></span>
-              <span>Perfect for omnichannel and social handles</span>
-            </div>
-          </article>
-
-          <article class="use-card">
-            <div class="use-card-label">Creative studio</div>
-            <div class="use-card-title">Design, media, or agency</div>
-            <p class="use-card-text">
-              Use celnu as the front door for a studio, content house, or micro agency that wants a sleek, no nonsense name.
-            </p>
-            <div class="use-card-tag">
-              <span class="use-card-tag-dot"></span>
-              <span>Short email handles, instant recall</span>
-            </div>
-          </article>
-        </div>
-
-        <div class="line"></div>
-
-        <div class="signal-row">
-          <span>Short, pronounceable names like this are rare.</span>
-          <span><strong>Once celnu.com is gone, it is gone.</strong></span>
-        </div>
-
-        <div class="bullet-row">
-          <div class="bullet-pill">5 letter .com, highly scarce</div>
-          <div class="bullet-pill">Global spelling, no accents</div>
-          <div class="bullet-pill">Flexible across industries</div>
-          <div class="bullet-pill">Brandable, not keyword locked</div>
-        </div>
-
-        <div class="contact-box">
-          <div class="contact-box-title">Interested in buying?</div>
-          <div class="contact-box-text">
-            Reach out directly to the owner to discuss price, transfer details, and timing. No brokers, no marketplace fees, just a clean handoff.
+        <div class="use-case-grid">
+          <div class="use-case">
+            <span class="uc-icon">🤖</span>
+            <div class="uc-title">AI Platform</div>
+            <div class="uc-desc">Short, abstract, and sounds intelligent.</div>
           </div>
-          <div class="phone-row">
-            <div class="phone-number" id="phone-number">828&nbsp;553&nbsp;7927</div>
-            <button class="copy-btn" id="copy-button">
-              <span>Copy number</span>
-            </button>
+          <div class="use-case">
+            <span class="uc-icon">💳</span>
+            <div class="uc-title">Fintech</div>
+            <div class="uc-desc">Trustworthy and serious for banking or crypto.</div>
           </div>
-          <div class="copy-status" id="copy-status"></div>
+          <div class="use-case">
+            <span class="uc-icon">🧥</span>
+            <div class="uc-title">Apparel</div>
+            <div class="uc-desc">Looks beautiful on a woven tag or label.</div>
+          </div>
+          <div class="use-case">
+            <span class="uc-icon">🎨</span>
+            <div class="uc-title">Studio</div>
+            <div class="uc-desc">A modern identity for a creative agency.</div>
+          </div>
+        </div>
+
+        <div class="contact-mini">
+          <span>Direct Sale</span>
+          <span class="phone-display">No Broker Fees</span>
         </div>
       </aside>
     </main>
 
     <footer>
-      <div>celnu.com is currently available for acquisition.</div>
-      <div>Contact <strong>828 553 7927</strong> for serious offers.</div>
+      &copy; 2024 Celnu.com · Serious inquiries only.
     </footer>
   </div>
 
   <script>
-    // Rotating ticker words
-    const phrases = [
-      "a next gen AI product",
-      "your clean fintech brand",
-      "a global lifestyle label",
-      "a SaaS or creator tool",
-      "a studio, fund, or collective",
-      "whatever you want it to become"
-    ];
-
-    const tickerTarget = document.getElementById("ticker-words");
-    let phraseIndex = 0;
-
-    function updateTicker() {
-      phraseIndex = (phraseIndex + 1) % phrases.length;
-      tickerTarget.style.opacity = "0";
+    // Ticker Logic
+    const words = ["venture", "brand", "product", "studio", "platform"];
+    let wordIndex = 0;
+    const tickerEl = document.getElementById('ticker-word');
+    
+    setInterval(() => {
+      tickerEl.style.opacity = 0;
       setTimeout(() => {
-        tickerTarget.textContent = phrases[phraseIndex];
-        tickerTarget.style.opacity = "1";
-      }, 180);
-    }
+        wordIndex = (wordIndex + 1) % words.length;
+        tickerEl.innerText = words[wordIndex];
+        tickerEl.style.opacity = 1;
+      }, 300);
+    }, 2500);
 
-    setInterval(updateTicker, 2300);
-
-    // Copy phone number
-    const phoneNumber = "828 553 7927";
-    const copyBtn = document.getElementById("copy-button");
-    const copyStatus = document.getElementById("copy-status");
-
-    copyBtn.addEventListener("click", async () => {
-      try {
-        await navigator.clipboard.writeText(phoneNumber.replace(/\s+/g, ""));
-        copyStatus.textContent = "Number copied. Call or text when you are ready.";
-      } catch (e) {
-        copyStatus.textContent = "Could not copy automatically. Number is 828 553 7927.";
-      }
-      setTimeout(() => {
-        copyStatus.textContent = "";
-      }, 3200);
+    // Copy Phone Logic
+    const copyBtn = document.getElementById('copy-btn');
+    const feedback = document.getElementById('copy-feedback');
+    
+    copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText('8285537927');
+      feedback.style.opacity = 1;
+      setTimeout(() => feedback.style.opacity = 0, 2000);
     });
 
-    // Click to call from main button
-    const callButton = document.getElementById("call-button");
-    callButton.addEventListener("click", () => {
-      window.location.href = "tel:+18285537927";
-    });
+    // 3D Tilt Logic (Desktop Only)
+    const card = document.getElementById('tilt-card');
+    const frame = document.querySelector('.frame');
+    
+    if (window.matchMedia("(pointer:fine)").matches) {
+      frame.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        // Calculate rotation based on mouse position relative to card center
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((y - centerY) / 20).toFixed(2);
+        const rotateY = ((centerX - x) / 20).toFixed(2);
 
-    // Simple hover tilt for the right panel on desktop
-    const infoPanel = document.getElementById("info-panel");
-    let tiltEnabled = window.matchMedia("(pointer:fine)").matches;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
 
-    function handleTilt(e) {
-      if (!tiltEnabled) return;
-      const rect = infoPanel.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      const maxTilt = 4;
-      const rotateX = (-y * maxTilt).toFixed(2);
-      const rotateY = (x * maxTilt).toFixed(2);
-      infoPanel.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
+      frame.addEventListener('mouseleave', () => {
+        card.style.transform = `perspective(1000px) rotateX(0) rotateY(0)`;
+      });
     }
-
-    function resetTilt() {
-      infoPanel.style.transform = "perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)";
-    }
-
-    infoPanel.addEventListener("mousemove", handleTilt);
-    infoPanel.addEventListener("mouseleave", resetTilt);
-
-    window.addEventListener("resize", () => {
-      tiltEnabled = window.matchMedia("(pointer:fine)").matches;
-      if (!tiltEnabled) resetTilt();
-    });
   </script>
 </body>
 </html>
