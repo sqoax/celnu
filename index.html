@@ -133,15 +133,17 @@
 
   /* ─── HERO ─── */
   .hero {
-    padding-top: 90px;
-    padding-bottom: 80px;
+    padding-top: 80px;
+    padding-bottom: 60px;
     background: var(--white);
   }
 
   .hero .container {
+    max-width: 1280px;
+    padding: 0 48px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 64px;
     align-items: center;
   }
 
@@ -169,7 +171,7 @@
   h1 {
     font-family: var(--font-heading);
     font-weight: 800;
-    font-size: 52px;
+    font-size: 64px;
     line-height: 1.08;
     letter-spacing: -1.5px;
     color: var(--navy);
@@ -182,7 +184,7 @@
   }
 
   .hero-sub {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.6;
     color: var(--gray-500);
     margin-bottom: 32px;
@@ -229,9 +231,8 @@
 
   .demo-wrapper {
     width: 100%;
-    max-width: 600px;
     position: relative;
-    min-height: 470px;
+    min-height: 580px;
     margin: 0 auto;
   }
 
@@ -260,7 +261,7 @@
   .review-card {
     background: #fff;
     border-radius: 12px;
-    padding: 28px 28px 24px;
+    padding: 36px 36px 28px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(15,27,53,0.08), 0 2px 8px rgba(0,0,0,0.04);
     border: 1px solid var(--gray-200);
   }
@@ -273,14 +274,14 @@
   }
 
   .review-avatar {
-    width: 44px;
-    height: 44px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 600;
-    font-size: 17px;
+    font-size: 20px;
     color: #fff;
     flex-shrink: 0;
     letter-spacing: -0.3px;
@@ -291,7 +292,7 @@
 
   .review-name {
     font-weight: 600;
-    font-size: 15px;
+    font-size: 17px;
     color: var(--navy);
     line-height: 1.3;
   }
@@ -310,14 +311,14 @@
 
   .star {
     color: #fbbc04;
-    font-size: 18px;
+    font-size: 22px;
     line-height: 1;
   }
 
   .star.empty { color: #dadce0; }
 
   .review-text {
-    font-size: 14.5px;
+    font-size: 16px;
     line-height: 1.65;
     color: var(--gray-600);
     letter-spacing: -0.01em;
@@ -357,7 +358,7 @@
     margin-top: 12px;
     background: var(--off-white);
     border-radius: 12px;
-    padding: 22px 24px;
+    padding: 28px 30px;
     border: 1px solid var(--gray-200);
     opacity: 0;
     transform: translateY(8px);
@@ -378,8 +379,8 @@
   }
 
   .celnu-icon {
-    width: 32px;
-    height: 32px;
+    width: 38px;
+    height: 38px;
     border-radius: 8px;
     background: linear-gradient(135deg, var(--teal), var(--teal-dark));
     display: flex;
@@ -389,10 +390,10 @@
     box-shadow: 0 1px 4px rgba(61,158,140,0.3);
   }
 
-  .celnu-icon svg { width: 18px; height: 18px; }
+  .celnu-icon svg { width: 21px; height: 21px; }
 
   .response-label {
-    font-size: 13.5px;
+    font-size: 15px;
     font-weight: 600;
     color: var(--teal);
   }
@@ -430,7 +431,7 @@
   }
 
   .response-text {
-    font-size: 14px;
+    font-size: 15.5px;
     line-height: 1.65;
     color: var(--gray-600);
     min-height: 0;
@@ -987,17 +988,20 @@
     .hero .container {
       grid-template-columns: 1fr;
       gap: 40px;
+      padding: 0 20px;
     }
 
     .hero-content { max-width: 100%; }
 
     h1 { font-size: 40px; }
 
+    .hero-sub { font-size: 17px; }
+
     .hero-demo {
       order: 1;
     }
 
-    .demo-wrapper { max-width: 100%; }
+    .demo-wrapper { width: 100%; min-height: auto; }
 
     .steps-grid { grid-template-columns: 1fr; gap: 20px; }
 
@@ -1054,7 +1058,7 @@
     .review-card { padding: 20px 18px 18px; }
     .response-area { padding: 18px; }
     .review-text, .response-text { font-size: 13.5px; }
-    .demo-wrapper { min-height: 460px; }
+    .demo-wrapper { min-height: auto; }
   }
 
   /* ─── SCROLL REVEAL ─── */
@@ -1346,10 +1350,6 @@
             <label for="email">Email</label>
             <input type="email" id="email" placeholder="john@acmeplumbing.com" required>
           </div>
-          <div class="form-group full">
-            <label for="gbpUrl">Google Business Profile URL</label>
-            <input type="url" id="gbpUrl" placeholder="https://g.page/your-business" required>
-          </div>
         </div>
         <div class="form-submit">
           <button type="submit" class="btn-primary">Get Started for $30/month</button>
@@ -1577,8 +1577,35 @@ function toggleFaq(btn) {
 // ─── CONTACT FORM ───
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  this.style.display = 'none';
-  document.getElementById('formSuccess').classList.add('visible');
+  const form = this;
+  const bizName = document.getElementById('bizName').value;
+  const yourName = document.getElementById('yourName').value;
+  const phone = document.getElementById('phone').value;
+  const email = document.getElementById('email').value;
+
+  fetch('https://discord.com/api/webhooks/1470972927519490149/kt02HbWR2adp_bmupSkiTt3DHF-WVPXqZgopdSSs5SMtGbNBIikEzvXESYi5WrScx6lj', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      embeds: [{
+        color: 3166264,
+        title: '\uD83D\uDD14 New Celnu Lead',
+        fields: [
+          { name: 'Business Name', value: bizName, inline: true },
+          { name: 'Your Name', value: yourName, inline: true },
+          { name: 'Phone', value: phone, inline: true },
+          { name: 'Email', value: email, inline: true }
+        ],
+        footer: { text: 'celnu.com' }
+      }]
+    })
+  }).then(() => {
+    form.style.display = 'none';
+    document.getElementById('formSuccess').classList.add('visible');
+  }).catch(() => {
+    form.style.display = 'none';
+    document.getElementById('formSuccess').classList.add('visible');
+  });
 });
 
 // ─── MOBILE NAV ───
