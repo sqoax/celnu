@@ -1,926 +1,1624 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Celnu — Web Design for Local Businesses</title>
-    <meta name="description" content="Celnu builds conversion-focused websites for local service businesses. More calls, more customers, more revenue.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #111111;
-            --bg-tertiary: #1a1a1a;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --text-muted: #666666;
-            --accent: #2dd4bf;
-            --accent-hover: #5eead4;
-            --accent-subtle: rgba(45, 212, 191, 0.1);
-            --border: #262626;
-            --border-subtle: #1f1f1f;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(to bottom, var(--bg-primary) 0%, transparent 100%);
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-subtle);
-        }
-
-        .nav-logo {
-            font-family: 'Syne', sans-serif;
-            font-weight: 700;
-            font-size: 1.25rem;
-            letter-spacing: -0.02em;
-            color: var(--text-primary);
-            text-decoration: none;
-        }
-
-        .nav-cta {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--accent);
-            text-decoration: none;
-            padding: 0.625rem 1.25rem;
-            border: 1px solid var(--accent);
-            border-radius: 2px;
-            transition: all 0.2s ease;
-        }
-
-        .nav-cta:hover {
-            background: var(--accent);
-            color: var(--bg-primary);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 6rem 2rem 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, var(--accent-subtle) 0%, transparent 70%);
-            pointer-events: none;
-            opacity: 0.5;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-        }
-
-        .hero-title {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(4rem, 12vw, 9rem);
-            font-weight: 800;
-            letter-spacing: -0.04em;
-            line-height: 0.95;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .hero-tagline {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(1rem, 2.5vw, 1.25rem);
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 3rem;
-            animation: fadeInUp 0.8s ease-out 0.1s backwards;
-        }
-
-        .hero-description {
-            font-size: clamp(1.125rem, 2vw, 1.375rem);
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            font-weight: 300;
-            line-height: 1.7;
-            animation: fadeInUp 0.8s ease-out 0.2s backwards;
-        }
-
-        .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--bg-primary);
-            background: var(--accent);
-            text-decoration: none;
-            padding: 1rem 2rem;
-            border-radius: 2px;
-            transition: all 0.2s ease;
-            animation: fadeInUp 0.8s ease-out 0.3s backwards;
-        }
-
-        .hero-cta:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-        }
-
-        .hero-cta svg {
-            width: 18px;
-            height: 18px;
-            transition: transform 0.2s ease;
-        }
-
-        .hero-cta:hover svg {
-            transform: translateX(4px);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--text-muted);
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            animation: fadeInUp 0.8s ease-out 0.5s backwards;
-        }
-
-        .scroll-indicator::after {
-            content: '';
-            width: 1px;
-            height: 40px;
-            background: linear-gradient(to bottom, var(--text-muted), transparent);
-            animation: scrollPulse 2s ease-in-out infinite;
-        }
-
-        /* Sections */
-        section {
-            padding: 8rem 2rem;
-            position: relative;
-        }
-
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            font-family: 'Syne', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-        }
-
-        .section-title {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-            max-width: 700px;
-        }
-
-        .section-text {
-            font-size: 1.125rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            max-width: 600px;
-        }
-
-        /* What We Do Section */
-        .what-we-do {
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-subtle);
-            border-bottom: 1px solid var(--border-subtle);
-        }
-
-        .what-we-do .section-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            align-items: center;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .stat-card {
-            padding: 2rem;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-        }
-
-        .stat-icon {
-            width: 40px;
-            height: 40px;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        .stat-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.125rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-desc {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* Approach Section */
-        .approach-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            background: var(--border);
-            margin-top: 4rem;
-            border: 1px solid var(--border);
-        }
-
-        .approach-item {
-            background: var(--bg-primary);
-            padding: 3rem 2rem;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .approach-item:hover {
-            background: var(--bg-secondary);
-        }
-
-        .approach-number {
-            font-family: 'Syne', sans-serif;
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--border);
-            line-height: 1;
-            margin-bottom: 1.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .approach-item:hover .approach-number {
-            color: var(--accent);
-        }
-
-        .approach-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .approach-text {
-            font-size: 0.9375rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        /* Who We Serve Section */
-        .who-we-serve {
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-subtle);
-            border-bottom: 1px solid var(--border-subtle);
-        }
-
-        .who-we-serve .section-container {
-            text-align: center;
-        }
-
-        .who-we-serve .section-title {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .who-we-serve .section-text {
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 4rem;
-        }
-
-        .services-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .service-tag {
-            font-family: 'Syne', sans-serif;
-            font-size: 0.875rem;
-            font-weight: 500;
-            padding: 0.875rem 1.5rem;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            border-radius: 2px;
-            color: var(--text-primary);
-            transition: all 0.2s ease;
-        }
-
-        .service-tag:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 10rem 2rem;
-        }
-
-        .contact .section-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            align-items: start;
-        }
-
-        .contact-intro {
-            position: sticky;
-            top: 8rem;
-        }
-
-        .contact-intro .section-title {
-            max-width: none;
-        }
-
-        .contact-form {
-            background: var(--bg-secondary);
-            padding: 3rem;
-            border: 1px solid var(--border);
-            border-radius: 2px;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 0.8125rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-        }
-
-        .form-input,
-        .form-select,
-        .form-textarea {
-            width: 100%;
-            padding: 1rem;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 1rem;
-            color: var(--text-primary);
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border);
-            border-radius: 2px;
-            transition: all 0.2s ease;
-            outline: none;
-        }
-
-        .form-input:focus,
-        .form-select:focus,
-        .form-textarea:focus {
-            border-color: var(--accent);
-            background: var(--bg-primary);
-        }
-
-        .form-input::placeholder,
-        .form-textarea::placeholder {
-            color: var(--text-muted);
-        }
-
-        .form-select {
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23666666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 1rem center;
-            background-size: 1rem;
-        }
-
-        .form-select option {
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-        }
-
-        .form-textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .form-submit {
-            width: 100%;
-            padding: 1.125rem 2rem;
-            font-family: 'Syne', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-            color: var(--bg-primary);
-            background: var(--accent);
-            border: none;
-            border-radius: 2px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .form-submit:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-        }
-
-        .form-note {
-            margin-top: 1.5rem;
-            font-size: 0.8125rem;
-            color: var(--text-muted);
-            text-align: center;
-        }
-
-        /* Footer */
-        footer {
-            padding: 3rem 2rem;
-            border-top: 1px solid var(--border-subtle);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-logo {
-            font-family: 'Syne', sans-serif;
-            font-weight: 700;
-            font-size: 1.125rem;
-            color: var(--text-primary);
-        }
-
-        .footer-text {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes scrollPulse {
-            0%, 100% {
-                opacity: 0.3;
-                transform: scaleY(1);
-            }
-            50% {
-                opacity: 1;
-                transform: scaleY(1.2);
-            }
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .what-we-do .section-container {
-                grid-template-columns: 1fr;
-                gap: 4rem;
-            }
-
-            .approach-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .contact .section-container {
-                grid-template-columns: 1fr;
-                gap: 4rem;
-            }
-
-            .contact-intro {
-                position: static;
-                text-align: center;
-            }
-
-            .contact-intro .section-title {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .contact-intro .section-text {
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                padding: 1rem 1.5rem;
-            }
-
-            section {
-                padding: 5rem 1.5rem;
-            }
-
-            .hero {
-                padding: 5rem 1.5rem 3rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .approach-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-form {
-                padding: 2rem;
-            }
-
-            footer {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 3.5rem;
-            }
-
-            .nav-cta {
-                padding: 0.5rem 1rem;
-                font-size: 0.8125rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Celnu — Google Review Management for Local Businesses</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --white: #ffffff;
+    --off-white: #f7f8fa;
+    --navy: #0f1b35;
+    --navy-light: #2a3a5c;
+    --teal: #3d9e8c;
+    --teal-dark: #2f8474;
+    --teal-light: #e8f5f1;
+    --gray-100: #f0f2f5;
+    --gray-200: #e2e5ea;
+    --gray-300: #c8cdd5;
+    --gray-400: #9aa1ad;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--navy);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-200);
+    height: 64px;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-inner {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 30px;
+    color: var(--navy);
+    letter-spacing: -0.5px;
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--teal); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-500);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--navy); }
+
+  .nav-cta {
+    background: var(--teal) !important;
+    color: var(--white) !important;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--teal-dark) !important; }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--navy);
+    margin: 5px 0;
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+
+  /* ─── SECTIONS ─── */
+  section {
+    padding: 96px 32px;
+  }
+
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    padding-top: 90px;
+    padding-bottom: 80px;
+    background: var(--white);
+  }
+
+  .hero .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  .hero-content { max-width: 520px; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--teal-light);
+    color: var(--teal-dark);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    letter-spacing: 0.01em;
+  }
+
+  .hero-badge svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  h1 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 52px;
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+    color: var(--navy);
+    margin-bottom: 20px;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--teal);
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--gray-500);
+    margin-bottom: 32px;
+    max-width: 440px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--teal);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 28px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 1px 3px rgba(61,158,140,0.25), 0 4px 12px rgba(61,158,140,0.15);
+  }
+
+  .btn-primary:hover {
+    background: var(--teal-dark);
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-primary svg { width: 16px; height: 16px; }
+
+  .hero-note {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--gray-400);
+  }
+
+  /* ─── DEMO EMBED ─── */
+  .hero-demo {
+    position: relative;
+  }
+
+  .demo-wrapper {
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    min-height: 470px;
+    margin: 0 auto;
+  }
+
+  .review-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+  }
+
+  .review-container.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .review-container.exiting {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  .review-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px 28px 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(15,27,53,0.08), 0 2px 8px rgba(0,0,0,0.04);
+    border: 1px solid var(--gray-200);
+  }
+
+  .review-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .review-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 17px;
+    color: #fff;
+    flex-shrink: 0;
+    letter-spacing: -0.3px;
+    font-family: var(--font-heading);
+  }
+
+  .review-meta { flex: 1; }
+
+  .review-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+
+  .review-date {
+    font-size: 12.5px;
+    color: var(--gray-400);
+    margin-top: 1px;
+  }
+
+  .review-stars {
+    display: flex;
+    gap: 1.5px;
+    margin-bottom: 12px;
+  }
+
+  .star {
+    color: #fbbc04;
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .star.empty { color: #dadce0; }
+
+  .review-text {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--gray-600);
+    letter-spacing: -0.01em;
+  }
+
+  .google-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--gray-100);
+  }
+
+  .google-icon {
+    display: flex;
+    gap: 0.5px;
+  }
+
+  .google-icon span {
+    font-weight: 700;
+    font-size: 13px;
+    font-family: var(--font-body);
+  }
+
+  .g-blue { color: #4285f4; }
+  .g-red { color: #ea4335; }
+  .g-yellow { color: #fbbc04; }
+  .g-green { color: #34a853; }
+
+  .google-badge-text {
+    font-size: 12px;
+    color: var(--gray-400);
+  }
+
+  .response-area {
+    margin-top: 12px;
+    background: var(--off-white);
+    border-radius: 12px;
+    padding: 22px 24px;
+    border: 1px solid var(--gray-200);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+  }
+
+  .response-area.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .response-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .celnu-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 1px 4px rgba(61,158,140,0.3);
+  }
+
+  .celnu-icon svg { width: 18px; height: 18px; }
+
+  .response-label {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--teal);
+  }
+
+  .response-sublabel {
+    font-size: 11.5px;
+    color: var(--gray-400);
+  }
+
+  .typing-dots {
+    display: none;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 0;
+    height: 28px;
+  }
+
+  .typing-dots.visible { display: flex; }
+
+  .typing-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--teal);
+    border-radius: 50%;
+    animation: dotBounce 1.2s ease-in-out infinite;
+    opacity: 0.5;
+  }
+
+  .typing-dot:nth-child(2) { animation-delay: 0.15s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+  @keyframes dotBounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-6px); opacity: 1; }
+  }
+
+  .response-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--gray-600);
+    min-height: 0;
+    display: none;
+  }
+
+  .response-text.visible { display: block; }
+
+  .typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 16px;
+    background: var(--teal);
+    margin-left: 1px;
+    vertical-align: text-bottom;
+    animation: cursorBlink 0.6s step-end infinite;
+  }
+
+  @keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* ─── HOW IT WORKS ─── */
+  .how-it-works { background: var(--off-white); }
+
+  .section-label {
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--teal);
+    margin-bottom: 12px;
+  }
+
+  h2 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 36px;
+    letter-spacing: -0.8px;
+    line-height: 1.15;
+    color: var(--navy);
+    margin-bottom: 48px;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+  }
+
+  .step-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 14px;
+    padding: 32px 28px;
+    position: relative;
+  }
+
+  .step-number {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 48px;
+    color: var(--teal-light);
+    line-height: 1;
+    margin-bottom: 16px;
+    letter-spacing: -2px;
+  }
+
+  .step-card h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--navy);
+    margin-bottom: 10px;
+    letter-spacing: -0.3px;
+  }
+
+  .step-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--gray-500);
+  }
+
+  /* ─── STATS ─── */
+  .stats-section { background: var(--white); }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-bottom: 48px;
+  }
+
+  .stat-card {
+    background: var(--off-white);
+    border: 1px solid var(--gray-200);
+    border-radius: 14px;
+    padding: 32px 28px;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 44px;
+    color: var(--teal);
+    line-height: 1;
+    letter-spacing: -1.5px;
+    margin-bottom: 8px;
+  }
+
+  .stat-label {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.45;
+    margin-bottom: 8px;
+  }
+
+  .stat-source {
+    font-size: 11.5px;
+    color: var(--gray-400);
+    letter-spacing: 0.01em;
+  }
+
+  .stats-summary {
+    text-align: center;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--gray-500);
+    max-width: 560px;
+    margin: 0 auto 48px;
+  }
+
+  .stats-summary strong {
+    color: var(--navy);
+    font-weight: 600;
+  }
+
+  /* Response rate comparison bar */
+  .compare-bar-wrapper {
+    max-width: 520px;
+    margin: 0 auto;
+    background: var(--off-white);
+    border: 1px solid var(--gray-200);
+    border-radius: 14px;
+    padding: 32px 36px;
+  }
+
+  .compare-bar-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--navy);
+    margin-bottom: 24px;
+    text-align: center;
+    letter-spacing: -0.2px;
+  }
+
+  .compare-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .compare-row:last-child { margin-bottom: 0; }
+
+  .compare-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-500);
+    width: 130px;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .compare-track {
+    flex: 1;
+    height: 32px;
+    background: var(--gray-100);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .compare-fill {
+    height: 100%;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 12px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--white);
+    transition: width 1.2s ease;
+  }
+
+  .compare-fill.teal {
+    background: var(--teal);
+  }
+
+  .compare-fill.gray {
+    background: var(--gray-300);
+    color: var(--gray-600);
+  }
+
+  /* ─── PRICING ─── */
+  .pricing { background: var(--off-white); }
+
+  .pricing-card {
+    max-width: 440px;
+    margin: 0 auto;
+    background: var(--white);
+    border: 2px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+  }
+
+  .pricing-amount {
+    font-family: var(--font-heading);
+    font-size: 56px;
+    font-weight: 800;
+    color: var(--navy);
+    letter-spacing: -2px;
+    line-height: 1;
+  }
+
+  .pricing-amount span {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--gray-400);
+    letter-spacing: 0;
+  }
+
+  .pricing-desc {
+    font-size: 15px;
+    color: var(--gray-400);
+    margin-top: 6px;
+    margin-bottom: 32px;
+  }
+
+  .pricing-features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 32px;
+  }
+
+  .pricing-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    font-size: 15px;
+    color: var(--gray-600);
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .pricing-features li:last-child { border-bottom: none; }
+
+  .pricing-features li svg {
+    width: 18px;
+    height: 18px;
+    color: var(--teal);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .pricing-card .btn-primary {
+    width: 100%;
+    justify-content: center;
+    padding: 16px 28px;
+    font-size: 16px;
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials { background: var(--white); }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .testimonial-card {
+    background: var(--off-white);
+    border: 1px solid var(--gray-200);
+    border-radius: 14px;
+    padding: 32px 28px;
+  }
+
+  .testimonial-stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 16px;
+    color: #fbbc04;
+    font-size: 16px;
+  }
+
+  .testimonial-text {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--gray-600);
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .testimonial-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 14px;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .testimonial-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--navy);
+  }
+
+  .testimonial-biz {
+    font-size: 13px;
+    color: var(--gray-400);
+  }
+
+  /* ─── FAQ ─── */
+  .faq { background: var(--off-white); }
+
+  .faq-list {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 22px 0;
+    text-align: left;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    gap: 16px;
+  }
+
+  .faq-question:hover { color: var(--teal); }
+
+  .faq-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    transition: transform 0.3s;
+    color: var(--gray-400);
+  }
+
+  .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--teal); }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 200px;
+  }
+
+  .faq-answer p {
+    padding-bottom: 22px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--gray-500);
+  }
+
+  /* ─── CONTACT ─── */
+  .contact { background: var(--gray-100); }
+
+  .contact-form-wrapper {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .form-group { display: flex; flex-direction: column; }
+  .form-group.full { grid-column: 1 / -1; }
+
+  .form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  .form-group input {
+    padding: 12px 14px;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--navy);
+    background: var(--white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+  }
+
+  .form-group input::placeholder { color: var(--gray-300); }
+
+  .form-group input:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(61,158,140,0.12);
+  }
+
+  .form-submit {
+    margin-top: 24px;
+    text-align: center;
+  }
+
+  .form-submit .btn-primary {
+    width: 100%;
+    justify-content: center;
+    padding: 16px;
+    font-size: 16px;
+  }
+
+  .form-note {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--gray-400);
+    text-align: center;
+  }
+
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 48px 20px;
+  }
+
+  .form-success.visible { display: block; }
+
+  .form-success svg {
+    width: 56px;
+    height: 56px;
+    color: var(--teal);
+    margin-bottom: 16px;
+  }
+
+  .form-success h3 {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .form-success p {
+    font-size: 15px;
+    color: var(--gray-500);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy);
+    padding: 36px 32px;
+  }
+
+  .footer-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-logo {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--white);
+    letter-spacing: -0.5px;
+  }
+
+  .footer-logo span { color: var(--teal); }
+
+  .footer-contact {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-contact a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-contact a:hover { color: var(--white); }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--white); }
+
+  .footer-copy {
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero .container {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .hero-content { max-width: 100%; }
+
+    h1 { font-size: 40px; }
+
+    .hero-demo {
+      order: 1;
+    }
+
+    .demo-wrapper { max-width: 100%; }
+
+    .steps-grid { grid-template-columns: 1fr; gap: 20px; }
+
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+    .compare-label { width: 100px; font-size: 12px; }
+
+    .testimonials-grid { grid-template-columns: 1fr; gap: 20px; }
+
+    .footer-inner {
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+    }
+
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 64px 20px; }
+
+    h1 { font-size: 34px; letter-spacing: -1px; }
+    h2 { font-size: 28px; margin-bottom: 36px; }
+
+    .hero { padding-top: 90px; padding-bottom: 48px; }
+
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 20px 32px;
+      gap: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+
+    .form-grid { grid-template-columns: 1fr; }
+
+    .stats-grid { grid-template-columns: 1fr; }
+
+    .compare-bar-wrapper { padding: 24px 20px; }
+    .compare-label { width: 80px; }
+    .stat-number { font-size: 36px; }
+
+    .pricing-card { padding: 36px 24px; }
+
+    .review-card { padding: 20px 18px 18px; }
+    .response-area { padding: 18px; }
+    .review-text, .response-text { font-size: 13.5px; }
+    .demo-wrapper { min-height: 460px; }
+  }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
-        <a href="#" class="nav-logo">Celnu</a>
-        <a href="#contact" class="nav-cta">Get Started</a>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Celnu</h1>
-            <p class="hero-tagline">Web Design for Local Businesses</p>
-            <p class="hero-description">
-                Your website should get you customers, not just compliments. 
-                We build websites that turn visitors into phone calls.
-            </p>
-            <a href="#contact" class="hero-cta">
-                Start Your Project
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-            </a>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">celnu<span>.</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact" class="nav-cta">Get Started</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Google Review Management
+      </div>
+      <h1>Every review answered.<br><em>Automatically.</em></h1>
+      <p class="hero-sub">Celnu monitors your Google reviews 24/7, posts thoughtful replies instantly, and only contacts you when a review needs your personal touch.</p>
+      <a href="#contact" class="btn-primary">
+        Get Started — $30/month
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <p class="hero-note">No contract. Cancel anytime. Setup takes 2 minutes.</p>
+    </div>
+    <div class="hero-demo">
+      <div class="demo-wrapper" id="demoWrapper">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how-it-works">
+  <div class="container">
+    <div class="section-label reveal">How It Works</div>
+    <h2 class="reveal">Up and running in three steps</h2>
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-number">01</div>
+        <h3>Add us as a manager</h3>
+        <p>Add Celnu as a manager on your Google Business Profile. It takes two minutes and you stay in full control.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-number">02</div>
+        <h3>We monitor 24/7</h3>
+        <p>Every new review that comes in gets picked up automatically. You don't have to check anything.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-number">03</div>
+        <h3>Smart replies, your call</h3>
+        <p>Positive reviews get a thoughtful reply within minutes. Anything sensitive gets sent to you for approval first.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-label reveal">The Data</div>
+      <h2 class="reveal">Why reviews can't be ignored</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card reveal">
+        <div class="stat-number">88%</div>
+        <div class="stat-label">of consumers choose businesses that reply to all their reviews</div>
+        <div class="stat-source">BrightLocal 2024</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-number">1.7×</div>
+        <div class="stat-label">more trustworthy — how consumers rate businesses that respond to reviews</div>
+        <div class="stat-source">GatherUp</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-number">5–9%</div>
+        <div class="stat-label">revenue growth from a single one-star increase in Google rating</div>
+        <div class="stat-source">Harvard Business School</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-number">81%</div>
+        <div class="stat-label">of consumers check Google reviews before visiting a local business</div>
+        <div class="stat-source">BrightLocal 2024</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-number">56%</div>
+        <div class="stat-label">of people specifically choose businesses that respond to their reviews</div>
+        <div class="stat-source">Wisernotify</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-number">63%</div>
+        <div class="stat-label">say a business has never responded to their review</div>
+        <div class="stat-source">Gominga</div>
+      </div>
+    </div>
+    <p class="stats-summary reveal"><strong>Most local businesses never respond to their reviews.</strong> Celnu makes sure yours never goes unanswered.</p>
+    <div class="compare-bar-wrapper reveal">
+      <div class="compare-bar-title">Consumer preference: responds vs. doesn't respond</div>
+      <div class="compare-row">
+        <div class="compare-label">Replies to reviews</div>
+        <div class="compare-track">
+          <div class="compare-fill teal" id="barRespond" style="width:0%">88%</div>
         </div>
-        <div class="scroll-indicator">
-            Scroll
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">Never replies</div>
+        <div class="compare-track">
+          <div class="compare-fill gray" id="barIgnore" style="width:0%">47%</div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- What We Do Section -->
-    <section class="what-we-do" id="what-we-do">
-        <div class="section-container">
-            <div class="fade-in">
-                <span class="section-label">What We Do</span>
-                <h2 class="section-title">Websites that convert visitors into customers</h2>
-                <p class="section-text">
-                    We design and build conversion-focused websites for local service businesses. 
-                    No templates. No bloated features. Just clean, professional sites engineered 
-                    to make your phone ring.
-                </p>
-            </div>
-            <div class="stats-grid fade-in">
-                <div class="stat-card">
-                    <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                    </svg>
-                    <h3 class="stat-title">More Calls</h3>
-                    <p class="stat-desc">Prominent contact info and clear calls-to-action drive inquiries.</p>
-                </div>
-                <div class="stat-card">
-                    <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="9" cy="7" r="4"></circle>
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                    </svg>
-                    <h3 class="stat-title">More Customers</h3>
-                    <p class="stat-desc">Trust signals and social proof turn browsers into buyers.</p>
-                </div>
-                <div class="stat-card">
-                    <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="12" y1="1" x2="12" y2="23"></line>
-                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                    </svg>
-                    <h3 class="stat-title">More Revenue</h3>
-                    <p class="stat-desc">Better visibility and credibility means bigger, better jobs.</p>
-                </div>
-                <div class="stat-card">
-                    <svg class="stat-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                        <line x1="8" y1="21" x2="16" y2="21"></line>
-                        <line x1="12" y1="17" x2="12" y2="21"></line>
-                    </svg>
-                    <h3 class="stat-title">Modern Design</h3>
-                    <p class="stat-desc">Look like the professional you are with a site that reflects your quality.</p>
-                </div>
-            </div>
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container" style="text-align:center;">
+    <div class="section-label reveal">Pricing</div>
+    <h2 class="reveal">One plan. Everything included.</h2>
+    <div class="pricing-card reveal">
+      <div class="pricing-amount">$30<span>/mo</span></div>
+      <p style="font-size:13px;color:var(--gray-400);margin-top:8px;">Other platforms charge $300–$400/month — and you still run it yourself.</p>
+      <p class="pricing-desc">Per location. Google reviews.</p>
+      <ul class="pricing-features">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          24/7 review monitoring
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          Auto-replies for positive reviews
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          Owner approval for sensitive reviews
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          Thoughtful, personalized responses
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          No contract — cancel anytime
+        </li>
+      </ul>
+      <a href="#contact" class="btn-primary">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-label reveal">What Business Owners Say</div>
+    <h2 class="reveal">Results, not just kind words</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"I had 11 Google reviews when I signed up. Four months later I'm at 47 and my phone rings noticeably more. I didn't do anything different — Celnu just made sure every review got answered and it shows."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background:#2a6496">DK</div>
+          <div>
+            <div class="testimonial-name">Dave Kowalski</div>
+            <div class="testimonial-biz">Kowalski Plumbing, Columbus OH</div>
+          </div>
         </div>
-    </section>
-
-    <!-- Our Approach Section -->
-    <section class="approach" id="approach">
-        <div class="section-container">
-            <div class="fade-in">
-                <span class="section-label">Our Approach</span>
-                <h2 class="section-title">Built for results, not vanity</h2>
-                <p class="section-text">
-                    We focus on what actually matters: getting your business found 
-                    and turning visitors into paying customers.
-                </p>
-            </div>
-            <div class="approach-grid fade-in">
-                <div class="approach-item">
-                    <span class="approach-number">01</span>
-                    <h3 class="approach-title">Fast Turnaround</h3>
-                    <p class="approach-text">Your website shouldn't take months. We deliver polished, professional sites quickly so you can start getting leads.</p>
-                </div>
-                <div class="approach-item">
-                    <span class="approach-number">02</span>
-                    <h3 class="approach-title">Mobile-First</h3>
-                    <p class="approach-text">Most of your customers are searching on their phones. Every site we build looks and works flawlessly on mobile.</p>
-                </div>
-                <div class="approach-item">
-                    <span class="approach-number">03</span>
-                    <h3 class="approach-title">Conversion-Focused</h3>
-                    <p class="approach-text">Strategic placement of phone numbers, contact forms, and trust signals. Every element serves a purpose.</p>
-                </div>
-                <div class="approach-item">
-                    <span class="approach-number">04</span>
-                    <h3 class="approach-title">Clean & Professional</h3>
-                    <p class="approach-text">No clutter, no gimmicks. Just clean design that builds credibility and gets out of the way.</p>
-                </div>
-            </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"A patient left us a 2-star review about wait times. Celnu flagged it immediately and I wrote a personal response the same day. That patient came back and updated it to 4 stars. That would have just sat there before."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background:#2e7d32">SO</div>
+          <div>
+            <div class="testimonial-name">Sandra Okafor</div>
+            <div class="testimonial-biz">Bright Smiles Dental, Atlanta GA</div>
+          </div>
         </div>
-    </section>
-
-    <!-- Who We Serve Section -->
-    <section class="who-we-serve" id="who-we-serve">
-        <div class="section-container">
-            <div class="fade-in">
-                <span class="section-label">Who We Serve</span>
-                <h2 class="section-title">Local service businesses</h2>
-                <p class="section-text">
-                    We specialize in building websites for the businesses that keep neighborhoods running. 
-                    If you serve your local community, we'd love to work with you.
-                </p>
-            </div>
-            <div class="services-grid fade-in">
-                <span class="service-tag">Plumbers</span>
-                <span class="service-tag">Lawn Care</span>
-                <span class="service-tag">Pressure Washing</span>
-                <span class="service-tag">HVAC</span>
-                <span class="service-tag">Electricians</span>
-                <span class="service-tag">Roofers</span>
-                <span class="service-tag">Painters</span>
-                <span class="service-tag">Contractors</span>
-                <span class="service-tag">Landscaping</span>
-                <span class="service-tag">Cleaning Services</span>
-                <span class="service-tag">Handyman</span>
-                <span class="service-tag">Home Services</span>
-            </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"I was spending maybe 30 seconds a week on reviews — just ignoring them. Now every review gets a real reply within the hour. My Google rating went from 3.8 to 4.6 in about three months. $30 a month is nothing."</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar" style="background:#c0392b">MT</div>
+          <div>
+            <div class="testimonial-name">Marcus Trevino</div>
+            <div class="testimonial-biz">Trevino's HVAC, San Antonio TX</div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="section-container">
-            <div class="contact-intro fade-in">
-                <span class="section-label">Get Started</span>
-                <h2 class="section-title">Ready for a website that works?</h2>
-                <p class="section-text">
-                    Tell us about your business. We'll get back to you within 24 hours 
-                    to discuss how we can help you get more customers.
-                </p>
-            </div>
-            <form class="contact-form fade-in" action="#" method="POST" id="contactForm">
-                <div class="form-group">
-                    <label class="form-label" for="name">Your Name</label>
-                    <input type="text" id="name" name="name" class="form-input" placeholder="John Smith" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="email">Email Address</label>
-                    <input type="email" id="email" name="email" class="form-input" placeholder="john@yourbusiness.com" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="business">Business Type</label>
-                    <select id="business" name="business" class="form-select" required>
-                        <option value="" disabled selected>Select your industry</option>
-                        <option value="plumbing">Plumbing</option>
-                        <option value="lawn-care">Lawn Care / Landscaping</option>
-                        <option value="pressure-washing">Pressure Washing</option>
-                        <option value="hvac">HVAC</option>
-                        <option value="electrical">Electrical</option>
-                        <option value="roofing">Roofing</option>
-                        <option value="painting">Painting</option>
-                        <option value="general-contractor">General Contractor</option>
-                        <option value="cleaning">Cleaning Services</option>
-                        <option value="handyman">Handyman</option>
-                        <option value="other">Other Home Service</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="message">Tell Us About Your Project</label>
-                    <textarea id="message" name="message" class="form-textarea" placeholder="What are your goals? Do you have an existing website?" required></textarea>
-                </div>
-                <button type="submit" class="form-submit">Send Message</button>
-                <p class="form-note">We'll respond within 24 hours. No spam, ever.</p>
-            </form>
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-label reveal">FAQ</div>
+      <h2 class="reveal">Common questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Do you post replies automatically?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer"><p>Yes, for positive reviews. Anything sensitive — like a complaint or low rating — gets sent to you for approval first. You always have the final say.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What platforms do you cover?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer"><p>Google reviews only right now. It's where the vast majority of customers look, and we want to do one thing really well.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How do I get started?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer"><p>Just add Celnu as a manager on your Google Business Profile. That's it. We handle everything from there. The whole setup takes less than five minutes.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Is there a contract?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer"><p>No. Month to month. Cancel anytime with no fees or questions.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How fast do you respond to reviews?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer"><p>Within minutes of a review being posted. Your Google profile stays active and responsive around the clock.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-label reveal">Get Started</div>
+      <h2 class="reveal">Ready to put your reviews on autopilot?</h2>
+    </div>
+    <div class="contact-form-wrapper">
+      <form id="contactForm" class="reveal">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="bizName">Business Name</label>
+            <input type="text" id="bizName" placeholder="Acme Plumbing" required>
+          </div>
+          <div class="form-group">
+            <label for="yourName">Your Name</label>
+            <input type="text" id="yourName" placeholder="John Smith" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="(555) 123-4567" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="john@acmeplumbing.com" required>
+          </div>
+          <div class="form-group full">
+            <label for="gbpUrl">Google Business Profile URL</label>
+            <input type="url" id="gbpUrl" placeholder="https://g.page/your-business" required>
+          </div>
         </div>
-    </section>
+        <div class="form-submit">
+          <button type="submit" class="btn-primary">Get Started for $30/month</button>
+          <p class="form-note">We'll reach out within 24 hours. Setup takes less than 5 minutes.</p>
+        </div>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <h3>Thanks! We'll be in touch within 24 hours.</h3>
+        <p>Check your email for next steps on getting your Google reviews managed.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <span class="footer-logo">Celnu</span>
-        <span class="footer-text">© 2025 Celnu. Web Design for Local Businesses.</span>
-    </footer>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">celnu<span>.</span></div>
+    <div class="footer-contact">
+      <a href="tel:+18285537927">(828) 553-7927</a>
+      <span style="color:rgba(255,255,255,0.2);margin:0 8px;">·</span>
+      <a href="mailto:hello@celnu.com">hello@celnu.com</a>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms of Service</a></li>
+    </ul>
+    <div class="footer-copy">&copy; 2026 Celnu</div>
+  </div>
+</footer>
 
-    <script>
-        // Navigation scroll effect
-        const navbar = document.getElementById('navbar');
-        let lastScroll = 0;
+<script>
+// ─── REVIEW ANIMATION ───
+const reviews = [
+  {
+    name: "Jennifer Rawlings",
+    initials: "JR",
+    color: "#6b5ce7",
+    date: "2 days ago",
+    stars: 5,
+    business: "Valley Plumbing & Drain",
+    text: "Marcus showed up within 30 minutes of my call and had the burst pipe in our basement fixed in under an hour. He even cleaned up the water damage area and showed me where to watch for future issues. Absolute lifesaver on a Sunday morning.",
+    response: "Jennifer, thank you so much for the kind words! We\u2019ll make sure Marcus sees this \u2014 he takes real pride in fast response times, especially on emergency calls like yours. Glad he could get that burst pipe handled quickly and that the cleanup met your expectations. Don\u2019t hesitate to call if you ever notice anything near that area."
+  },
+  {
+    name: "David Kowalski",
+    initials: "DK",
+    color: "#2196f3",
+    date: "5 days ago",
+    stars: 5,
+    business: "Patel Family Dentistry",
+    text: "I had a persistent tooth pain that three different dentists couldn\u2019t figure out. Dr. Patel found a hairline fracture on my first visit that everyone else missed. Finally pain-free after months of frustration. I honestly can\u2019t thank her enough.",
+    response: "David, we\u2019re so glad Dr. Patel was able to get to the bottom of that hairline fracture \u2014 those are notoriously difficult to catch, and months of unresolved pain is no small thing. She\u2019ll be glad to hear you\u2019re finally feeling relief. We\u2019ll be here for any follow-up care you need down the road."
+  },
+  {
+    name: "Tamara Mitchell",
+    initials: "TM",
+    color: "#e91e63",
+    date: "1 week ago",
+    stars: 4,
+    business: "Riverside Auto Group",
+    text: "Came in expecting the typical dealership runaround on financing but Kevin in the finance office made the whole process surprisingly painless. Had us in and out in about two hours. Only wish the detailing had been a bit more thorough on delivery.",
+    response: "Tamara, thanks for sharing your experience! We\u2019ll pass the compliment along to Kevin \u2014 he really does work hard to keep the finance process straightforward and pressure-free. And we appreciate the note about detailing; we\u2019re addressing that with our prep team so delivery day feels as polished as it should. Enjoy the new ride!"
+  },
+  {
+    name: "Eric Salgado",
+    initials: "ES",
+    color: "#ff9800",
+    date: "3 days ago",
+    stars: 5,
+    business: "Sunrise Yoga Studio",
+    text: "I\u2019ve been coming to the 7am flow class every Tuesday and Thursday for two years now. What keeps me coming back is that the instructors actually remember my name, ask about my week, and modify poses when my knee is acting up. It\u2019s community, not just a class.",
+    response: "Eric, this made our morning \u2014 two years of 7am flows is real dedication, and our instructors genuinely look forward to seeing regulars like you walk through the door. The fact that it feels like community is exactly what we\u2019re going for. We\u2019ll keep taking care of that knee. See you Thursday!"
+  },
+  {
+    name: "Rachel Abernathy",
+    initials: "RA",
+    color: "#9c27b0",
+    date: "4 days ago",
+    stars: 5,
+    business: "Harmon & Associates",
+    text: "I was anxious all week waiting for a custody update. Attorney Daniels called me personally on a Saturday afternoon to let me know how the hearing prep was going. That kind of above-and-beyond communication made an incredibly stressful time feel manageable.",
+    response: "Rachel, thank you for trusting us during such a sensitive time. We\u2019ll share this with Attorney Daniels \u2014 he believes strongly that clients shouldn\u2019t have to sit with uncertainty over a weekend, especially in custody matters. Your peace of mind matters to this team, and we\u2019ll keep that same level of communication going."
+  },
+  {
+    name: "Priya Venkatesh",
+    initials: "PV",
+    color: "#00897b",
+    date: "6 days ago",
+    stars: 4,
+    business: "The Birch Table",
+    text: "When I mentioned my shellfish allergy, not only did the server flag it immediately, but Chef Morales actually came out to our table to walk me through safe options and even made a modified version of their signature dish. Food was great \u2014 the care was even better.",
+    response: "Priya, thank you for letting us know about your experience! Chef Morales takes allergies very seriously and he\u2019ll be glad to hear the modified dish worked out well. Making sure every guest can enjoy their meal safely is something our kitchen prioritizes every single service. We\u2019d love to have you back anytime."
+  }
+];
 
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-            
-            lastScroll = currentScroll;
-        });
+const wrapper = document.getElementById('demoWrapper');
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+reviews.forEach((review, i) => {
+  const container = document.createElement('div');
+  container.className = 'review-container';
+  container.id = `review-${i}`;
 
-        // Fade in on scroll
-        const fadeElements = document.querySelectorAll('.fade-in');
+  const starsHtml = Array.from({length: 5}, (_, s) =>
+    `<span class="star${s < review.stars ? '' : ' empty'}">\u2605</span>`
+  ).join('');
 
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
+  container.innerHTML = `
+    <div class="review-card">
+      <div class="review-header">
+        <div class="review-avatar" style="background:${review.color}">${review.initials}</div>
+        <div class="review-meta">
+          <div class="review-name">${review.name}</div>
+          <div class="review-date">${review.date}</div>
+        </div>
+      </div>
+      <div class="review-stars">${starsHtml}</div>
+      <div class="review-text">${review.text}</div>
+      <div class="google-badge">
+        <div class="google-icon">
+          <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
+        </div>
+        <span class="google-badge-text">review</span>
+      </div>
+    </div>
+    <div class="response-area" id="response-${i}">
+      <div class="response-header">
+        <div class="celnu-icon">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="response-label">${review.business}</div>
+          <div class="response-sublabel">Business response</div>
+        </div>
+      </div>
+      <div class="typing-dots" id="dots-${i}">
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+        <div class="typing-dot"></div>
+      </div>
+      <div class="response-text" id="text-${i}"></div>
+    </div>
+  `;
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
+  wrapper.appendChild(container);
+});
 
-        fadeElements.forEach(element => {
-            observer.observe(element);
-        });
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-        // Form handling
-        const contactForm = document.getElementById('contactForm');
-        
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // Here you would typically send this to a server
-            // For now, show a success message
-            const submitBtn = this.querySelector('.form-submit');
-            const originalText = submitBtn.textContent;
-            
-            submitBtn.textContent = 'Message Sent!';
-            submitBtn.style.background = '#22c55e';
-            
-            // Reset form
-            this.reset();
-            
-            // Reset button after 3 seconds
-            setTimeout(() => {
-                submitBtn.textContent = originalText;
-                submitBtn.style.background = '';
-            }, 3000);
-            
-            console.log('Form submitted:', data);
-        });
-    </script>
+async function typeText(el, text) {
+  el.classList.add('visible');
+  let html = '';
+  const cursorSpan = '<span class="typing-cursor"></span>';
+
+  for (let i = 0; i < text.length; i++) {
+    html += text[i];
+    el.innerHTML = html + cursorSpan;
+
+    let delay = 18;
+    if ('.!?'.includes(text[i])) delay = 80;
+    else if (text[i] === ',') delay = 50;
+    else if (text[i] === ' ') delay = 12;
+    else delay = 14 + Math.random() * 12;
+
+    await sleep(delay);
+  }
+
+  await sleep(400);
+  el.innerHTML = html;
+}
+
+async function showReview(index) {
+  const container = document.getElementById(`review-${index}`);
+  const response = document.getElementById(`response-${index}`);
+  const dots = document.getElementById(`dots-${index}`);
+  const text = document.getElementById(`text-${index}`);
+
+  response.classList.remove('visible');
+  dots.classList.remove('visible');
+  text.classList.remove('visible');
+  text.innerHTML = '';
+
+  container.classList.add('active');
+  await sleep(1000);
+
+  response.classList.add('visible');
+  await sleep(300);
+  dots.classList.add('visible');
+  await sleep(1800);
+
+  dots.classList.remove('visible');
+  await typeText(text, reviews[index].response);
+
+  await sleep(2500);
+
+  container.classList.add('exiting');
+  await sleep(500);
+  container.classList.remove('active', 'exiting');
+}
+
+async function loop() {
+  let index = 0;
+  while (true) {
+    await showReview(index);
+    await sleep(300);
+    index = (index + 1) % reviews.length;
+  }
+}
+
+loop();
+
+// ─── FAQ ACCORDION ───
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// ─── CONTACT FORM ───
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  this.style.display = 'none';
+  document.getElementById('formSuccess').classList.add('visible');
+});
+
+// ─── MOBILE NAV ───
+document.getElementById('navToggle').addEventListener('click', function() {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+// close mobile nav on link click
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+
+// ─── SCROLL REVEAL ───
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ─── ANIMATE COMPARISON BARS ───
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const barRespond = document.getElementById('barRespond');
+      const barIgnore = document.getElementById('barIgnore');
+      if (barRespond) barRespond.style.width = '88%';
+      if (barIgnore) barIgnore.style.width = '47%';
+      barObserver.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+
+const barWrapper = document.querySelector('.compare-bar-wrapper');
+if (barWrapper) barObserver.observe(barWrapper);
+</script>
 </body>
 </html>
