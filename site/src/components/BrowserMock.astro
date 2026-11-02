@@ -17,14 +17,14 @@ const buildings = [
   { left: 89, width: 11, height: 28, tone: 'near' },
 ];
 
-// Generic portrait silhouettes: a head and shoulders on a flat tone.
-const narrow = 'M16 100C16 76 27 64 40 64C53 64 64 76 64 100Z';
-const broad = 'M9 100C9 74 24 62 40 62C56 62 71 74 71 100Z';
+// Generic portraits cropped like headshots: head and shoulders filling the frame, in one muted tone.
+const narrow = 'M4 100C4 80 20 70 40 70C60 70 76 80 76 100Z';
+const broad = 'M0 100C0 79 18 69 40 69C62 69 80 79 80 100Z';
 const portraits = [
-  { tone: 't1', head: 15, y: 39, shoulders: broad },
-  { tone: 't2', head: 14, y: 41, shoulders: narrow },
-  { tone: 't3', head: 15, y: 38, shoulders: narrow },
-  { tone: 't4', head: 14, y: 40, shoulders: broad },
+  { head: 18, y: 45, shoulders: broad },
+  { head: 17, y: 46, shoulders: narrow },
+  { head: 18, y: 44, shoulders: narrow },
+  { head: 17, y: 45, shoulders: broad },
 ];
 
 const facts = [
@@ -102,7 +102,6 @@ const facts = [
         </div>
         <div class="a-band">
           <svg class="a-land" viewBox="0 0 640 200" preserveAspectRatio="xMaxYMax slice">
-            <rect class="land-sky" width="640" height="200"></rect>
             <circle class="land-sun" cx="540" cy="92" r="24"></circle>
             <path class="land-far" d="M0 130C80 100 150 110 220 125S360 80 440 105S580 120 640 95V200H0Z"></path>
             <path class="land-mid" d="M0 165C100 130 190 150 280 160S470 125 640 150V200H0Z"></path>
@@ -115,7 +114,7 @@ const facts = [
           <div class="a-people">
             {portraits.map((portrait) => (
               <div>
-                <div class={`a-tile ${portrait.tone}`}>
+                <div class="a-tile">
                   <svg viewBox="0 0 80 100" preserveAspectRatio="xMidYMax slice">
                     <circle cx="40" cy={portrait.y} r={portrait.head}></circle>
                     <path d={portrait.shoulders}></path>
@@ -462,10 +461,6 @@ const facts = [
     height: 100%;
   }
 
-  .land-sky {
-    fill: var(--accent);
-  }
-
   .land-sun {
     fill: var(--paper);
   }
@@ -513,9 +508,12 @@ const facts = [
     gap: 0.75em;
   }
 
+  /* Low contrast on purpose: a row of muted photos, not avatar icons. */
   .a-tile {
     aspect-ratio: 4 / 5;
     overflow: hidden;
+    color: #C4BDAF;
+    background: var(--rule);
   }
 
   .a-tile svg {
@@ -523,26 +521,6 @@ const facts = [
     width: 100%;
     height: 100%;
     fill: currentColor;
-  }
-
-  .t1 {
-    color: var(--accent);
-    background: var(--rule);
-  }
-
-  .t2 {
-    color: var(--paper-2);
-    background: var(--accent);
-  }
-
-  .t3 {
-    color: var(--ink);
-    background: var(--paper-2);
-  }
-
-  .t4 {
-    color: var(--paper);
-    background: #2B5F49;
   }
 
   .a-caption {
