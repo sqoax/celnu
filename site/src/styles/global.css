@@ -16,6 +16,7 @@
   --rule: #D6D0C4;     /* hairlines */
   --accent: #1F4D3A;   /* deep green: links, the Send button, focus rings; used sparingly */
 
+  --font-display: 'Instrument Serif', Georgia, serif;
   --font-body: 'Public Sans Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   --gutter: clamp(1.25rem, 5vw, 3rem);
@@ -60,7 +61,7 @@ a {
 /* The small numbered labels: the only uppercase tracked type on the page. */
 .eyebrow {
   font-family: var(--font-body);
-  font-size: 0.75rem; /* 12px */
+  font-size: 0.8125rem; /* 13px */
   font-weight: 500;
   line-height: 1.4;
   letter-spacing: 0.12em;

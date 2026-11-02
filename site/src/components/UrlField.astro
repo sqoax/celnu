@@ -13,7 +13,7 @@ const errorId = `${id}-error`;
 
 <div class="url-field">
   <form class="form" data-url-form novalidate>
-    <label class="label" for={id}>Your firm's website</label>
+    <label class="label" for={id}>Your firm’s website</label>
     <div class="bar">
       <span class="prefix" aria-hidden="true">https://</span>
       <input
@@ -55,7 +55,7 @@ const errorId = `${id}-error`;
       event.preventDefault();
       const url = cleanUrl(input.value);
       if (!url) {
-        error.textContent = "Enter your firm's website first.";
+        error.textContent = 'Enter your firm’s website first.';
         input.setAttribute('aria-invalid', 'true');
         input.focus();
         return;

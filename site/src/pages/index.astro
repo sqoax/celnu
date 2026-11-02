@@ -1,15 +1,311 @@
 ---
 import Base from '../layouts/Base.astro';
+import UrlField from '../components/UrlField.astro';
+import { CONTACT_EMAIL } from '../config';
+
+const subline =
+  'Most firms’ websites haven’t kept up with their track record. I design and build sites for private equity and private credit funds, SBIC lenders, independent sponsors, search funds and family offices.';
+
+const included = [
+  'Team and bio pages',
+  'A searchable portfolio and deal history',
+  'Your investment criteria, laid out clearly',
+  'Mobile done right',
+  'Launch handled, including your domain and email',
+  'You own everything: domain, hosting and code',
+];
+
+const steps = [
+  'Send your URL.',
+  'See your redesigned homepage within a week.',
+  'Approve it, and I build the rest and launch.',
+];
+
+const year = new Date().getFullYear();
 ---
 
-<Base title="Celnu — Websites for private investment firms">
-  <main>
-    <h1>Websites for private investment firms.</h1>
+<Base title="Celnu — Websites for private investment firms" description={subline}>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap header-row">
+      <span class="wordmark">Celnu</span>
+      <a href="#send" data-jump-to-field>Send your URL</a>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <h1 class="hero-title" id="hero-title">Websites for private investment firms.</h1>
+        <p class="subline">{subline}</p>
+        <div class="hero-field" id="send">
+          <UrlField id="url-hero" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section ruled" aria-labelledby="problem">
+      <div class="wrap">
+        <h2 class="eyebrow" id="problem">01 The problem</h2>
+        <p class="statement">
+          Your website is the first piece of diligence a founder, banker or LP does on you.
+        </p>
+        <p class="prose">
+          They notice a dated site, missing bios, a portfolio no one can search, a mobile view that
+          falls apart.
+        </p>
+      </div>
+    </section>
+
+    <section class="section toned" aria-labelledby="preview">
+      <div class="wrap">
+        <h2 class="eyebrow" id="preview">02 See it before you commit</h2>
+        <p class="feature">
+          Send me your URL and I’ll redesign your homepage using your real content: your team, your
+          criteria, your deals.
+        </p>
+        <p class="aside">I take on two a month.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="included">
+      <div class="wrap">
+        <h2 class="eyebrow" id="included">03 What’s included</h2>
+        <ul class="rows" role="list">
+          {included.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section ruled" aria-labelledby="how">
+      <div class="wrap">
+        <h2 class="eyebrow" id="how">04 How it works</h2>
+        <ol class="rows steps" role="list">
+          {steps.map((step) => <li>{step}</li>)}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section ruled" aria-labelledby="pricing">
+      <div class="wrap">
+        <h2 class="eyebrow" id="pricing">05 Pricing</h2>
+        <p class="statement">Projects from $5,000.</p>
+        <p class="prose">Ongoing care is available after launch.</p>
+      </div>
+    </section>
+
+    <section class="section ruled" aria-labelledby="about">
+      <div class="wrap">
+        <h2 class="eyebrow" id="about">06 About</h2>
+        <p class="statement">
+          Celnu is Hiatt, a one-person studio in Greensboro, North Carolina. You work directly with
+          the person who builds your site.
+        </p>
+      </div>
+    </section>
+
+    <section class="section toned" aria-labelledby="closing">
+      <div class="wrap">
+        <h2 class="feature closing-title" id="closing">
+          Send your URL. <span class="closing-line">I’ll show you what it could be.</span>
+        </h2>
+        <UrlField id="url-closing" />
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+      <span>Greensboro, NC</span>
+      <span>© {year} Celnu</span>
+    </div>
+  </footer>
 </Base>
 
+<script>
+  // Without JavaScript the link jumps to #send. With it, the cursor goes straight in the field;
+  // letting the jump run too would pull focus back out.
+  document.querySelector('[data-jump-to-field]')?.addEventListener('click', (event) => {
+    event.preventDefault();
+    document.getElementById('url-hero')?.focus();
+  });
+</script>
+
 <style>
-  main {
-    padding: var(--gutter);
+  .wrap {
+    max-width: calc(68.75rem + 2 * var(--gutter));
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .skip {
+    position: absolute;
+    top: 0.5rem;
+    left: var(--gutter);
+    padding: 0.5rem 0.75rem;
+    background: var(--paper);
+    transform: translateY(-200%);
+  }
+
+  .skip:focus {
+    transform: none;
+  }
+
+  main:focus {
+    outline: none;
+  }
+
+  /* Header */
+  .site-header {
+    padding-block: 1.25rem;
+  }
+
+  .header-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .wordmark {
+    font-family: var(--font-display);
+    font-size: 1.875rem;
+    line-height: 1;
+  }
+
+  /* Hero */
+  .hero {
+    padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(4rem, 9vw, 7rem);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(4.25rem, 2.68rem + 7vw, 9rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+
+  .subline {
+    max-width: 38rem;
+    margin-top: clamp(1.5rem, 3vw, 2.25rem);
+    font-size: 1.125rem; /* 18px */
+    text-wrap: pretty;
+  }
+
+  .hero-field {
+    margin-top: clamp(2rem, 4vw, 2.75rem);
+    scroll-margin-top: 1.5rem;
+  }
+
+  /* Sections: separated by space, background tone and hairlines */
+  .section {
+    padding-block: clamp(3.5rem, 8vw, 6.5rem);
+  }
+
+  .ruled {
+    border-top: 1px solid var(--rule);
+  }
+
+  .toned {
+    background: var(--paper-2);
+  }
+
+  .statement,
+  .feature,
+  .aside,
+  .rows {
+    font-family: var(--font-display);
+    font-weight: 400;
+  }
+
+  .eyebrow + * {
+    margin-top: 1.25rem;
+  }
+
+  .statement {
+    max-width: 52rem;
+    font-size: clamp(2.25rem, 1.8rem + 2vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    text-wrap: pretty;
+  }
+
+  /* The hook is the center of the page, so it gets the largest type after the hero. */
+  .feature {
+    font-size: clamp(2.75rem, 2rem + 3.6vw, 5rem);
+    line-height: 1.04;
+    letter-spacing: -0.012em;
+    text-wrap: pretty;
+  }
+
+  .aside {
+    margin-top: 1.75rem;
+    font-size: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
+    line-height: 1.15;
+  }
+
+  .prose {
+    max-width: 38rem;
+    margin-top: 1.5rem;
+    font-size: 1.125rem;
+    text-wrap: pretty;
+  }
+
+  /* Plain lists: no icons, just hairlines */
+  .rows {
+    margin-block: 1.25rem 0;
+    margin-inline: 0;
+    padding: 0;
+    list-style: none;
+    font-size: clamp(1.75rem, 1.5rem + 1.2vw, 2.5rem);
+    line-height: 1.15;
+    border-top: 1px solid var(--rule);
+  }
+
+  .rows li {
+    padding-block: 0.75rem 0.8125rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .steps {
+    counter-reset: step;
+  }
+
+  .steps li {
+    display: grid;
+    grid-template-columns: 1.5em minmax(0, 1fr);
+    counter-increment: step;
+  }
+
+  .steps li::before {
+    content: counter(step) '.';
+    color: var(--ink-2);
+  }
+
+  /* Closing */
+  .closing-title {
+    margin-bottom: clamp(2rem, 4vw, 2.75rem);
+  }
+
+  .closing-line {
+    display: block;
+  }
+
+  /* Footer */
+  .site-footer {
+    padding-block: 1.75rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.9375rem;
+    color: var(--ink-2);
+  }
+
+  .footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 2rem;
   }
 </style>
