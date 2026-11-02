@@ -17,10 +17,20 @@ const buildings = [
   { left: 89, width: 11, height: 28, tone: 'near' },
 ];
 
-const columns = [
-  { label: 'Team', rows: ['Managing Partner', 'Partner', 'Principal'] },
-  { label: 'Criteria', rows: ['Founder-led', 'North America', 'Control or minority'] },
-  { label: 'Portfolio', rows: ['Industrial services', 'Healthcare', 'Business services'] },
+// Generic portrait silhouettes: a head and shoulders on a flat tone.
+const narrow = 'M16 100C16 76 27 64 40 64C53 64 64 76 64 100Z';
+const broad = 'M9 100C9 74 24 62 40 62C56 62 71 74 71 100Z';
+const portraits = [
+  { tone: 't1', head: 15, y: 39, shoulders: broad },
+  { tone: 't2', head: 14, y: 41, shoulders: narrow },
+  { tone: 't3', head: 15, y: 38, shoulders: narrow },
+  { tone: 't4', head: 14, y: 40, shoulders: broad },
+];
+
+const facts = [
+  { label: 'Founded', value: 'Year' },
+  { label: 'Investments', value: 'Count' },
+  { label: 'Offices', value: 'Cities' },
 ];
 ---
 
@@ -28,14 +38,22 @@ const columns = [
   <fieldset class="toggle">
     <legend class="vh">Show the homepage before or after a redesign</legend>
     <label class="tab">
-      <input type="radio" name="browser-view" value="before" />
+      <input type="radio" name="browser-view" value="before" autocomplete="off" />
       <span>Before</span>
     </label>
     <label class="tab">
-      <input type="radio" name="browser-view" value="after" checked />
+      <input type="radio" name="browser-view" value="after" autocomplete="off" checked />
       <span>After</span>
     </label>
   </fieldset>
+
+  <!-- The markup defaults to After for no JavaScript. This runs during parsing, so the flip's
+       Before start is in place before the first paint. -->
+  <script is:inline>
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelector('[data-browser-mock] input[value="before"]').checked = true;
+    }
+  </script>
 
   <div
     class="window"
@@ -82,13 +100,35 @@ const columns = [
           <span class="a-mark">Your Firm Capital</span>
           <span class="a-links"><span>Team</span><span>Criteria</span><span>Portfolio</span></span>
         </div>
-        <p class="a-hero">Your team, your criteria, your deals.</p>
-        <div class="a-cols">
-          {columns.map((column) => (
-            <div class="a-col">
-              <p class="a-label">{column.label}</p>
-              {column.rows.map((row) => <p class="a-row">{row}</p>)}
-            </div>
+        <div class="a-band">
+          <svg class="a-land" viewBox="0 0 640 200" preserveAspectRatio="xMaxYMax slice">
+            <rect class="land-sky" width="640" height="200"></rect>
+            <circle class="land-sun" cx="540" cy="92" r="24"></circle>
+            <path class="land-far" d="M0 130C80 100 150 110 220 125S360 80 440 105S580 120 640 95V200H0Z"></path>
+            <path class="land-mid" d="M0 165C100 130 190 150 280 160S470 125 640 150V200H0Z"></path>
+            <path class="land-near" d="M0 190C120 170 260 185 380 180S560 170 640 185V200H0Z"></path>
+          </svg>
+          <p class="a-hero">Your team, your criteria, your deals.</p>
+        </div>
+        <div class="a-team">
+          <p class="a-team-title">Team</p>
+          <div class="a-people">
+            {portraits.map((portrait) => (
+              <div>
+                <div class={`a-tile ${portrait.tone}`}>
+                  <svg viewBox="0 0 80 100" preserveAspectRatio="xMidYMax slice">
+                    <circle cx="40" cy={portrait.y} r={portrait.head}></circle>
+                    <path d={portrait.shoulders}></path>
+                  </svg>
+                </div>
+                <p class="a-caption">Name, Title</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="a-facts">
+          {facts.map((fact) => (
+            <p class="a-fact"><span>{fact.label}</span> <b>{fact.value}</b></p>
           ))}
         </div>
       </div>
@@ -97,8 +137,9 @@ const columns = [
 </div>
 
 <script>
-  const AFTER_MS = 6000;
-  const BEFORE_MS = 4000;
+  const FIRST_BEFORE_MS = 1500;
+  const AFTER_MS = 8000;
+  const BEFORE_MS = 3000;
 
   const mock = document.querySelector<HTMLElement>('[data-browser-mock]');
   if (mock) {
@@ -114,18 +155,17 @@ const columns = [
     // stylesheet applies, a fade that is already on makes the hidden view fade out on load.
     const allowFade = () => mock.classList.add('can-fade');
 
-    const schedule = () => {
+    const schedule = (delay: number) => {
       pause();
       if (stopped || reducedMotion.matches) return;
-      timer = window.setTimeout(
-        () => {
-          allowFade();
-          (after.checked ? before : after).checked = true;
-          schedule();
-        },
-        after.checked ? AFTER_MS : BEFORE_MS,
-      );
+      timer = window.setTimeout(() => {
+        allowFade();
+        (after.checked ? before : after).checked = true;
+        resume();
+      }, delay);
     };
+
+    const resume = () => schedule(after.checked ? AFTER_MS : BEFORE_MS);
 
     // Choosing a side is a decision: it stays there. Arrow keys fire click on radios too.
     mock.querySelector('.toggle')!.addEventListener('click', (event) => {
@@ -137,12 +177,16 @@ const columns = [
 
     // Holds still while someone is reading it or on the toggle.
     mock.addEventListener('mouseenter', pause);
-    mock.addEventListener('mouseleave', schedule);
+    mock.addEventListener('mouseleave', resume);
     mock.addEventListener('focusin', pause);
-    mock.addEventListener('focusout', schedule);
-    reducedMotion.addEventListener('change', schedule);
+    mock.addEventListener('focusout', resume);
 
-    schedule();
+    reducedMotion.addEventListener('change', () => {
+      if (reducedMotion.matches && !stopped) after.checked = true;
+      resume();
+    });
+
+    window.addEventListener('load', () => schedule(FIRST_BEFORE_MS), { once: true });
   }
 </script>
 
@@ -153,6 +197,9 @@ const columns = [
    *   #0000B8 on #D9D9D9   8.79   nav links
    *   #000000 on #FFFFFF  21.00   body text
    *   #595959 on #FFFFFF   7.00   footer
+   * The landscape adds two greens between the tokens. Its headline passes on every tone it can
+   * cross: --paper on --accent 8.54, on #2B5F49 6.56, on #173B2D 10.95, on --ink 15.74. It stays
+   * clear of the sun, which is --paper.
    * Everything else uses the tokens in global.css.
    */
   /* In the split hero the window stretches to match the text column's height. */
@@ -376,7 +423,6 @@ const columns = [
 
   /* After: the same firm, in the Celnu style */
   .after {
-    padding: 1.25em 1.5em 1.5em;
     color: var(--ink);
     background: var(--paper);
   }
@@ -386,6 +432,7 @@ const columns = [
     align-items: baseline;
     justify-content: space-between;
     gap: 1em;
+    padding: 0.75em 1.5em;
   }
 
   .a-mark {
@@ -401,36 +448,135 @@ const columns = [
     font-size: 0.875em;
   }
 
-  .a-hero {
-    max-width: 14em;
-    margin-block: auto;
-    padding-block: 1em;
-    font-family: var(--font-display);
-    font-size: 3.5em;
-    line-height: 1;
-    letter-spacing: -0.012em;
+  .a-band {
+    position: relative;
+    flex: 1;
+    min-height: max(10em, 22cqw); /* tall enough that the landscape's crop keeps the whole sun */
+    background: var(--accent);
   }
 
-  .a-cols {
+  .a-land {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .land-sky {
+    fill: var(--accent);
+  }
+
+  .land-sun {
+    fill: var(--paper);
+  }
+
+  .land-far {
+    fill: #2B5F49;
+  }
+
+  .land-mid {
+    fill: #173B2D;
+  }
+
+  .land-near {
+    fill: var(--ink);
+  }
+
+  .a-hero {
+    position: relative;
+    max-width: 62%;
+    padding: 0.4em 0 0.8em 0.55em;
+    font-family: var(--font-display);
+    font-size: 2.75em;
+    line-height: 1;
+    letter-spacing: -0.012em;
+    color: var(--paper);
+    text-wrap: balance;
+  }
+
+  .a-team {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 4.5fr);
+    gap: 1em;
+    padding: 1em 1.5em;
+  }
+
+  .a-team-title {
+    font-family: var(--font-display);
+    font-size: 1.5em;
+    line-height: 1.1;
+  }
+
+  .a-people {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.75em;
+  }
+
+  .a-tile {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+  }
+
+  .a-tile svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+  }
+
+  .t1 {
+    color: var(--accent);
+    background: var(--rule);
+  }
+
+  .t2 {
+    color: var(--paper-2);
+    background: var(--accent);
+  }
+
+  .t3 {
+    color: var(--ink);
+    background: var(--paper-2);
+  }
+
+  .t4 {
+    color: var(--paper);
+    background: #2B5F49;
+  }
+
+  .a-caption {
+    margin-top: 0.375em;
+    font-size: 0.8125em;
+    line-height: 1.25;
+    color: var(--ink-2);
+  }
+
+  .a-facts {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1em;
+    padding: 0.5em 1.5em;
+    background: var(--paper-2);
+    border-top: 1px solid var(--rule);
   }
 
-  .a-col {
-    font-size: 0.875em;
+  .a-fact {
+    font-size: 0.8125em;
     line-height: 1.3;
-  }
-
-  .a-label {
-    padding-bottom: 0.375em;
-    font-weight: 600;
-    border-bottom: 1px solid var(--ink);
-  }
-
-  .a-row {
-    padding-block: 0.375em;
-    border-bottom: 1px solid var(--rule);
     color: var(--ink-2);
+  }
+
+  .a-fact b {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* A narrow window gives the portraits the full width. */
+  @container (max-width: 30rem) {
+    .a-team {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.5em;
+    }
   }
 </style>

@@ -79,12 +79,13 @@ This element appears twice: in the hero and in the closing section.
 A browser window built in HTML/CSS, showing the homepage of a fictional firm labeled "Your Firm Capital". It flips between two versions:
 
 - **Before:** a dated homepage: cramped, Times-style text and a generic stock-photo block drawn in flat CSS shapes.
-- **After:** a clean redesign in the Celnu style.
+- **After:** a clean redesign in the Celnu style, and the richer of the two: a landscape image band in flat green, bone and ink shapes, four 4:5 portrait tiles with simple silhouettes, and a thin facts strip (Founded, Investments, Offices) using placeholder words.
 
 Behavior:
 
 - A "Before / After" toggle that works by keyboard and without JavaScript. Using it stops the automatic flip.
-- A slow automatic flip that doesn't run under `prefers-reduced-motion`. The page starts on After.
+- With JavaScript on, it starts on Before, flips to After about 1.5 seconds after load, then loops slowly, holding After longer than Before.
+- Without JavaScript or under `prefers-reduced-motion`, it shows After with no automatic flip.
 - When someone types in the URL field, the illustration's address bar shows their domain live.
 - Its text meets WCAG AA like the rest of the page, including the dated version's own colors. Screen readers get it as one labeled image.
 - No real company names, logos or screenshots, and no numbers or performance claims in it.
