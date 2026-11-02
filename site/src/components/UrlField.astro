@@ -38,7 +38,10 @@ const errorId = `${id}-error`;
 
 <script>
   import { CONTACT_EMAIL } from '../config';
-  import { buildMailto, cleanUrl } from '../mailto';
+  import { buildMailto, cleanUrl, domainOf } from '../mailto';
+
+  const address = document.querySelector<HTMLElement>('[data-browser-address]');
+  const defaultAddress = address?.textContent ?? '';
 
   document.querySelectorAll<HTMLFormElement>('[data-url-form]').forEach((form) => {
     const input = form.querySelector('input')!;
@@ -49,7 +52,10 @@ const errorId = `${id}-error`;
       input.removeAttribute('aria-invalid');
     };
 
-    input.addEventListener('input', clearError);
+    input.addEventListener('input', () => {
+      clearError();
+      if (address) address.textContent = domainOf(cleanUrl(input.value)) || defaultAddress;
+    });
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();

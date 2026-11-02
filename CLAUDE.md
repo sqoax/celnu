@@ -21,47 +21,47 @@ The one-page website for Celnu, a one-person studio that builds websites for pri
 
 ## Page structure and copy
 
-One page, in this order. Section labels are small numbered eyebrows (01, 02 …).
+One page, in this order. Section labels are bold numbered eyebrows (01, 02 …). Six numbered sections share four bands, so the page stays short.
 
 1. **Header:** "Celnu" wordmark at left; one link at right, "Send your URL", which jumps to the URL field.
 
-2. **Hero**
+2. **Hero** (split: text and URL field at left, the browser illustration at right)
    - Headline: **Websites for private investment firms.**
    - Subline: Most firms' websites haven't kept up with their track record. I design and build sites for private equity and private credit funds, SBIC lenders, independent sponsors, search funds and family offices.
    - The URL field (below).
+   - The browser illustration (below).
 
-3. **01 The problem**
-   - Your website is the first piece of diligence a founder, banker or LP does on you.
-   - Follow with one or two short sentences: a dated site, missing bios, a portfolio no one can search, a mobile view that falls apart. Keep it factual, not alarmist.
+3. **Accent band:** one full-width `--accent` band with `--paper` text, holding 01 at left and 02 at right.
+   - **01 The problem**
+     - Your website is the first piece of diligence a founder, banker or LP does on you.
+     - Follow with one or two short sentences: a dated site, missing bios, a portfolio no one can search, a mobile view that falls apart. Keep it factual, not alarmist.
+   - **02 See it before you commit**
+     - Send me your URL and I'll redesign your homepage using your real content: your team, your criteria, your deals.
+     - I take on two a month.
 
-4. **02 See it before you commit**
-   - Send me your URL and I'll redesign your homepage using your real content: your team, your criteria, your deals.
-   - I take on two a month.
+4. **Side by side:** 03 at left, 04 at right.
+   - **03 What's included** (a plain list, no icons)
+     - Team and bio pages
+     - A searchable portfolio and deal history
+     - Your investment criteria, laid out clearly
+     - Mobile done right
+     - Launch handled, including your domain and email
+     - You own everything: domain, hosting and code
+   - **04 How it works** (three steps, with large Instrument Serif numerals)
+     1. Send your URL.
+     2. See your redesigned homepage within a week.
+     3. Approve it, and I build the rest and launch.
 
-5. **03 What's included** (a plain list, no icons)
-   - Team and bio pages
-   - A searchable portfolio and deal history
-   - Your investment criteria, laid out clearly
-   - Mobile done right
-   - Launch handled, including your domain and email
-   - You own everything: domain, hosting and code
+5. **Final band:** 05, 06 and the closing URL field in one band.
+   - **05 Pricing**
+     - Projects from $5,000.
+     - Ongoing care is available after launch. (One line only; no monthly price on the site.)
+   - **06 About**
+     - Celnu is Hiatt, a one-person studio in Greensboro, North Carolina. You work directly with the person who builds your site.
+     - No photo for now.
+   - **Closing:** repeat the URL field with one short line above it, e.g. "Send your URL. I'll show you what it could be."
 
-6. **04 How it works** (three numbered steps)
-   1. Send your URL.
-   2. See your redesigned homepage within a week.
-   3. Approve it, and I build the rest and launch.
-
-7. **05 Pricing**
-   - Projects from $5,000.
-   - Ongoing care is available after launch. (One line only; no monthly price on the site.)
-
-8. **06 About**
-   - Celnu is Hiatt, a one-person studio in Greensboro, North Carolina. You work directly with the person who builds your site.
-   - No photo for now.
-
-9. **Closing:** repeat the URL field with one short line above it, e.g. "Send your URL. I'll show you what it could be."
-
-10. **Footer:** hiatt@celnu.com, Greensboro, NC, and a copyright line.
+6. **Footer:** hiatt@celnu.com, Greensboro, NC, and a copyright line.
 
 ## The URL field (the signature element)
 
@@ -73,6 +73,21 @@ The main call to action looks like a browser address bar: a single input with a 
 - Below it, one small line: "Opens your email. Nothing is sent until you hit send."
 
 This element appears twice: in the hero and in the closing section.
+
+## The browser illustration
+
+A browser window built in HTML/CSS, showing the homepage of a fictional firm labeled "Your Firm Capital". It flips between two versions:
+
+- **Before:** a dated homepage: cramped, Times-style text and a generic stock-photo block drawn in flat CSS shapes.
+- **After:** a clean redesign in the Celnu style.
+
+Behavior:
+
+- A "Before / After" toggle that works by keyboard and without JavaScript. Using it stops the automatic flip.
+- A slow automatic flip that doesn't run under `prefers-reduced-motion`. The page starts on After.
+- When someone types in the URL field, the illustration's address bar shows their domain live.
+- Its text meets WCAG AA like the rest of the page, including the dated version's own colors. Screen readers get it as one labeled image.
+- No real company names, logos or screenshots, and no numbers or performance claims in it.
 
 ## Design direction: quiet confidence with a studio edge
 
@@ -89,7 +104,7 @@ Plain CSS custom properties in one global stylesheet, with Astro scoped styles. 
   --ink: #16181D;      /* text */
   --ink-2: #5A5F66;    /* secondary text: verify AA on both papers */
   --rule: #D6D0C4;     /* hairlines */
-  --accent: #1F4D3A;   /* deep green: links, the Send button, focus rings; used sparingly */
+  --accent: #1F4D3A;   /* deep green: links, the Send button, focus rings and the one full-width band */
 }
 ```
 
@@ -103,14 +118,15 @@ Verify every text/background pair meets WCAG AA and record the ratios in comment
   - **C:** Newsreader headlines, with italic used for one emphasized word in the hero
 - Self-host fonts with `@fontsource` packages. No Google Fonts requests.
 - The hero headline is large: it is the main visual on the page. Body 17–18px, line-height about 1.6, measure about 60–70 characters.
-- Small uppercase tracked labels only for the numbered eyebrows, at 12–13px.
+- Small uppercase tracked labels only for the numbered eyebrows, at 14–15px, bold and high contrast (`--ink`, or `--paper` on the accent band).
 
 ### Layout
 
-- Single column, left-aligned, generous margins and vertical space. Max content width about 1100px.
-- Sections separated by space, background tone and hairlines.
-- No images, no illustrations, no screenshots, no example projects. Typography and the URL field carry the page.
-- Motion: at most a gentle fade-in on scroll, disabled under `prefers-reduced-motion`.
+- Use the full width: two-column bands, left-aligned, with a max content width of about 1440px. Below about 1024px everything stacks into one column.
+- Keep the page short: about half the height of a single-column layout.
+- Bands separated by background tone and space.
+- No photos or screenshots, and no images apart from the browser illustration. Typography, the URL field and the illustration carry the page.
+- Motion: only the illustration's flip, disabled under `prefers-reduced-motion`.
 
 ## Hard rules
 
@@ -119,7 +135,7 @@ Verify every text/background pair meets WCAG AA and record the ratios in comment
 - No pill buttons. Buttons are squared.
 - No rounded cards with drop shadows.
 - No testimonials, client logos, award badges, review ratings or performance statistics.
-- No example projects or placeholder screenshots.
+- No example projects or placeholder screenshots. The fictional "Your Firm Capital" browser illustration is the only exception.
 - No "free proposal", "free consultation", "book a call", "get started", "agency", "solutions", "unlock", "supercharge", "seamless" or "cutting-edge".
 - No SEO or marketing jargon.
 
@@ -138,6 +154,6 @@ Verify every text/background pair meets WCAG AA and record the ratios in comment
 
 **Step 1: Type specimen.** Build `/specimen` (unlinked) showing pairings A, B and C side by side. Each shows the hero headline at full size, the subline, one numbered section with its eyebrow, the pricing line, and the URL field. Check that `--ink-2` and `--accent` pass AA. Commit. **STOP** for Hiatt to pick one.
 
-**Step 2: The page.** Build the full one-page site with the chosen pairing. Screenshot it at 1440px and 390px, self-check against this file, and test the URL field (empty input, input with `https://` and a trailing slash, keyboard only, JavaScript disabled). Commit. **STOP** for review.
+**Step 2: The page.** Build the full one-page site with the chosen pairing. Screenshot it at 1440px and 390px, self-check against this file, and test the URL field (empty input, input with `https://` and a trailing slash, keyboard only, JavaScript disabled) and the browser illustration (toggle, automatic flip, `prefers-reduced-motion`, live address bar). Commit. **STOP** for review.
 
 **Step 3: Polish.** Run an accessibility scan (axe) at both widths, run Lighthouse for Accessibility and Best Practices, and write `site/README.md` with how to run it locally. Commit.

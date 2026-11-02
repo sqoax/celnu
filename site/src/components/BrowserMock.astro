@@ -1,0 +1,436 @@
+---
+// A generic stock-photo skyline in flat shapes: a pale far row, then a darker near row.
+const buildings = [
+  { left: 0, width: 13, height: 52, tone: 'far' },
+  { left: 11, width: 9, height: 66, tone: 'far' },
+  { left: 24, width: 12, height: 74, tone: 'far' },
+  { left: 41, width: 10, height: 88, tone: 'far', roof: 'spire' },
+  { left: 56, width: 14, height: 70, tone: 'far' },
+  { left: 72, width: 10, height: 80, tone: 'far' },
+  { left: 86, width: 14, height: 58, tone: 'far' },
+  { left: 5, width: 12, height: 34, tone: 'near' },
+  { left: 17, width: 15, height: 48, tone: 'near', roof: 'slant' },
+  { left: 32, width: 11, height: 30, tone: 'near' },
+  { left: 43, width: 16, height: 56, tone: 'near' },
+  { left: 59, width: 13, height: 38, tone: 'near' },
+  { left: 72, width: 17, height: 50, tone: 'near', roof: 'slant' },
+  { left: 89, width: 11, height: 28, tone: 'near' },
+];
+
+const columns = [
+  { label: 'Team', rows: ['Managing Partner', 'Partner', 'Principal'] },
+  { label: 'Criteria', rows: ['Founder-led', 'North America', 'Control or minority'] },
+  { label: 'Portfolio', rows: ['Industrial services', 'Healthcare', 'Business services'] },
+];
+---
+
+<div class="browser" data-browser-mock>
+  <fieldset class="toggle">
+    <legend class="vh">Show the homepage before or after a redesign</legend>
+    <label class="tab">
+      <input type="radio" name="browser-view" value="before" />
+      <span>Before</span>
+    </label>
+    <label class="tab">
+      <input type="radio" name="browser-view" value="after" checked />
+      <span>After</span>
+    </label>
+  </fieldset>
+
+  <div
+    class="window"
+    role="img"
+    aria-label="Illustration: a browser window showing the homepage of Your Firm Capital, a fictional firm, as a dated site and as a clean redesign."
+  >
+    <div class="chrome">
+      <span class="lights"><span></span><span></span><span></span></span>
+      <div class="address">
+        <span class="scheme">https://</span><span class="domain" data-browser-address>yourfirm.com</span>
+      </div>
+    </div>
+
+    <div class="viewport">
+      <div class="view before">
+        <p class="b-banner">YOUR FIRM CAPITAL</p>
+        <p class="b-nav"><u>Home</u> | <u>About Us</u> | <u>Team</u> | <u>Portfolio</u> | <u>Contact Us</u></p>
+        <div class="b-body">
+          <div class="b-photo">
+            {buildings.map((b) => (
+              <span
+                class:list={['building', b.tone, b.roof]}
+                style={`left:${b.left}%;width:${b.width}%;height:${b.height}%`}
+              />
+            ))}
+            <span class="b-ground"></span>
+          </div>
+          <div class="b-text">
+            <p><b>Welcome to our website.</b></p>
+            <p>
+              Your Firm Capital is a private investment firm. Please use the links above to learn
+              more about our firm, our team and our deals.
+            </p>
+            <p><b>Team:</b> Bios coming soon.</p>
+            <p><b>Portfolio:</b> This page is being updated.</p>
+            <p>For more information please contact us.</p>
+          </div>
+        </div>
+        <p class="b-foot">Your Firm Capital. All rights reserved.</p>
+      </div>
+
+      <div class="view after">
+        <div class="a-nav">
+          <span class="a-mark">Your Firm Capital</span>
+          <span class="a-links"><span>Team</span><span>Criteria</span><span>Portfolio</span></span>
+        </div>
+        <p class="a-hero">Your team, your criteria, your deals.</p>
+        <div class="a-cols">
+          {columns.map((column) => (
+            <div class="a-col">
+              <p class="a-label">{column.label}</p>
+              {column.rows.map((row) => <p class="a-row">{row}</p>)}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const AFTER_MS = 6000;
+  const BEFORE_MS = 4000;
+
+  const mock = document.querySelector<HTMLElement>('[data-browser-mock]');
+  if (mock) {
+    const before = mock.querySelector<HTMLInputElement>('input[value="before"]')!;
+    const after = mock.querySelector<HTMLInputElement>('input[value="after"]')!;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let stopped = false;
+    let timer: number | undefined;
+
+    const pause = () => window.clearTimeout(timer);
+
+    // Fading is switched on at the first change, not on load: if this script runs before the
+    // stylesheet applies, a fade that is already on makes the hidden view fade out on load.
+    const allowFade = () => mock.classList.add('can-fade');
+
+    const schedule = () => {
+      pause();
+      if (stopped || reducedMotion.matches) return;
+      timer = window.setTimeout(
+        () => {
+          allowFade();
+          (after.checked ? before : after).checked = true;
+          schedule();
+        },
+        after.checked ? AFTER_MS : BEFORE_MS,
+      );
+    };
+
+    // Choosing a side is a decision: it stays there. Arrow keys fire click on radios too.
+    mock.querySelector('.toggle')!.addEventListener('click', (event) => {
+      if (!(event.target instanceof HTMLInputElement)) return;
+      allowFade();
+      stopped = true;
+      pause();
+    });
+
+    // Holds still while someone is reading it or on the toggle.
+    mock.addEventListener('mouseenter', pause);
+    mock.addEventListener('mouseleave', schedule);
+    mock.addEventListener('focusin', pause);
+    mock.addEventListener('focusout', schedule);
+    reducedMotion.addEventListener('change', schedule);
+
+    schedule();
+  }
+</script>
+
+<style>
+  /*
+   * WCAG AA contrast for the colors only this illustration uses (the dated site's own palette):
+   *   #FFFFFF on #1F2F5C  12.97   banner
+   *   #0000B8 on #D9D9D9   8.79   nav links
+   *   #000000 on #FFFFFF  21.00   body text
+   *   #595959 on #FFFFFF   7.00   footer
+   * Everything else uses the tokens in global.css.
+   */
+  /* In the split hero the window stretches to match the text column's height. */
+  .browser {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  /* Radios, so the toggle works without JavaScript. */
+  .toggle {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  .tab {
+    position: relative;
+    display: block;
+    margin-left: -1px;
+    cursor: pointer;
+  }
+
+  .tab:first-of-type {
+    margin-left: 0;
+  }
+
+  .tab input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .tab span {
+    display: block;
+    min-width: 5rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.5;
+    text-align: center;
+    border: 1px solid var(--ink);
+    border-bottom: 0;
+  }
+
+  .tab input:checked + span {
+    color: var(--paper);
+    background: var(--ink);
+  }
+
+  .tab input:focus-visible + span {
+    position: relative;
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .window {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    border: 1px solid var(--ink);
+  }
+
+  .chrome {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.625rem 0.75rem;
+    background: var(--paper-2);
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .lights {
+    display: flex;
+    flex: none;
+    gap: 0.3125rem;
+  }
+
+  .lights span {
+    width: 0.625rem;
+    height: 0.625rem;
+    border: 1px solid var(--ink-2);
+  }
+
+  .address {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    padding: 0.25rem 0.625rem;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    background: var(--paper);
+    border: 1px solid var(--ink-2);
+  }
+
+  .scheme {
+    flex: none;
+    color: var(--ink-2);
+  }
+
+  .domain {
+    overflow: hidden;
+    color: var(--ink);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Both versions share one cell, so the window keeps its height when it flips. */
+  .viewport {
+    display: grid;
+    flex: 1;
+    container-type: inline-size;
+    overflow: hidden;
+  }
+
+  .view {
+    display: flex;
+    flex-direction: column;
+    grid-area: 1 / 1;
+    min-width: 0;
+    font-size: clamp(0.6875rem, 2.2cqw, 1rem);
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .browser:has(input[value='before']:checked) .before,
+  .browser:has(input[value='after']:checked) .after {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .browser.can-fade .view {
+      transition:
+        opacity 0.7s ease,
+        visibility 0.7s;
+    }
+  }
+
+  /* Before: the dated site */
+  .before {
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 1.12;
+    color: #000000;
+    background: #FFFFFF;
+  }
+
+  .b-banner {
+    padding: 0.5em 0.625em;
+    font-size: 1.375em;
+    font-weight: 700;
+    color: #FFFFFF;
+    background: #1F2F5C;
+  }
+
+  .b-nav {
+    padding: 0.25em 0.625em;
+    color: #0000B8;
+    background: #D9D9D9;
+  }
+
+  .b-body {
+    display: grid;
+    flex: 1;
+    grid-template-columns: 42% minmax(0, 1fr);
+    gap: 0.625em;
+    padding: 0.625em;
+  }
+
+  .b-photo {
+    position: relative;
+    align-self: start;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #A9BCCC;
+  }
+
+  .building {
+    position: absolute;
+    bottom: 0;
+  }
+
+  .far {
+    background: #8195AA;
+  }
+
+  .near {
+    background: #3F5168;
+  }
+
+  .spire {
+    clip-path: polygon(50% 0, 56% 16%, 100% 16%, 100% 100%, 0 100%, 0 16%, 44% 16%);
+  }
+
+  .slant {
+    clip-path: polygon(0 14%, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .b-ground {
+    position: absolute;
+    inset: auto 0 0;
+    height: 8%;
+    background: #2C3A4C;
+  }
+
+  .b-text p + p {
+    margin-top: 0.4em;
+  }
+
+  .b-foot {
+    padding: 0.25em 0.625em 0.5em;
+    font-size: 0.875em;
+    color: #595959;
+    border-top: 1px solid #D9D9D9;
+  }
+
+  /* After: the same firm, in the Celnu style */
+  .after {
+    padding: 1.25em 1.5em 1.5em;
+    color: var(--ink);
+    background: var(--paper);
+  }
+
+  .a-nav {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1em;
+  }
+
+  .a-mark {
+    font-family: var(--font-display);
+    font-size: 1.5em;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .a-links {
+    display: flex;
+    gap: 1em;
+    font-size: 0.875em;
+  }
+
+  .a-hero {
+    max-width: 14em;
+    margin-block: auto;
+    padding-block: 1em;
+    font-family: var(--font-display);
+    font-size: 3.5em;
+    line-height: 1;
+    letter-spacing: -0.012em;
+  }
+
+  .a-cols {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1em;
+  }
+
+  .a-col {
+    font-size: 0.875em;
+    line-height: 1.3;
+  }
+
+  .a-label {
+    padding-bottom: 0.375em;
+    font-weight: 600;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .a-row {
+    padding-block: 0.375em;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink-2);
+  }
+</style>

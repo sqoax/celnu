@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import BrowserMock from '../components/BrowserMock.astro';
 import UrlField from '../components/UrlField.astro';
 import { CONTACT_EMAIL } from '../config';
 
@@ -36,83 +37,82 @@ const year = new Date().getFullYear();
 
   <main id="main" tabindex="-1">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="wrap">
-        <h1 class="hero-title" id="hero-title">Websites for private investment firms.</h1>
-        <p class="subline">{subline}</p>
-        <div class="hero-field" id="send">
-          <UrlField id="url-hero" />
+      <div class="wrap columns">
+        <div>
+          <h1 class="hero-title" id="hero-title">Websites for private investment firms.</h1>
+          <p class="subline">{subline}</p>
+          <div class="hero-field" id="send">
+            <UrlField id="url-hero" />
+          </div>
         </div>
+        <BrowserMock />
       </div>
     </section>
 
-    <section class="section ruled" aria-labelledby="problem">
-      <div class="wrap">
-        <h2 class="eyebrow" id="problem">01 The problem</h2>
-        <p class="statement">
-          Your website is the first piece of diligence a founder, banker or LP does on you.
-        </p>
-        <p class="prose">
-          They notice a dated site, missing bios, a portfolio no one can search, a mobile view that
-          falls apart.
-        </p>
+    <div class="band accent">
+      <div class="wrap columns">
+        <section aria-labelledby="problem">
+          <h2 class="eyebrow" id="problem">01 The problem</h2>
+          <p class="statement">
+            Your website is the first piece of diligence a founder, banker or LP does on you.
+          </p>
+          <p class="prose">
+            They notice a dated site, missing bios, a portfolio no one can search, a mobile view that
+            falls apart.
+          </p>
+        </section>
+        <section aria-labelledby="preview">
+          <h2 class="eyebrow" id="preview">02 See it before you commit</h2>
+          <p class="feature">
+            Send me your URL and I’ll redesign your homepage using your real content: your team, your
+            criteria, your deals.
+          </p>
+          <p class="aside">I take on two a month.</p>
+        </section>
       </div>
-    </section>
+    </div>
 
-    <section class="section toned" aria-labelledby="preview">
-      <div class="wrap">
-        <h2 class="eyebrow" id="preview">02 See it before you commit</h2>
-        <p class="feature">
-          Send me your URL and I’ll redesign your homepage using your real content: your team, your
-          criteria, your deals.
-        </p>
-        <p class="aside">I take on two a month.</p>
+    <div class="band">
+      <div class="wrap columns">
+        <section aria-labelledby="included">
+          <h2 class="eyebrow" id="included">03 What’s included</h2>
+          <ul class="rows" role="list">
+            {included.map((item) => <li>{item}</li>)}
+          </ul>
+        </section>
+        <section aria-labelledby="how">
+          <h2 class="eyebrow" id="how">04 How it works</h2>
+          <ol class="rows steps" role="list">
+            {steps.map((step) => <li>{step}</li>)}
+          </ol>
+        </section>
       </div>
-    </section>
+    </div>
 
-    <section class="section" aria-labelledby="included">
-      <div class="wrap">
-        <h2 class="eyebrow" id="included">03 What’s included</h2>
-        <ul class="rows" role="list">
-          {included.map((item) => <li>{item}</li>)}
-        </ul>
+    <div class="band toned">
+      <div class="wrap columns">
+        <div class="facts">
+          <section aria-labelledby="pricing">
+            <h2 class="eyebrow" id="pricing">05 Pricing</h2>
+            <p class="statement">Projects from $5,000.</p>
+            <p class="prose">Ongoing care is available after launch.</p>
+          </section>
+          <section aria-labelledby="about">
+            <h2 class="eyebrow" id="about">06 About</h2>
+            <p class="prose">
+              Celnu is Hiatt, a one-person studio in Greensboro, North Carolina. You work directly
+              with the person who builds your site.
+            </p>
+          </section>
+        </div>
+        <section aria-labelledby="closing">
+          <h2 class="feature closing-title" id="closing">
+            Send your URL. <span class="closing-line">I’ll show you what it could be.</span>
+          </h2>
+          <UrlField id="url-closing" />
+        </section>
       </div>
-    </section>
-
-    <section class="section ruled" aria-labelledby="how">
-      <div class="wrap">
-        <h2 class="eyebrow" id="how">04 How it works</h2>
-        <ol class="rows steps" role="list">
-          {steps.map((step) => <li>{step}</li>)}
-        </ol>
-      </div>
-    </section>
-
-    <section class="section ruled" aria-labelledby="pricing">
-      <div class="wrap">
-        <h2 class="eyebrow" id="pricing">05 Pricing</h2>
-        <p class="statement">Projects from $5,000.</p>
-        <p class="prose">Ongoing care is available after launch.</p>
-      </div>
-    </section>
-
-    <section class="section ruled" aria-labelledby="about">
-      <div class="wrap">
-        <h2 class="eyebrow" id="about">06 About</h2>
-        <p class="statement">
-          Celnu is Hiatt, a one-person studio in Greensboro, North Carolina. You work directly with
-          the person who builds your site.
-        </p>
-      </div>
-    </section>
-
-    <section class="section toned" aria-labelledby="closing">
-      <div class="wrap">
-        <h2 class="feature closing-title" id="closing">
-          Send your URL. <span class="closing-line">I’ll show you what it could be.</span>
-        </h2>
-        <UrlField id="url-closing" />
-      </div>
-    </section>
+    </div>
   </main>
 
   <footer class="site-footer">
@@ -135,7 +135,7 @@ const year = new Date().getFullYear();
 
 <style>
   .wrap {
-    max-width: calc(68.75rem + 2 * var(--gutter));
+    max-width: calc(90rem + 2 * var(--gutter));
     margin-inline: auto;
     padding-inline: var(--gutter);
   }
@@ -177,12 +177,12 @@ const year = new Date().getFullYear();
 
   /* Hero */
   .hero {
-    padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(4rem, 9vw, 7rem);
+    padding-block: clamp(1.5rem, 3vw, 2.5rem) clamp(3rem, 5.5vw, 5rem);
   }
 
   .hero-title {
     font-family: var(--font-display);
-    font-size: clamp(4.25rem, 2.68rem + 7vw, 9rem);
+    font-size: clamp(4.25rem, 2.68rem + 7vw, 7rem);
     font-weight: 400;
     line-height: 1;
     letter-spacing: -0.015em;
@@ -191,27 +191,33 @@ const year = new Date().getFullYear();
 
   .subline {
     max-width: 38rem;
-    margin-top: clamp(1.5rem, 3vw, 2.25rem);
+    margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
     font-size: 1.125rem; /* 18px */
     text-wrap: pretty;
   }
 
   .hero-field {
-    margin-top: clamp(2rem, 4vw, 2.75rem);
+    margin-top: clamp(1.5rem, 3vw, 2rem);
     scroll-margin-top: 1.5rem;
   }
 
-  /* Sections: separated by space, background tone and hairlines */
-  .section {
-    padding-block: clamp(3.5rem, 8vw, 6.5rem);
+  /* Bands */
+  .band {
+    padding-block: clamp(3rem, 5.5vw, 5rem);
   }
 
-  .ruled {
-    border-top: 1px solid var(--rule);
+  .accent {
+    color: var(--paper);
+    background: var(--accent);
   }
 
   .toned {
     background: var(--paper-2);
+  }
+
+  .columns {
+    display: grid;
+    gap: 3rem clamp(2.5rem, 5vw, 4.5rem);
   }
 
   .statement,
@@ -222,52 +228,48 @@ const year = new Date().getFullYear();
     font-weight: 400;
   }
 
-  .eyebrow + * {
-    margin-top: 1.25rem;
-  }
-
   .statement {
-    max-width: 52rem;
-    font-size: clamp(2.25rem, 1.8rem + 2vw, 3.5rem);
-    line-height: 1.1;
+    margin-top: 1rem;
+    font-size: clamp(2.25rem, 1.9rem + 0.8vw, 2.625rem);
+    line-height: 1.08;
     letter-spacing: -0.01em;
     text-wrap: pretty;
   }
 
   /* The hook is the center of the page, so it gets the largest type after the hero. */
   .feature {
-    font-size: clamp(2.75rem, 2rem + 3.6vw, 5rem);
+    margin-top: 1rem;
+    font-size: clamp(2.75rem, 2rem + 1.9vw, 3.75rem);
     line-height: 1.04;
     letter-spacing: -0.012em;
     text-wrap: pretty;
   }
 
   .aside {
-    margin-top: 1.75rem;
+    margin-top: 1.25rem;
     font-size: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
     line-height: 1.15;
   }
 
   .prose {
     max-width: 38rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     font-size: 1.125rem;
     text-wrap: pretty;
   }
 
   /* Plain lists: no icons, just hairlines */
   .rows {
-    margin-block: 1.25rem 0;
-    margin-inline: 0;
+    margin: 1rem 0 0;
     padding: 0;
     list-style: none;
-    font-size: clamp(1.75rem, 1.5rem + 1.2vw, 2.5rem);
+    font-size: clamp(1.625rem, 1.4rem + 0.8vw, 2rem);
     line-height: 1.15;
-    border-top: 1px solid var(--rule);
+    border-top: 1px solid var(--ink);
   }
 
   .rows li {
-    padding-block: 0.75rem 0.8125rem;
+    padding-block: 0.4375rem 0.5rem;
     border-bottom: 1px solid var(--rule);
   }
 
@@ -277,18 +279,28 @@ const year = new Date().getFullYear();
 
   .steps li {
     display: grid;
-    grid-template-columns: 1.5em minmax(0, 1fr);
+    grid-template-columns: 3.75rem minmax(0, 1fr);
+    align-items: center;
+    padding-block: 0.25rem 0.5rem;
     counter-increment: step;
   }
 
   .steps li::before {
-    content: counter(step) '.';
-    color: var(--ink-2);
+    content: counter(step);
+    font-size: clamp(4.5rem, 3.75rem + 2.2vw, 6rem);
+    line-height: 1;
   }
 
-  /* Closing */
+  /* Final band */
+  .facts {
+    display: grid;
+    gap: 2.5rem;
+    align-content: start;
+  }
+
   .closing-title {
-    margin-bottom: clamp(2rem, 4vw, 2.75rem);
+    margin-top: 0;
+    margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
   }
 
   .closing-line {
@@ -297,8 +309,7 @@ const year = new Date().getFullYear();
 
   /* Footer */
   .site-footer {
-    padding-block: 1.75rem;
-    border-top: 1px solid var(--rule);
+    padding-block: 1.5rem;
     font-size: 0.9375rem;
     color: var(--ink-2);
   }
@@ -307,5 +318,17 @@ const year = new Date().getFullYear();
     display: flex;
     flex-wrap: wrap;
     gap: 0.25rem 2rem;
+  }
+
+  /* Every band shares one center line from here up; below it, everything stacks. */
+  @media (min-width: 64rem) {
+    .columns {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* Sized so the headline holds two lines in its half of the page. */
+    .hero-title {
+      font-size: clamp(4rem, 6.8vw, 6.625rem);
+    }
   }
 </style>

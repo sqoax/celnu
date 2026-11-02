@@ -5,7 +5,7 @@
  *   --ink    on --paper    15.74   on --paper-2  14.25
  *   --ink-2  on --paper     5.70   on --paper-2   5.16
  *   --accent on --paper     8.54   on --paper-2   7.73
- *   --paper  on --accent    8.54   (Send button label)
+ *   --paper  on --accent    8.54   (Send button label, the accent band's text and eyebrows)
  * --rule on --paper is 1.36: hairlines only, never text or a control's boundary.
  */
 :root {
@@ -14,12 +14,12 @@
   --ink: #16181D;      /* text */
   --ink-2: #5A5F66;    /* secondary text */
   --rule: #D6D0C4;     /* hairlines */
-  --accent: #1F4D3A;   /* deep green: links, the Send button, focus rings; used sparingly */
+  --accent: #1F4D3A;   /* deep green: links, the Send button, focus rings and the one full-width band */
 
   --font-display: 'Instrument Serif', Georgia, serif;
   --font-body: 'Public Sans Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
-  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --gutter: clamp(1.25rem, 4vw, 3.5rem);
 }
 
 *,
@@ -58,13 +58,25 @@ a {
   outline-offset: 2px;
 }
 
-/* The small numbered labels: the only uppercase tracked type on the page. */
+.vh {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* The numbered labels: the only uppercase tracked type on the page. They take their band's text color. */
 .eyebrow {
   font-family: var(--font-body);
-  font-size: 0.8125rem; /* 13px */
-  font-weight: 500;
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 700;
   line-height: 1.4;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ink-2);
+  color: inherit;
 }
