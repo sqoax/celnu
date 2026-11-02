@@ -1,0 +1,215 @@
+---
+import '@fontsource/instrument-serif/400.css';
+import '@fontsource-variable/fraunces/full.css';
+import '@fontsource-variable/newsreader/standard.css';
+import '@fontsource-variable/newsreader/standard-italic.css';
+import Base from '../layouts/Base.astro';
+import UrlField from '../components/UrlField.astro';
+
+const pairings = [
+  { key: 'a', name: 'A. Instrument Serif and Public Sans' },
+  { key: 'b', name: 'B. Fraunces and Public Sans' },
+  { key: 'c', name: 'C. Newsreader and Public Sans' },
+];
+---
+
+<Base title="Type specimen — Celnu" noindex>
+  <main class="page">
+    <header class="intro">
+      <h1 class="intro-title">Type specimen</h1>
+      <p class="intro-note">Headlines at full size, then the rest of each pairing side by side.</p>
+    </header>
+
+    <div class="pairings">
+      {pairings.map((pairing) => (
+        <section class={`pairing ${pairing.key}`} aria-labelledby={`name-${pairing.key}`}>
+          <div class="head">
+            <h2 class="name" id={`name-${pairing.key}`}>{pairing.name}</h2>
+            <p class="hero">
+              {pairing.key === 'c'
+                ? <Fragment>Websites for <em>private</em> investment firms.</Fragment>
+                : 'Websites for private investment firms.'}
+            </p>
+          </div>
+
+          <div class="rest">
+            <p class="rest-name" aria-hidden="true">{pairing.name}</p>
+            <p class="subline">
+              Most firms' websites haven't kept up with their track record. I design and build sites
+              for private equity and private credit funds, SBIC lenders, independent sponsors, search
+              funds and family offices.
+            </p>
+            <div class="sample-section">
+              <h3 class="eyebrow">01 The problem</h3>
+              <p class="statement">
+                Your website is the first piece of diligence a founder, banker or LP does on you.
+              </p>
+              <p class="detail">
+                They notice a dated site, missing bios, a portfolio no one can search, a mobile view
+                that falls apart.
+              </p>
+            </div>
+            <p class="pricing">Projects from $5,000.</p>
+            <UrlField id={`url-${pairing.key}`} />
+          </div>
+        </section>
+      ))}
+    </div>
+  </main>
+</Base>
+
+<style>
+  .page {
+    max-width: 82.5rem;
+    margin-inline: auto;
+    padding: var(--gutter);
+  }
+
+  .intro {
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .intro-title {
+    font-size: 1.0625rem;
+    font-weight: 600;
+  }
+
+  .intro-note,
+  .name,
+  .rest-name {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--ink-2);
+  }
+
+  /* Each pairing's display face. Sizes are set per face so the three read at a similar scale. */
+  .a {
+    --display: 'Instrument Serif', Georgia, serif;
+    --hero-size: clamp(3.625rem, 10.4vw, 8rem);
+    --hero-tracking: -0.015em;
+    --display-weight: 400;
+    --statement-size: 2.125rem;
+    --display-settings: normal;
+  }
+
+  /* Low "soft" and "wonk" keep Fraunces sober. */
+  .b {
+    --display: 'Fraunces Variable', Georgia, serif;
+    --hero-size: clamp(3rem, 9vw, 7rem);
+    --hero-tracking: -0.025em;
+    --display-weight: 380;
+    --statement-size: 1.8125rem;
+    --display-settings: 'SOFT' 0, 'WONK' 0;
+  }
+
+  .c {
+    --display: 'Newsreader Variable', Georgia, serif;
+    --hero-size: clamp(3rem, 8.2vw, 6.375rem);
+    --hero-tracking: -0.025em;
+    --display-weight: 400;
+    --statement-size: 1.9375rem;
+    --display-settings: normal;
+  }
+
+  .hero,
+  .statement,
+  .pricing {
+    font-family: var(--display);
+    font-weight: var(--display-weight);
+    font-variation-settings: var(--display-settings);
+    font-optical-sizing: auto;
+  }
+
+  .head {
+    padding-block: 1rem clamp(2.5rem, 5vw, 4rem);
+    border-top: 1px solid var(--rule);
+  }
+
+  .hero {
+    max-width: 68.75rem; /* the page's content width */
+    margin-top: 1rem;
+    font-size: var(--hero-size);
+    line-height: 1.02;
+    letter-spacing: var(--hero-tracking);
+  }
+
+  .rest {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+    padding-bottom: 4rem;
+  }
+
+  .rest-name {
+    display: none;
+  }
+
+  .sample-section {
+    padding: 1.5rem;
+    background: var(--paper-2);
+    border-top: 1px solid var(--rule);
+  }
+
+  .statement {
+    margin-top: 1rem;
+    font-size: var(--statement-size);
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+  }
+
+  .detail {
+    margin-top: 1rem;
+  }
+
+  .pricing {
+    font-size: var(--statement-size);
+    line-height: 1.18;
+    letter-spacing: -0.01em;
+  }
+
+  /*
+   * A headline at full size doesn't fit in a third of the page, so at this width the headlines
+   * stack across the full width and the rest sits in three aligned columns. Below it, each pairing
+   * reads top to bottom as one piece.
+   */
+  @media (min-width: 68.75rem) {
+    .pairings {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: 2.5rem;
+    }
+
+    .pairing {
+      display: contents;
+    }
+
+    .head {
+      grid-column: 1 / -1;
+    }
+
+    .rest {
+      grid-row: 4 / span 5;
+      grid-template-rows: subgrid;
+      gap: 0;
+      row-gap: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .a .rest {
+      grid-column: 1;
+    }
+
+    .b .rest {
+      grid-column: 2;
+    }
+
+    .c .rest {
+      grid-column: 3;
+    }
+
+    .rest-name {
+      display: block;
+    }
+  }
+</style>
