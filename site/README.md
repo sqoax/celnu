@@ -44,4 +44,6 @@ The build goes to `dist/`, and the preview serves it at http://localhost:4321.
 
 There is no form backend. Send opens the visitor's own email app with a prefilled message to `CONTACT_EMAIL`, and nothing goes out until they send it. Without JavaScript, the field is replaced by a plain `mailto:` link.
 
-The site isn't deployed yet and has no analytics.
+## Deployment
+
+Pushing to `main` builds and deploys the site to GitHub Pages at https://celnu.com through `.github/workflows/deploy.yml`. `public/CNAME` ships the custom domain with every build. The site has no analytics.

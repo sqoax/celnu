@@ -4,7 +4,7 @@ The one-page website for Celnu, a one-person studio that builds websites for pri
 
 ## Ground rules
 
-- Local only for now. No deployment, no hosting, no DNS, no analytics, no backend.
+- Hosted on GitHub Pages at celnu.com, from the repo `sqoax/celnu`. Pushing to `main` deploys through `.github/workflows/deploy.yml`, so `main` is the live site. No analytics, no backend.
 - No form backend. The call to action is a `mailto:` link (see "The URL field" below). Don't add Cloudflare Workers, Resend, Formspree or any other service.
 - Earlier celnu.com builds are scrapped. If any exist in this folder, move them into `archive/` before starting. Never delete them, and never reuse their design.
 - The new site lives in `site/` (Astro, static output).
