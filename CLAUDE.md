@@ -95,7 +95,7 @@ This element appears twice, identical: in the hero and in the closing section.
 A browser window built in HTML/CSS, showing the homepage of a fictional firm labeled "Your Firm Capital", with a visible caption: "Illustrative redesign for a fictional firm." Both versions carry one fictional mandate: founder-owned industrial services companies with $3–8M EBITDA, a sample investment (Calder & Pine Mechanical, commercial HVAC services) and a named investment contact (Jordan Avery, Principal).
 
 - **Before:** a dated homepage: Times-style text and a generic stock-photo block drawn in flat CSS shapes, with those facts buried in one plausible paragraph.
-- **After:** a clean redesign in the Celnu style: a landscape image band in flat green, bone and ink shapes, then the same facts organized so a banker can answer three questions at a glance: Does my deal fit? (Criteria) Has this firm done a similar deal? (Recent investment) Who handles opportunities? (New opportunities). No placeholder portraits, "Name, Title" captions or empty stats.
+- **After:** a calm, typographic redesign in the Celnu style, facts first, with no artwork: the headline "Backing founder-owned industrial services companies." in the dark serif on paper, two drawn (non-interactive) actions, "Send us a deal" and "See our criteria →", then the same facts in a row separated by hairlines, so a banker can answer three questions at a glance: Does my deal fit? (Criteria) Has this firm done a similar deal? (Recent investment) Who handles opportunities? (New opportunities). Under it, one text-only line: "Team: Jordan Avery, Principal · Sam Ortiz, Partner". No illustrations, placeholder portraits, avatars, "Name, Title" captions or empty stats.
 
 Behavior:
 

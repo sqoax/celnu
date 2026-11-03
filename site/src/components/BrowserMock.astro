@@ -24,6 +24,9 @@ const answers = [
   { label: 'Recent investment', value: 'Calder & Pine Mechanical', detail: 'Commercial HVAC services' },
   { label: 'New opportunities', value: 'Jordan Avery', detail: 'Principal', link: 'Email Jordan' },
 ];
+
+// Names in text only: no photos, avatars or initials.
+const team = ['Jordan Avery, Principal', 'Sam Ortiz, Partner'];
 ---
 
 <div class="browser" data-browser-mock>
@@ -42,7 +45,7 @@ const answers = [
   <div
     class="window"
     role="img"
-    aria-label="Illustration: the homepage of Your Firm Capital, a fictional firm. Before, a dated page buries its criteria, a past investment and its deal contact in one long paragraph. After, a redesign sets them out at a glance: founder-owned industrial services companies with 3 to 8 million dollars of EBITDA, a recent investment in Calder & Pine Mechanical, and Jordan Avery, Principal, for new opportunities."
+    aria-label="Illustration: the homepage of Your Firm Capital, a fictional firm. Before, a dated page buries its criteria, a past investment and its deal contact in one long paragraph. After, a redesign sets them out at a glance: founder-owned industrial services companies with 3 to 8 million dollars of EBITDA, a recent investment in Calder & Pine Mechanical, and Jordan Avery, Principal, for new opportunities, with the team named below: Jordan Avery, Principal, and Sam Ortiz, Partner."
   >
     <div class="chrome">
       <span class="lights"><span></span><span></span><span></span></span>
@@ -85,26 +88,30 @@ const answers = [
           <span class="a-mark">Your Firm Capital</span>
           <span class="a-links"><span>Criteria</span><span>Portfolio</span><span>Team</span></span>
         </div>
-        <div class="a-band">
-          <svg class="a-land" viewBox="0 0 640 200" preserveAspectRatio="xMaxYMax slice">
-            <circle class="land-sun" cx="540" cy="92" r="24"></circle>
-            <path class="land-far" d="M0 130C80 100 150 110 220 125S360 80 440 105S580 120 640 95V200H0Z"></path>
-            <path class="land-mid" d="M0 165C100 130 190 150 280 160S470 125 640 150V200H0Z"></path>
-            <path class="land-near" d="M0 190C120 170 260 185 380 180S560 170 640 185V200H0Z"></path>
-          </svg>
+        <div class="a-page">
           <p class="a-hero">Backing founder-owned industrial services companies.</p>
-        </div>
-        <div class="a-answers">
-          {answers.map((answer) => (
-            <div class="a-answer">
-              <p class="a-label">{answer.label}</p>
-              <p class="a-value">{answer.value}</p>
-              <p class="a-detail">
-                {answer.detail}
-                {answer.link && <span class="a-link">{answer.link}</span>}
-              </p>
-            </div>
-          ))}
+          {/* Drawn, not real: spans, so nothing in the picture is a link, a button or a tab stop. */}
+          <p class="a-actions">
+            <span class="a-button">Send us a deal</span>
+            <span class="a-link">See our criteria →</span>
+          </p>
+          <div class="a-answers">
+            {answers.map((answer) => (
+              <div class="a-answer">
+                <p class="a-label">{answer.label}</p>
+                <p class="a-value">{answer.value}</p>
+                <p class="a-detail">
+                  {answer.detail}
+                  {answer.link && <span class="a-link">{answer.link}</span>}
+                </p>
+              </div>
+            ))}
+          </div>
+          {/* Each name stays with its title; a narrow window wraps after the dot. */}
+          <p class="a-team">
+            <span class="a-label">Team:</span>{' '}
+            {team.map((member, i) => [i > 0 && ' · ', <span class="a-member">{member}</span>])}
+          </p>
         </div>
       </div>
     </div>
@@ -126,10 +133,9 @@ const answers = [
    *   #0000B8 on #D9D9D9   8.79   nav links
    *   #000000 on #FFFFFF  21.00   body text
    *   #595959 on #FFFFFF   7.00   footer
-   * The landscape adds two greens between the tokens. Its headline passes on every tone it can
-   * cross: --paper on --accent 8.54, on #2B5F49 6.56, on #173B2D 10.95, on --ink 15.74. It stays
-   * clear of the sun, which is --paper.
-   * Everything else uses the tokens in global.css.
+   * After uses only the tokens in global.css: --ink on --paper 15.74 (headline, facts, team),
+   * --ink-2 on --paper 5.70 (labels, details), --accent on --paper 8.54 (the drawn links) and
+   * --paper on --ink 15.74 (the drawn button). --rule is for hairlines only.
    */
   /* In the split hero the window stretches to match the text column's height. */
   .browser {
@@ -363,6 +369,7 @@ const answers = [
     justify-content: space-between;
     gap: 1em;
     padding: 0.75em 1.5em;
+    border-bottom: 1px solid var(--rule);
   }
 
   .a-mark {
@@ -378,81 +385,114 @@ const answers = [
     font-size: 0.9375em;
   }
 
-  .a-band {
-    position: relative;
+  /* Facts first, no artwork. When the window stretches to the hero's height, the page sits centered. */
+  .a-page {
+    display: flex;
     flex: 1;
-    min-height: max(10em, 22cqw); /* tall enough that the landscape's crop keeps the whole sun */
-    background: var(--accent);
-  }
-
-  .a-land {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .land-sun {
-    fill: var(--paper);
-  }
-
-  .land-far {
-    fill: #2B5F49;
-  }
-
-  .land-mid {
-    fill: #173B2D;
-  }
-
-  .land-near {
-    fill: var(--ink);
+    flex-direction: column;
+    justify-content: center;
+    padding: 2em 1.5em 1.5em;
   }
 
   .a-hero {
-    position: relative;
-    max-width: 62%;
-    padding: 0.4em 0 0.8em 0.55em;
+    max-width: 15em;
     font-family: var(--font-display);
-    font-size: 2.5em;
+    font-size: 3.5em;
     line-height: 1;
     letter-spacing: -0.012em;
-    color: var(--paper);
     text-wrap: balance;
+  }
+
+  .a-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75em 1.5em;
+    margin-top: 1.25em;
+  }
+
+  .a-button {
+    padding: 0.55em 1.1em;
+    font-size: 0.9375em;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--paper);
+    background: var(--ink);
   }
 
   /* Three answers a banker looks for, each a label, the fact, and one line of detail. */
   .a-answers {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.25em;
-    padding: 1.25em 1.5em 1.5em;
+    margin-top: 2em;
+    border-block: 1px solid var(--rule);
+  }
+
+  .a-answer {
+    padding: 1em 1.25em 1.125em;
+  }
+
+  .a-answer:first-child {
+    padding-left: 0;
+  }
+
+  .a-answer:last-child {
+    padding-right: 0;
+  }
+
+  .a-answer + .a-answer {
+    border-left: 1px solid var(--rule);
   }
 
   .a-label {
-    font-size: 1em;
+    font-size: 1.0625em;
     font-weight: 600;
     line-height: 1.3;
     color: var(--ink-2);
   }
 
   .a-value {
-    margin-top: 0.25em;
+    margin-top: 0.3em;
     font-family: var(--font-display);
-    font-size: 1.75em;
+    font-size: 2.25em;
     line-height: 1.05;
   }
 
   .a-detail {
-    margin-top: 0.3em;
-    font-size: 1em;
+    margin-top: 0.35em;
+    font-size: 1.0625em;
     line-height: 1.3;
     color: var(--ink-2);
   }
 
   .a-link {
-    display: block;
+    font-size: 1em;
+    line-height: 1.3;
     color: var(--accent);
     text-decoration: underline;
+  }
+
+  .a-detail .a-link {
+    display: block;
+  }
+
+  .a-actions .a-link {
+    font-size: 0.9375em;
+    font-weight: 600;
+  }
+
+  .a-team {
+    margin-top: 0.875em;
+    font-size: 1.0625em;
+    line-height: 1.4;
+  }
+
+  .a-team .a-label {
+    font-size: 1em;
+  }
+
+  .a-member {
+    white-space: nowrap;
   }
 
   .caption {
@@ -463,41 +503,55 @@ const answers = [
 
   /* A phone-width window: the answers become rows, label at left. */
   @container (max-width: 30rem) {
+    .a-page {
+      padding: 1.5em 1em 1.25em;
+    }
+
     .a-hero {
-      max-width: 74%;
-      font-size: 2em;
+      font-size: 2.25em;
+    }
+
+    .a-actions {
+      margin-top: 1em;
+      column-gap: 1.25em;
     }
 
     .a-answers {
       grid-template-columns: minmax(0, 1fr);
-      gap: 0;
-      padding: 0.25em 1em 0.5em;
+      margin-top: 1.5em;
     }
 
-    .a-answer {
+    .a-answer,
+    .a-answer:first-child,
+    .a-answer:last-child {
       display: grid;
       grid-template-columns: 8.5em minmax(0, 1fr);
       column-gap: 0.75em;
       align-items: baseline;
-      padding-block: 0.6em;
+      padding: 0.7em 0;
     }
 
     .a-answer + .a-answer {
       border-top: 1px solid var(--rule);
+      border-left: 0;
     }
 
     .a-label {
       grid-row: span 2;
-      font-size: 0.9375em;
+      font-size: 1em;
     }
 
     .a-detail {
-      font-size: 0.9375em;
+      font-size: 1em;
     }
 
     .a-value {
       margin-top: 0;
-      font-size: 1.375em;
+      font-size: 1.5em;
+    }
+
+    .a-team {
+      font-size: 1em;
     }
 
     .b-body {
