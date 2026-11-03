@@ -2,3 +2,7 @@
 node_modules
 dist
 .astro
+
+# Business card files (include a personal phone number) and VistaPrint's template
+brand/card/
+cardtemplate/
