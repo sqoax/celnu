@@ -11,6 +11,10 @@ The one-page website for Celnu, a one-person studio that builds websites for pri
 - Use only the copy in this file. You may tighten wording, but never invent claims, clients, numbers, testimonials, awards or reviews.
 - Commit after each finished step with a clear message. Never commit half-finished work.
 - Stop and wait for Hiatt's review at the checkpoints marked **STOP** below.
+- **Maintenance mode:** `MAINTENANCE` in `site/src/config.ts`. While it is `true`, the build (what deploys) serves only a short notice from `site/src/pages/_maintenance.astro`, and nothing from the full page ships. `npm run dev` always shows the full page (`site/src/pages/_home.astro`), so work can go on locally. Set it to `false` and push to bring the page back. The notice's copy:
+  - This site is under maintenance.
+  - I'm making updates to celnu.com, and it will be back soon. In the meantime, you can reach me at hiatt@celnu.com.
+  - Already received a concept from me? Reply to my email as usual.
 
 ## Positioning
 
