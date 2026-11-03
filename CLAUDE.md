@@ -48,7 +48,7 @@ One page, in this order. Section labels are bold numbered eyebrows (01, 02 …).
      - Don't repeat the hero offer at length further down the page.
 
 4. **Side by side:** 03 at left, 04 at right.
-   - **03 Typical scope** (a plain list, no icons; it reads as typical scope, not as everything included at the starting price)
+   - **03 Typical scope** (a plain list, no icons; it reads as typical scope, not as everything included in every project)
      - Team and bio pages
      - A searchable portfolio and deal history
      - Your investment criteria, laid out clearly
@@ -67,9 +67,10 @@ One page, in this order. Section labels are bold numbered eyebrows (01, 02 …).
 
 5. **Final band:** 05, 06 and the closing URL field in one band.
    - **05 Pricing**
-     - Projects from $7,500.
-     - Right under it: You get a fixed quote after a short call, once you've seen your homepage concept.
+     - Every project is a fixed price, quoted after a short call, once you've seen your homepage concept.
+     - Right under it: No hourly billing and no surprises. The price depends mainly on how many pages, people and deals your site carries.
      - Ongoing care is available after launch. (One line only; no monthly price on the site.)
+     - No price or dollar figure anywhere on the site, in its copy or its metadata.
    - **06 About**
      - I'm Hiatt Gafnea. I started Celnu in Greensboro to build websites for private investment firms. I studied business at UNCG's Bryan School, and I care as much about what your site tells an owner or a banker as how it looks. When you work with Celnu, you work with me: I do the research, the design and the build, and I answer my own email. I'm in Greensboro and glad to meet in person anywhere in North Carolina.
      - A 4:5 portrait beside the bio, alt text "Portrait of Hiatt Gafnea". The source is `site/src/assets/hiatt.jpg`, processed by Astro's image pipeline so only resized versions ship.
