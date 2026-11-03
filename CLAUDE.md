@@ -32,7 +32,8 @@ One page, in this order. Section labels are bold numbered eyebrows (01, 02 …).
 
 2. **Hero** (split: text and URL field at left, the browser illustration at right)
    - Headline: **Websites for private investment firms.**
-   - Offer: I'll design a free homepage concept using your firm's team, investment criteria, and selected deals. You'll see it within a week, before you decide whether to hire me.
+   - Promise: I rebuild your website around the content you already have (your team, criteria and deals) so owners and bankers can find what they need in seconds, on any device. You don't write anything new, and you approve every word.
+   - Offer, right under it and set apart by weight (semibold), not size: I'll design a free homepage concept from it. You'll see it within a week, before you decide whether to hire me.
    - The URL field (below).
    - Below the field, a quieter plain-text line (not a link): Already received a concept from me? Reply to my email with anything you'd like me to change.
    - The browser illustration (below).
@@ -54,8 +55,9 @@ One page, in this order. Section labels are bold numbered eyebrows (01, 02 …).
      - On a phone, a banker can check your criteria, find a deal and email the right person
      - Launch coordinated with your IT provider, so your email keeps working
      - You own everything, and updates are a quick email to me
+     - Then one line: Your existing content is the starting point. New copy, logos and brand strategy aren't included; if you have new material, I'll place it.
    - **04 How it works** (six steps, with large Instrument Serif numerals)
-     1. Send your URL.
+     1. Send your URL. I capture your whole current site (every page, bio, deal and criterion) so nothing is lost in the move.
      2. See your homepage concept within a week.
      3. Fixed quote after a short call.
      4. Content and compliance review: your team approves everything, and I never write performance figures or investor claims.
@@ -65,11 +67,11 @@ One page, in this order. Section labels are bold numbered eyebrows (01, 02 …).
 
 5. **Final band:** 05, 06 and the closing URL field in one band.
    - **05 Pricing**
-     - Projects from $5,000.
+     - Projects from $7,500.
      - Right under it: You get a fixed quote after a short call, once you've seen your homepage concept.
      - Ongoing care is available after launch. (One line only; no monthly price on the site.)
    - **06 About**
-     - I'm Hiatt Gafnea. I started Celnu in Greensboro to build websites for private investment firms. I studied business at UNCG's Bryan School, and I care as much about what your site tells an owner or a banker as how it looks. When you work with Celnu, you work with me: I do the research, the design and the build, and I answer my own email.
+     - I'm Hiatt Gafnea. I started Celnu in Greensboro to build websites for private investment firms. I studied business at UNCG's Bryan School, and I care as much about what your site tells an owner or a banker as how it looks. When you work with Celnu, you work with me: I do the research, the design and the build, and I answer my own email. I'm in Greensboro and glad to meet in person anywhere in North Carolina.
      - A 4:5 portrait beside the bio, alt text "Portrait of Hiatt Gafnea". The source is `site/src/assets/hiatt.jpg`, processed by Astro's image pipeline so only resized versions ship.
    - **Closing:** repeat the URL field with one short line above it, e.g. "Send your URL. I'll show you what it could be."
 
@@ -162,7 +164,7 @@ Verify every text/background pair meets WCAG AA and record the ratios in comment
 - Every interactive element has an accessible name and a visible focus state.
 - Text contrast meets WCAG AA everywhere.
 - No horizontal scroll at any width down to 360px.
-- Page title: "Celnu — Websites for private investment firms". Add a meta description from the hero offer and a simple favicon from the wordmark's first letter.
+- Page title: "Celnu — Websites for private investment firms". Add a meta description from the hero's promise and a simple favicon from the wordmark's first letter.
 - An `@astrojs/sitemap` sitemap, and a `robots.txt` pointing to it.
 
 ## Workflow

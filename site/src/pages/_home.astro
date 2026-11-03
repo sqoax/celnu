@@ -6,8 +6,11 @@ import UrlField from '../components/UrlField.astro';
 import { CONTACT_EMAIL } from '../config';
 import hiatt from '../assets/hiatt.jpg';
 
+const promise =
+  'I rebuild your website around the content you already have (your team, criteria and deals) so owners and bankers can find what they need in seconds, on any device. You don’t write anything new, and you approve every word.';
+
 const offer =
-  'I’ll design a free homepage concept using your firm’s team, investment criteria, and selected deals. You’ll see it within a week, before you decide whether to hire me.';
+  'I’ll design a free homepage concept from it. You’ll see it within a week, before you decide whether to hire me.';
 
 const included = [
   'Team and bio pages',
@@ -19,7 +22,7 @@ const included = [
 ];
 
 const steps = [
-  'Send your URL.',
+  'Send your URL. I capture your whole current site (every page, bio, deal and criterion) so nothing is lost in the move.',
   'See your homepage concept within a week.',
   'Fixed quote after a short call.',
   'Content and compliance review: your team approves everything, and I never write performance figures or investor claims.',
@@ -30,7 +33,7 @@ const steps = [
 const year = new Date().getFullYear();
 ---
 
-<Base title="Celnu — Websites for private investment firms" description={offer}>
+<Base title="Celnu — Websites for private investment firms" description={promise}>
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="site-header">
@@ -45,7 +48,8 @@ const year = new Date().getFullYear();
       <div class="wrap columns">
         <div>
           <h1 class="hero-title" id="hero-title">Websites for private investment firms.</h1>
-          <p class="subline">{offer}</p>
+          <p class="subline">{promise}</p>
+          <p class="offer">{offer}</p>
           <div class="hero-field" id="send">
             <UrlField id="url-hero" />
           </div>
@@ -88,6 +92,10 @@ const year = new Date().getFullYear();
           <ul class="rows" role="list">
             {included.map((item) => <li>{item}</li>)}
           </ul>
+          <p class="prose">
+            Your existing content is the starting point. New copy, logos and brand strategy aren’t
+            included; if you have new material, I’ll place it.
+          </p>
         </section>
         <section aria-labelledby="how">
           <h2 class="eyebrow" id="how">04 How it works</h2>
@@ -104,7 +112,7 @@ const year = new Date().getFullYear();
         <div class="facts">
           <section aria-labelledby="pricing">
             <h2 class="eyebrow" id="pricing">05 Pricing</h2>
-            <p class="statement">Projects from $5,000.</p>
+            <p class="statement">Projects from $7,500.</p>
             <p class="prose quote">
               You get a fixed quote after a short call, once you’ve seen your homepage concept.
             </p>
@@ -130,7 +138,7 @@ const year = new Date().getFullYear();
                 investment firms. I studied business at UNCG’s Bryan School, and I care as much about
                 what your site tells an owner or a banker as how it looks. When you work with Celnu,
                 you work with me: I do the research, the design and the build, and I answer my own
-                email.
+                email. I’m in Greensboro and glad to meet in person anywhere in North Carolina.
               </p>
             </div>
           </section>
@@ -227,8 +235,17 @@ const year = new Date().getFullYear();
     text-wrap: pretty;
   }
 
+  /* The free concept leads into the form, so it's set apart from the promise by weight, not size. */
+  .offer {
+    max-width: 38rem;
+    margin-top: 1rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    text-wrap: pretty;
+  }
+
   .hero-field {
-    margin-top: clamp(1.5rem, 3vw, 2rem);
+    margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
     scroll-margin-top: 1.5rem;
   }
 
