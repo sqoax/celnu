@@ -5,4 +5,4 @@ export const CONTACT_EMAIL = "hiatt@celnu.com";
  * the page. `npm run dev` always shows the full page, so work can go on locally. Set it to false and
  * push to bring the page back.
  */
-export const MAINTENANCE = true;
+export const MAINTENANCE = false;
