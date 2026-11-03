@@ -34,7 +34,7 @@ The build goes to `dist/`, and the preview serves it at http://localhost:4321.
 |---|---|
 | `src/pages/index.astro` | The page: all copy, the bands and their layout |
 | `src/components/UrlField.astro` | The address-bar call to action, used in the hero and the closing band |
-| `src/components/BrowserMock.astro` | The "Your Firm Capital" illustration and its Before / After flip |
+| `src/components/BrowserMock.astro` | The "Your Firm Capital" illustration and its Before / After toggle |
 | `src/styles/global.css` | Design tokens, with their contrast ratios in comments |
 | `src/config.ts` | `CONTACT_EMAIL`, the address the URL field sends to |
 | `src/mailto.ts` | Cleans the typed URL and builds the email |
@@ -44,7 +44,7 @@ The build goes to `dist/`, and the preview serves it at http://localhost:4321.
 
 ## How the URL field works
 
-There is no form backend. Send opens the visitor's own email app with a prefilled message to `CONTACT_EMAIL`, and nothing goes out until they send it. Without JavaScript, the field is replaced by a plain `mailto:` link.
+There is no form backend. "Open email draft" opens the visitor's own email app with a prefilled message to `CONTACT_EMAIL`, and nothing goes out until they send it. The address is always shown under the field as a plain `mailto:` link; without JavaScript, that link is all that shows.
 
 ## Deployment
 

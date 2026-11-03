@@ -6,14 +6,14 @@ import UrlField from '../components/UrlField.astro';
 import { CONTACT_EMAIL } from '../config';
 import hiatt from '../assets/hiatt.jpg';
 
-const subline =
-  'Most firms’ websites haven’t kept up with their track record. I design and build sites for private equity and private credit funds, SBIC lenders and independent sponsors.';
+const offer =
+  'I’ll design a free homepage concept using your firm’s team, investment criteria, and selected deals. You’ll see it within a week, before you decide whether to hire me.';
 
 const included = [
   'Team and bio pages',
   'A searchable portfolio and deal history',
   'Your investment criteria, laid out clearly',
-  'Mobile done right',
+  'On a phone, a banker can check your criteria, find a deal and email the right person',
   'Launch coordinated with your IT provider, so your email keeps working',
   'You own everything, and updates are a quick email to me',
 ];
@@ -30,13 +30,13 @@ const steps = [
 const year = new Date().getFullYear();
 ---
 
-<Base title="Celnu — Websites for private investment firms" description={subline}>
+<Base title="Celnu — Websites for private investment firms" description={offer}>
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="site-header">
     <div class="wrap header-row">
       <span class="wordmark">Celnu</span>
-      <a href="#send" data-jump-to-field>Send your URL</a>
+      <a href="#send" data-jump-to-field>Request a free concept</a>
     </div>
   </header>
 
@@ -45,10 +45,14 @@ const year = new Date().getFullYear();
       <div class="wrap columns">
         <div>
           <h1 class="hero-title" id="hero-title">Websites for private investment firms.</h1>
-          <p class="subline">{subline}</p>
+          <p class="subline">{offer}</p>
           <div class="hero-field" id="send">
             <UrlField id="url-hero" />
           </div>
+          <p class="reply">
+            Already received a concept from me? Reply to my email with anything you’d like me to
+            change.
+          </p>
         </div>
         <BrowserMock />
       </div>
@@ -59,18 +63,19 @@ const year = new Date().getFullYear();
         <section aria-labelledby="problem">
           <h2 class="eyebrow" id="problem">01 The problem</h2>
           <p class="statement">
-            Your website is the first piece of diligence a founder, banker or LP does on you.
+            When a banker sends an owner your name, can they see what you invest in, who they’d work
+            with, and which businesses you’ve backed?
           </p>
           <p class="prose">
-            They notice a dated site, missing bios, a portfolio no one can search, a mobile view that
-            falls apart.
+            Too often they find a dated site, missing bios, a portfolio no one can search, a mobile
+            view that falls apart.
           </p>
         </section>
-        <section aria-labelledby="preview">
-          <h2 class="eyebrow" id="preview">02 See it before you commit</h2>
+        <section aria-labelledby="who">
+          <h2 class="eyebrow" id="who">02 Who it’s for</h2>
           <p class="feature">
-            Send me your URL and I’ll redesign your homepage using your real content: your team, your
-            criteria, your deals.
+            I design and build sites for private equity and private credit funds, SBIC lenders and
+            independent sponsors.
           </p>
         </section>
       </div>
@@ -79,7 +84,7 @@ const year = new Date().getFullYear();
     <div class="band">
       <div class="wrap columns">
         <section aria-labelledby="included">
-          <h2 class="eyebrow" id="included">03 What’s included</h2>
+          <h2 class="eyebrow" id="included">03 Typical scope</h2>
           <ul class="rows" role="list">
             {included.map((item) => <li>{item}</li>)}
           </ul>
@@ -100,6 +105,9 @@ const year = new Date().getFullYear();
           <section aria-labelledby="pricing">
             <h2 class="eyebrow" id="pricing">05 Pricing</h2>
             <p class="statement">Projects from $5,000.</p>
+            <p class="prose quote">
+              You get a fixed quote after a short call, once you’ve seen your homepage concept.
+            </p>
             <p class="prose">Ongoing care is available after launch.</p>
           </section>
           <section aria-labelledby="about">
@@ -202,9 +210,10 @@ const year = new Date().getFullYear();
     padding-block: clamp(1.5rem, 3vw, 2.5rem) clamp(3rem, 5.5vw, 5rem);
   }
 
+  /* Two lines on most phones (three at 320px), so the offer shows sooner; still the largest type. */
   .hero-title {
     font-family: var(--font-display);
-    font-size: clamp(4.25rem, 2.68rem + 7vw, 7rem);
+    font-size: clamp(3rem, 14.5vw - 0.25rem, 7rem);
     font-weight: 400;
     line-height: 1;
     letter-spacing: -0.015em;
@@ -221,6 +230,17 @@ const year = new Date().getFullYear();
   .hero-field {
     margin-top: clamp(1.5rem, 3vw, 2rem);
     scroll-margin-top: 1.5rem;
+  }
+
+  /* For partners who already have a concept: quieter than the form, and not a link. */
+  .reply {
+    max-width: 34rem;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    font-size: 0.9375rem;
+    color: var(--ink-2);
+    border-top: 1px solid var(--rule);
+    text-wrap: pretty;
   }
 
   /* Bands */
@@ -271,6 +291,11 @@ const year = new Date().getFullYear();
     margin-top: 1rem;
     font-size: 1.125rem;
     text-wrap: pretty;
+  }
+
+  /* The firm number sits right under the starting price. */
+  .quote {
+    margin-top: 0.5rem;
   }
 
   /* Plain lists: no icons, just hairlines */

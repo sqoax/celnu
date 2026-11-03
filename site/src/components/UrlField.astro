@@ -28,12 +28,15 @@ const errorId = `${id}-error`;
         placeholder="yourfirm.com"
         aria-describedby={`${errorId} ${noteId}`}
       />
-      <button class="send" type="submit">Send</button>
+      <button class="send" type="submit">Open email draft</button>
     </div>
     <p class="error" id={errorId} role="alert" data-url-error></p>
   </form>
-  <p class="fallback"><a href={`mailto:${CONTACT_EMAIL}`}>Email {CONTACT_EMAIL}</a></p>
-  <p class="note" id={noteId}>Opens your email. Nothing is sent until you hit send.</p>
+  <p class="note" id={noteId}>
+    Opens a draft in your own email app. Nothing is sent until you send it.
+  </p>
+  <!-- Always shown, so the address is easy to find and copy. Without JavaScript it is the call to action. -->
+  <p class="direct">Email me directly: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></p>
 </div>
 
 <script>
@@ -75,6 +78,7 @@ const errorId = `${id}-error`;
 <style>
   .url-field {
     max-width: 34rem;
+    container-type: inline-size;
   }
 
   /* Without JavaScript the form can't build the email, so only the plain link shows. */
@@ -84,10 +88,6 @@ const errorId = `${id}-error`;
 
   :global(.js) .form {
     display: block;
-  }
-
-  :global(.js) .fallback {
-    display: none;
   }
 
   .label {
@@ -165,5 +165,26 @@ const errorId = `${id}-error`;
     margin-top: 0.5rem;
     font-size: 0.875rem;
     color: var(--ink-2);
+  }
+
+  /* It describes the form's button, so it goes with the form. */
+  :global(html:not(.js)) .note {
+    display: none;
+  }
+
+  .direct {
+    margin-top: 0.5rem;
+    font-size: 0.9375rem;
+  }
+
+  /* A phone-width field: the button drops below the address so neither gets cramped. */
+  @container (max-width: 24rem) {
+    .bar {
+      flex-wrap: wrap;
+    }
+
+    .send {
+      flex-basis: 100%;
+    }
   }
 </style>

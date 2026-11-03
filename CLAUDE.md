@@ -16,34 +16,38 @@ The one-page website for Celnu, a one-person studio that builds websites for pri
 
 - **Who it's for:** private investment firms: lower-middle-market private equity, private credit and mezzanine funds, SBIC lenders, independent sponsors, search funds and family offices.
 - **The problem:** their websites haven't kept up with their track record, and the website is the first diligence anyone does on them.
-- **The hook:** see your redesigned homepage before you commit to anything. No competitor offers this; it is the center of the page.
+- **The hook:** a free homepage concept, built from the firm's own team, investment criteria and selected deals, seen within a week, before they decide whether to hire me. No competitor offers this; it leads the hero.
+- **Two kinds of visitor:** partners who arrive with a concept I've already emailed them, and visitors who arrive wanting one. The page works for both: the form for a new request, and a quiet line telling partners to reply in the existing email thread.
 - **The voice:** first person singular ("I", never "we"). Plain, specific and calm. Celnu is one person, and that is a selling point: you work directly with the person who builds your site.
 
 ## Page structure and copy
 
 One page, in this order. Section labels are bold numbered eyebrows (01, 02 …). Six numbered sections share four bands, so the page stays short.
 
-1. **Header:** "Celnu" wordmark at left; one link at right, "Send your URL", which jumps to the URL field.
+1. **Header:** "Celnu" wordmark at left; one link at right, "Request a free concept", which jumps to the URL field.
 
 2. **Hero** (split: text and URL field at left, the browser illustration at right)
    - Headline: **Websites for private investment firms.**
-   - Subline: Most firms' websites haven't kept up with their track record. I design and build sites for private equity and private credit funds, SBIC lenders and independent sponsors.
+   - Offer: I'll design a free homepage concept using your firm's team, investment criteria, and selected deals. You'll see it within a week, before you decide whether to hire me.
    - The URL field (below).
+   - Below the field, a quieter plain-text line (not a link): Already received a concept from me? Reply to my email with anything you'd like me to change.
    - The browser illustration (below).
+   - On phones the headline is sized to take two lines (three at 320px), so the offer shows early. It stays the largest type on the page.
 
 3. **Accent band:** one full-width `--accent` band with `--paper` text, holding 01 at left and 02 at right.
    - **01 The problem**
-     - Your website is the first piece of diligence a founder, banker or LP does on you.
-     - Follow with one or two short sentences: a dated site, missing bios, a portfolio no one can search, a mobile view that falls apart. Keep it factual, not alarmist.
-   - **02 See it before you commit**
-     - Send me your URL and I'll redesign your homepage using your real content: your team, your criteria, your deals.
+     - When a banker sends an owner your name, can they see what you invest in, who they'd work with, and which businesses you've backed?
+     - Follow with one short sentence: a dated site, missing bios, a portfolio no one can search, a mobile view that falls apart. Keep it factual, not alarmist.
+   - **02 Who it's for**
+     - I design and build sites for private equity and private credit funds, SBIC lenders and independent sponsors.
+     - Don't repeat the hero offer at length further down the page.
 
 4. **Side by side:** 03 at left, 04 at right.
-   - **03 What's included** (a plain list, no icons)
+   - **03 Typical scope** (a plain list, no icons; it reads as typical scope, not as everything included at the starting price)
      - Team and bio pages
      - A searchable portfolio and deal history
      - Your investment criteria, laid out clearly
-     - Mobile done right
+     - On a phone, a banker can check your criteria, find a deal and email the right person
      - Launch coordinated with your IT provider, so your email keeps working
      - You own everything, and updates are a quick email to me
    - **04 How it works** (six steps, with large Instrument Serif numerals)
@@ -58,6 +62,7 @@ One page, in this order. Section labels are bold numbered eyebrows (01, 02 …).
 5. **Final band:** 05, 06 and the closing URL field in one band.
    - **05 Pricing**
      - Projects from $5,000.
+     - Right under it: You get a fixed quote after a short call, once you've seen your homepage concept.
      - Ongoing care is available after launch. (One line only; no monthly price on the site.)
    - **06 About**
      - I'm Hiatt Gafnea. I started Celnu in Greensboro to build websites for private investment firms. I studied business at UNCG's Bryan School, and I care as much about what your site tells an owner or a banker as how it looks. When you work with Celnu, you work with me: I do the research, the design and the build, and I answer my own email.
@@ -68,30 +73,32 @@ One page, in this order. Section labels are bold numbered eyebrows (01, 02 …).
 
 ## The URL field (the signature element)
 
-The main call to action looks like a browser address bar: a single input with a faint `https://` prefix, placeholder `yourfirm.com`, and a squared "Send" button.
+The main call to action looks like a browser address bar: a single input with a faint `https://` prefix, placeholder `yourfirm.com`, and a squared "Open email draft" button. On a narrow phone the button drops below the address, full width.
 
 - On submit, open a `mailto:` link to the address in one config constant (`CONTACT_EMAIL = "hiatt@celnu.com"`), with the subject `Homepage concept: <their domain>` and a short prefilled body that includes the URL they typed.
 - Light validation only: trim spaces, strip `http(s)://` and trailing slashes before building the email; if the field is empty, show an inline message instead of opening mail.
 - It must work by keyboard, have a visible label (it can be visually subtle), and degrade to a plain `mailto:hiatt@celnu.com` link without JavaScript.
-- Below it, one small line: "Opens your email. Nothing is sent until you hit send."
+- Below it, one small line: "Opens a draft in your own email app. Nothing is sent until you send it."
+- Then the address itself, always visible and selectable as a `mailto:` link: "Email me directly: hiatt@celnu.com". Without JavaScript this is the call to action.
+- Button labels: "Open email draft" wherever a button opens the mail app; "Request a free concept" for links that only take the visitor to the field. No backend, CRM or scheduler.
 
-This element appears twice: in the hero and in the closing section.
+This element appears twice, identical: in the hero and in the closing section.
 
 ## The browser illustration
 
-A browser window built in HTML/CSS, showing the homepage of a fictional firm labeled "Your Firm Capital". It flips between two versions:
+A browser window built in HTML/CSS, showing the homepage of a fictional firm labeled "Your Firm Capital", with a visible caption: "Illustrative redesign for a fictional firm." Both versions carry one fictional mandate: founder-owned industrial services companies with $3–8M EBITDA, a sample investment (Calder & Pine Mechanical, commercial HVAC services) and a named investment contact (Jordan Avery, Principal).
 
-- **Before:** a dated homepage: cramped, Times-style text and a generic stock-photo block drawn in flat CSS shapes.
-- **After:** a clean redesign in the Celnu style, and the richer of the two: a landscape image band in flat green, bone and ink shapes, four 4:5 portrait tiles with low-contrast silhouettes on one muted tone, so they read as a photo row, and a thin facts strip (Founded, Investments, Offices) using placeholder words.
+- **Before:** a dated homepage: Times-style text and a generic stock-photo block drawn in flat CSS shapes, with those facts buried in one plausible paragraph.
+- **After:** a clean redesign in the Celnu style: a landscape image band in flat green, bone and ink shapes, then the same facts organized so a banker can answer three questions at a glance: Does my deal fit? (Criteria) Has this firm done a similar deal? (Recent investment) Who handles opportunities? (New opportunities). No placeholder portraits, "Name, Title" captions or empty stats.
 
 Behavior:
 
-- A "Before / After" toggle that works by keyboard and without JavaScript. Using it stops the automatic flip.
-- With JavaScript on, it starts on Before, flips to After about 1.5 seconds after load, then loops slowly, holding After longer than Before.
-- Without JavaScript or under `prefers-reduced-motion`, it shows After with no automatic flip.
+- It shows After by default. A "Before / After" toggle lets visitors switch views themselves; it works by keyboard and without JavaScript. There is no timer.
+- Switching crossfades, except under `prefers-reduced-motion`, where it switches instantly.
 - When someone types in the URL field, the illustration's address bar shows their domain live.
+- Both versions stay legible on a phone, down to 320px.
 - Its text meets WCAG AA like the rest of the page, including the dated version's own colors. Screen readers get it as one labeled image.
-- No real company names, logos or screenshots, and no numbers or performance claims in it.
+- No real company names, logos or screenshots, and no performance claims in it. The only numbers are the fictional mandate's EBITDA range.
 
 ## Design direction: quiet confidence with a studio edge
 
@@ -130,7 +137,7 @@ Verify every text/background pair meets WCAG AA and record the ratios in comment
 - Keep the page short: about half the height of a single-column layout.
 - Bands separated by background tone and space.
 - No screenshots, and no images apart from the browser illustration and the About portrait. Typography, the URL field and the illustration carry the page.
-- Motion: only the illustration's flip, disabled under `prefers-reduced-motion`.
+- Motion: only the illustration's crossfade when a visitor switches views, disabled under `prefers-reduced-motion`.
 
 ## Hard rules
 
@@ -139,6 +146,7 @@ Verify every text/background pair meets WCAG AA and record the ratios in comment
 - No pill buttons. Buttons are squared.
 - No rounded cards with drop shadows.
 - No testimonials, client logos, award badges, review ratings or performance statistics.
+- No invented clients, results or experience, and no healthcare project, not even anonymized.
 - No example projects or placeholder screenshots. The fictional "Your Firm Capital" browser illustration is the only exception.
 - No "free proposal", "free consultation", "book a call", "get started", "agency", "solutions", "unlock", "supercharge", "seamless" or "cutting-edge".
 - No SEO or marketing jargon.
@@ -150,7 +158,7 @@ Verify every text/background pair meets WCAG AA and record the ratios in comment
 - Every interactive element has an accessible name and a visible focus state.
 - Text contrast meets WCAG AA everywhere.
 - No horizontal scroll at any width down to 360px.
-- Page title: "Celnu — Websites for private investment firms". Add a meta description from the subline and a simple favicon from the wordmark's first letter.
+- Page title: "Celnu — Websites for private investment firms". Add a meta description from the hero offer and a simple favicon from the wordmark's first letter.
 - An `@astrojs/sitemap` sitemap, and a `robots.txt` pointing to it.
 
 ## Workflow
@@ -159,6 +167,6 @@ Verify every text/background pair meets WCAG AA and record the ratios in comment
 
 **Step 1: Type specimen.** Build `/specimen` (unlinked) showing pairings A, B and C side by side. Each shows the hero headline at full size, the subline, one numbered section with its eyebrow, the pricing line, and the URL field. Check that `--ink-2` and `--accent` pass AA. Commit. **STOP** for Hiatt to pick one.
 
-**Step 2: The page.** Build the full one-page site with the chosen pairing. Screenshot it at 1440px and 390px, self-check against this file, and test the URL field (empty input, input with `https://` and a trailing slash, keyboard only, JavaScript disabled) and the browser illustration (toggle, automatic flip, `prefers-reduced-motion`, live address bar). Commit. **STOP** for review.
+**Step 2: The page.** Build the full one-page site with the chosen pairing. Screenshot it at 1440px and 390px, self-check against this file, and test the URL field (empty input, input with `https://` and a trailing slash, keyboard only, JavaScript disabled) and the browser illustration (toggle, `prefers-reduced-motion`, live address bar). Commit. **STOP** for review.
 
 **Step 3: Polish.** Run an accessibility scan (axe) at both widths, run Lighthouse for Accessibility and Best Practices, and write `site/README.md` with how to run it locally. Commit.

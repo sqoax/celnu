@@ -17,20 +17,12 @@ const buildings = [
   { left: 89, width: 11, height: 28, tone: 'near' },
 ];
 
-// Generic portraits cropped like headshots: head and shoulders filling the frame, in one muted tone.
-const narrow = 'M4 100C4 80 20 70 40 70C60 70 76 80 76 100Z';
-const broad = 'M0 100C0 79 18 69 40 69C62 69 80 79 80 100Z';
-const portraits = [
-  { head: 18, y: 45, shoulders: broad },
-  { head: 17, y: 46, shoulders: narrow },
-  { head: 18, y: 44, shoulders: narrow },
-  { head: 17, y: 45, shoulders: broad },
-];
-
-const facts = [
-  { label: 'Founded', value: 'Year' },
-  { label: 'Investments', value: 'Count' },
-  { label: 'Offices', value: 'Cities' },
+// One fictional mandate, shown both ways. Before buries it in a paragraph; After answers a
+// banker's three questions: does my deal fit, has this firm done a similar deal, who do I call?
+const answers = [
+  { label: 'Criteria', value: '$3–8M EBITDA', detail: 'Founder-owned industrial services' },
+  { label: 'Recent investment', value: 'Calder & Pine Mechanical', detail: 'Commercial HVAC services' },
+  { label: 'New opportunities', value: 'Jordan Avery', detail: 'Principal', link: 'Email Jordan' },
 ];
 ---
 
@@ -47,18 +39,10 @@ const facts = [
     </label>
   </fieldset>
 
-  <!-- The markup defaults to After for no JavaScript. This runs during parsing, so the flip's
-       Before start is in place before the first paint. -->
-  <script is:inline>
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      document.querySelector('[data-browser-mock] input[value="before"]').checked = true;
-    }
-  </script>
-
   <div
     class="window"
     role="img"
-    aria-label="Illustration: a browser window showing the homepage of Your Firm Capital, a fictional firm, as a dated site and as a clean redesign."
+    aria-label="Illustration: the homepage of Your Firm Capital, a fictional firm. Before, a dated page buries its criteria, a past investment and its deal contact in one long paragraph. After, a redesign sets them out at a glance: founder-owned industrial services companies with 3 to 8 million dollars of EBITDA, a recent investment in Calder & Pine Mechanical, and Jordan Avery, Principal, for new opportunities."
   >
     <div class="chrome">
       <span class="lights"><span></span><span></span><span></span></span>
@@ -84,11 +68,12 @@ const facts = [
           <div class="b-text">
             <p><b>Welcome to our website.</b></p>
             <p>
-              Your Firm Capital is a private investment firm. Please use the links above to learn
-              more about our firm, our team and our deals.
+              Your Firm Capital is a private investment firm that partners with business owners and
+              management teams to build long-term value. The firm seeks to invest in founder-owned
+              industrial services businesses with EBITDA of $3 million to $8 million. Past investments
+              include Calder &amp; Pine Mechanical, a provider of commercial HVAC services. Investment
+              opportunities may be directed to Jordan Avery, Principal.
             </p>
-            <p><b>Team:</b> Bios coming soon.</p>
-            <p><b>Portfolio:</b> This page is being updated.</p>
             <p>For more information please contact us.</p>
           </div>
         </div>
@@ -98,7 +83,7 @@ const facts = [
       <div class="view after">
         <div class="a-nav">
           <span class="a-mark">Your Firm Capital</span>
-          <span class="a-links"><span>Team</span><span>Criteria</span><span>Portfolio</span></span>
+          <span class="a-links"><span>Criteria</span><span>Portfolio</span><span>Team</span></span>
         </div>
         <div class="a-band">
           <svg class="a-land" viewBox="0 0 640 200" preserveAspectRatio="xMaxYMax slice">
@@ -107,86 +92,31 @@ const facts = [
             <path class="land-mid" d="M0 165C100 130 190 150 280 160S470 125 640 150V200H0Z"></path>
             <path class="land-near" d="M0 190C120 170 260 185 380 180S560 170 640 185V200H0Z"></path>
           </svg>
-          <p class="a-hero">Your team, your criteria, your deals.</p>
+          <p class="a-hero">Backing founder-owned industrial services companies.</p>
         </div>
-        <div class="a-team">
-          <p class="a-team-title">Team</p>
-          <div class="a-people">
-            {portraits.map((portrait) => (
-              <div>
-                <div class="a-tile">
-                  <svg viewBox="0 0 80 100" preserveAspectRatio="xMidYMax slice">
-                    <circle cx="40" cy={portrait.y} r={portrait.head}></circle>
-                    <path d={portrait.shoulders}></path>
-                  </svg>
-                </div>
-                <p class="a-caption">Name, Title</p>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div class="a-facts">
-          {facts.map((fact) => (
-            <p class="a-fact"><span>{fact.label}</span> <b>{fact.value}</b></p>
+        <div class="a-answers">
+          {answers.map((answer) => (
+            <div class="a-answer">
+              <p class="a-label">{answer.label}</p>
+              <p class="a-value">{answer.value}</p>
+              <p class="a-detail">
+                {answer.detail}
+                {answer.link && <span class="a-link">{answer.link}</span>}
+              </p>
+            </div>
           ))}
         </div>
       </div>
     </div>
   </div>
+  <p class="caption">Illustrative redesign for a fictional firm.</p>
 </div>
 
 <script>
-  const FIRST_BEFORE_MS = 1500;
-  const AFTER_MS = 8000;
-  const BEFORE_MS = 3000;
-
+  // The fade is switched on at the first switch, not on load: if the page's first style pass runs
+  // before the stylesheet applies, a fade that is already on makes Before fade out on load.
   const mock = document.querySelector<HTMLElement>('[data-browser-mock]');
-  if (mock) {
-    const before = mock.querySelector<HTMLInputElement>('input[value="before"]')!;
-    const after = mock.querySelector<HTMLInputElement>('input[value="after"]')!;
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let stopped = false;
-    let timer: number | undefined;
-
-    const pause = () => window.clearTimeout(timer);
-
-    // Fading is switched on at the first change, not on load: if this script runs before the
-    // stylesheet applies, a fade that is already on makes the hidden view fade out on load.
-    const allowFade = () => mock.classList.add('can-fade');
-
-    const schedule = (delay: number) => {
-      pause();
-      if (stopped || reducedMotion.matches) return;
-      timer = window.setTimeout(() => {
-        allowFade();
-        (after.checked ? before : after).checked = true;
-        resume();
-      }, delay);
-    };
-
-    const resume = () => schedule(after.checked ? AFTER_MS : BEFORE_MS);
-
-    // Choosing a side is a decision: it stays there. Arrow keys fire click on radios too.
-    mock.querySelector('.toggle')!.addEventListener('click', (event) => {
-      if (!(event.target instanceof HTMLInputElement)) return;
-      allowFade();
-      stopped = true;
-      pause();
-    });
-
-    // Holds still while someone is reading it or on the toggle.
-    mock.addEventListener('mouseenter', pause);
-    mock.addEventListener('mouseleave', resume);
-    mock.addEventListener('focusin', pause);
-    mock.addEventListener('focusout', resume);
-
-    reducedMotion.addEventListener('change', () => {
-      if (reducedMotion.matches && !stopped) after.checked = true;
-      resume();
-    });
-
-    window.addEventListener('load', () => schedule(FIRST_BEFORE_MS), { once: true });
-  }
+  mock?.addEventListener('change', () => mock.classList.add('can-fade'), { once: true });
 </script>
 
 <style>
@@ -319,12 +249,13 @@ const facts = [
     overflow: hidden;
   }
 
+  /* 12px at the smallest, so both views stay legible on a phone. */
   .view {
     display: flex;
     flex-direction: column;
     grid-area: 1 / 1;
     min-width: 0;
-    font-size: clamp(0.6875rem, 2.2cqw, 1rem);
+    font-size: clamp(0.75rem, 2.2cqw, 1rem);
     visibility: hidden;
     opacity: 0;
   }
@@ -415,7 +346,7 @@ const facts = [
 
   .b-foot {
     padding: 0.25em 0.625em 0.5em;
-    font-size: 0.875em;
+    font-size: 0.9375em;
     color: #595959;
     border-top: 1px solid #D9D9D9;
   }
@@ -444,7 +375,7 @@ const facts = [
   .a-links {
     display: flex;
     gap: 1em;
-    font-size: 0.875em;
+    font-size: 0.9375em;
   }
 
   .a-band {
@@ -482,79 +413,95 @@ const facts = [
     max-width: 62%;
     padding: 0.4em 0 0.8em 0.55em;
     font-family: var(--font-display);
-    font-size: 2.75em;
+    font-size: 2.5em;
     line-height: 1;
     letter-spacing: -0.012em;
     color: var(--paper);
     text-wrap: balance;
   }
 
-  .a-team {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 4.5fr);
-    gap: 1em;
-    padding: 1em 1.5em;
-  }
-
-  .a-team-title {
-    font-family: var(--font-display);
-    font-size: 1.5em;
-    line-height: 1.1;
-  }
-
-  .a-people {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0.75em;
-  }
-
-  /* Low contrast on purpose: a row of muted photos, not avatar icons. */
-  .a-tile {
-    aspect-ratio: 4 / 5;
-    overflow: hidden;
-    color: #C4BDAF;
-    background: var(--rule);
-  }
-
-  .a-tile svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-    fill: currentColor;
-  }
-
-  .a-caption {
-    margin-top: 0.375em;
-    font-size: 0.8125em;
-    line-height: 1.25;
-    color: var(--ink-2);
-  }
-
-  .a-facts {
+  /* Three answers a banker looks for, each a label, the fact, and one line of detail. */
+  .a-answers {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1em;
-    padding: 0.5em 1.5em;
-    background: var(--paper-2);
-    border-top: 1px solid var(--rule);
+    gap: 1.25em;
+    padding: 1.25em 1.5em 1.5em;
   }
 
-  .a-fact {
-    font-size: 0.8125em;
+  .a-label {
+    font-size: 1em;
+    font-weight: 600;
     line-height: 1.3;
     color: var(--ink-2);
   }
 
-  .a-fact b {
-    font-weight: 600;
-    color: var(--ink);
+  .a-value {
+    margin-top: 0.25em;
+    font-family: var(--font-display);
+    font-size: 1.75em;
+    line-height: 1.05;
   }
 
-  /* A narrow window gives the portraits the full width. */
+  .a-detail {
+    margin-top: 0.3em;
+    font-size: 1em;
+    line-height: 1.3;
+    color: var(--ink-2);
+  }
+
+  .a-link {
+    display: block;
+    color: var(--accent);
+    text-decoration: underline;
+  }
+
+  .caption {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--ink-2);
+  }
+
+  /* A phone-width window: the answers become rows, label at left. */
   @container (max-width: 30rem) {
-    .a-team {
+    .a-hero {
+      max-width: 74%;
+      font-size: 2em;
+    }
+
+    .a-answers {
       grid-template-columns: minmax(0, 1fr);
-      gap: 0.5em;
+      gap: 0;
+      padding: 0.25em 1em 0.5em;
+    }
+
+    .a-answer {
+      display: grid;
+      grid-template-columns: 8.5em minmax(0, 1fr);
+      column-gap: 0.75em;
+      align-items: baseline;
+      padding-block: 0.6em;
+    }
+
+    .a-answer + .a-answer {
+      border-top: 1px solid var(--rule);
+    }
+
+    .a-label {
+      grid-row: span 2;
+      font-size: 0.9375em;
+    }
+
+    .a-detail {
+      font-size: 0.9375em;
+    }
+
+    .a-value {
+      margin-top: 0;
+      font-size: 1.375em;
+    }
+
+    .b-body {
+      grid-template-columns: 34% minmax(0, 1fr);
     }
   }
 </style>
