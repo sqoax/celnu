@@ -27,7 +27,7 @@ One page, in this order. Section labels are bold numbered eyebrows (01, 02 …).
 
 2. **Hero** (split: text and URL field at left, the browser illustration at right)
    - Headline: **Websites for private investment firms.**
-   - Subline: Most firms' websites haven't kept up with their track record. I design and build sites for private equity and private credit funds, SBIC lenders, independent sponsors, search funds and family offices.
+   - Subline: Most firms' websites haven't kept up with their track record. I design and build sites for private equity and private credit funds, SBIC lenders and independent sponsors.
    - The URL field (below).
    - The browser illustration (below).
 
@@ -37,7 +37,6 @@ One page, in this order. Section labels are bold numbered eyebrows (01, 02 …).
      - Follow with one or two short sentences: a dated site, missing bios, a portfolio no one can search, a mobile view that falls apart. Keep it factual, not alarmist.
    - **02 See it before you commit**
      - Send me your URL and I'll redesign your homepage using your real content: your team, your criteria, your deals.
-     - I take on two a month.
 
 4. **Side by side:** 03 at left, 04 at right.
    - **03 What's included** (a plain list, no icons)
@@ -45,20 +44,24 @@ One page, in this order. Section labels are bold numbered eyebrows (01, 02 …).
      - A searchable portfolio and deal history
      - Your investment criteria, laid out clearly
      - Mobile done right
-     - Launch handled, including your domain and email
-     - You own everything: domain, hosting and code
-   - **04 How it works** (three steps, with large Instrument Serif numerals)
+     - Launch coordinated with your IT provider, so your email keeps working
+     - You own everything, and updates are a quick email to me
+   - **04 How it works** (six steps, with large Instrument Serif numerals)
      1. Send your URL.
-     2. See your redesigned homepage within a week.
-     3. Approve it, and I build the rest and launch.
+     2. See your homepage concept within a week.
+     3. Fixed quote after a short call.
+     4. Content and compliance review: your team approves everything, and I never write performance figures or investor claims.
+     5. Build and launch in about four weeks, coordinated with your IT provider.
+     6. Optional ongoing care.
+     - Then one line: 50% to start, 40% on approval, 10% at launch.
 
 5. **Final band:** 05, 06 and the closing URL field in one band.
    - **05 Pricing**
      - Projects from $5,000.
      - Ongoing care is available after launch. (One line only; no monthly price on the site.)
    - **06 About**
-     - Celnu is Hiatt, a one-person studio in Greensboro, North Carolina. You work directly with the person who builds your site.
-     - No photo for now.
+     - I'm Hiatt Gafnea. I started Celnu in Greensboro to build websites for private investment firms. I studied business at UNCG's Bryan School, and I care as much about what your site tells an owner or a banker as how it looks. When you work with Celnu, you work with me: I do the research, the design and the build, and I answer my own email.
+     - A 4:5 portrait beside the bio, alt text "Portrait of Hiatt Gafnea". The source is `site/src/assets/hiatt.jpg`, processed by Astro's image pipeline so only resized versions ship.
    - **Closing:** repeat the URL field with one short line above it, e.g. "Send your URL. I'll show you what it could be."
 
 6. **Footer:** hiatt@celnu.com, Greensboro, NC, and a copyright line.
@@ -126,7 +129,7 @@ Verify every text/background pair meets WCAG AA and record the ratios in comment
 - Use the full width: two-column bands, left-aligned, with a max content width of about 1440px. Below about 1024px everything stacks into one column.
 - Keep the page short: about half the height of a single-column layout.
 - Bands separated by background tone and space.
-- No photos or screenshots, and no images apart from the browser illustration. Typography, the URL field and the illustration carry the page.
+- No screenshots, and no images apart from the browser illustration and the About portrait. Typography, the URL field and the illustration carry the page.
 - Motion: only the illustration's flip, disabled under `prefers-reduced-motion`.
 
 ## Hard rules
@@ -148,6 +151,7 @@ Verify every text/background pair meets WCAG AA and record the ratios in comment
 - Text contrast meets WCAG AA everywhere.
 - No horizontal scroll at any width down to 360px.
 - Page title: "Celnu — Websites for private investment firms". Add a meta description from the subline and a simple favicon from the wordmark's first letter.
+- An `@astrojs/sitemap` sitemap, and a `robots.txt` pointing to it.
 
 ## Workflow
 

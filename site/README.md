@@ -38,7 +38,9 @@ The build goes to `dist/`, and the preview serves it at http://localhost:4321.
 | `src/styles/global.css` | Design tokens, with their contrast ratios in comments |
 | `src/config.ts` | `CONTACT_EMAIL`, the address the URL field sends to |
 | `src/mailto.ts` | Cleans the typed URL and builds the email |
+| `src/assets/hiatt.jpg` | The About portrait's source. Astro crops it to 4:5 and resizes it, so this file itself doesn't ship |
 | `public/favicon.svg` | The favicon, drawn from the wordmark's C |
+| `public/robots.txt` | Points crawlers to the sitemap, which `@astrojs/sitemap` generates at build time |
 
 ## How the URL field works
 

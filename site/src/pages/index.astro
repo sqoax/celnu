@@ -1,25 +1,30 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import BrowserMock from '../components/BrowserMock.astro';
 import UrlField from '../components/UrlField.astro';
 import { CONTACT_EMAIL } from '../config';
+import hiatt from '../assets/hiatt.jpg';
 
 const subline =
-  'Most firms’ websites haven’t kept up with their track record. I design and build sites for private equity and private credit funds, SBIC lenders, independent sponsors, search funds and family offices.';
+  'Most firms’ websites haven’t kept up with their track record. I design and build sites for private equity and private credit funds, SBIC lenders and independent sponsors.';
 
 const included = [
   'Team and bio pages',
   'A searchable portfolio and deal history',
   'Your investment criteria, laid out clearly',
   'Mobile done right',
-  'Launch handled, including your domain and email',
-  'You own everything: domain, hosting and code',
+  'Launch coordinated with your IT provider, so your email keeps working',
+  'You own everything, and updates are a quick email to me',
 ];
 
 const steps = [
   'Send your URL.',
-  'See your redesigned homepage within a week.',
-  'Approve it, and I build the rest and launch.',
+  'See your homepage concept within a week.',
+  'Fixed quote after a short call.',
+  'Content and compliance review: your team approves everything, and I never write performance figures or investor claims.',
+  'Build and launch in about four weeks, coordinated with your IT provider.',
+  'Optional ongoing care.',
 ];
 
 const year = new Date().getFullYear();
@@ -67,7 +72,6 @@ const year = new Date().getFullYear();
             Send me your URL and I’ll redesign your homepage using your real content: your team, your
             criteria, your deals.
           </p>
-          <p class="aside">I take on two a month.</p>
         </section>
       </div>
     </div>
@@ -85,6 +89,7 @@ const year = new Date().getFullYear();
           <ol class="rows steps" role="list">
             {steps.map((step) => <li>{step}</li>)}
           </ol>
+          <p class="prose">50% to start, 40% on approval, 10% at launch.</p>
         </section>
       </div>
     </div>
@@ -99,10 +104,27 @@ const year = new Date().getFullYear();
           </section>
           <section aria-labelledby="about">
             <h2 class="eyebrow" id="about">06 About</h2>
-            <p class="prose">
-              Celnu is Hiatt, a one-person studio in Greensboro, North Carolina. You work directly
-              with the person who builds your site.
-            </p>
+            <div class="about-body">
+              <div class="portrait">
+                <Image
+                  src={hiatt}
+                  alt="Portrait of Hiatt Gafnea"
+                  width={224}
+                  height={280}
+                  densities={[1, 2]}
+                  fit="cover"
+                  position="center"
+                  format="webp"
+                />
+              </div>
+              <p class="prose">
+                I’m Hiatt Gafnea. I started Celnu in Greensboro to build websites for private
+                investment firms. I studied business at UNCG’s Bryan School, and I care as much about
+                what your site tells an owner or a banker as how it looks. When you work with Celnu,
+                you work with me: I do the research, the design and the build, and I answer my own
+                email.
+              </p>
+            </div>
           </section>
         </div>
         <section aria-labelledby="closing">
@@ -222,7 +244,6 @@ const year = new Date().getFullYear();
 
   .statement,
   .feature,
-  .aside,
   .rows {
     font-family: var(--font-display);
     font-weight: 400;
@@ -243,12 +264,6 @@ const year = new Date().getFullYear();
     line-height: 1.04;
     letter-spacing: -0.012em;
     text-wrap: pretty;
-  }
-
-  .aside {
-    margin-top: 1.25rem;
-    font-size: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);
-    line-height: 1.15;
   }
 
   .prose {
@@ -298,6 +313,27 @@ const year = new Date().getFullYear();
     align-content: start;
   }
 
+  .about-body {
+    display: grid;
+    align-items: start;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .about-body .prose {
+    margin-top: 0;
+  }
+
+  .portrait {
+    max-width: 14rem;
+  }
+
+  .portrait :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
   .closing-title {
     margin-top: 0;
     margin-bottom: clamp(1.5rem, 3vw, 2.25rem);
@@ -318,6 +354,14 @@ const year = new Date().getFullYear();
     display: flex;
     flex-wrap: wrap;
     gap: 0.25rem 2rem;
+  }
+
+  /* The portrait sits beside the bio once there's room; on a phone it stacks above. */
+  @media (min-width: 30rem) {
+    .about-body {
+      grid-template-columns: min(35%, 14rem) minmax(0, 1fr);
+      gap: 1.5rem;
+    }
   }
 
   /* Every band shares one center line from here up; below it, everything stacks. */
