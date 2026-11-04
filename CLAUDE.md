@@ -32,8 +32,8 @@ One page, in this order. Section labels are bold numbered eyebrows (01, 02 …).
 
 2. **Hero** (split: text and URL field at left, the browser illustration at right)
    - Headline: **Websites for private investment firms.**
-   - Promise: I rebuild your website around the content you already have (your team, criteria and deals) so owners and bankers can find what they need in seconds, on any device. You don't write anything new, and you approve every word.
-   - Offer, right under it and set apart by weight (semibold), not size: I'll design a free homepage concept from it. You'll see it within a week, before you decide whether to hire me.
+   - Promise: I rebuild your website around the content you already have (your team, criteria and deals) so owners and bankers can find what they need on any device. You don't write anything new, and you approve every word. (No "in seconds" or other unmeasured speed claims.)
+   - Offer, right under it and set apart by weight (semibold), not size: I'll design a free homepage concept from what's already public on your site. You'll see it within a week, before you decide whether to hire me.
    - The URL field (below).
    - Below the field, a quieter plain-text line (not a link): Already received a concept from me? Reply to my email with anything you'd like me to change.
    - The browser illustration (below).
@@ -41,10 +41,11 @@ One page, in this order. Section labels are bold numbered eyebrows (01, 02 …).
 
 3. **Accent band:** one full-width `--accent` band with `--paper` text, holding 01 at left and 02 at right.
    - **01 The problem**
-     - When a banker sends an owner your name, can they see what you invest in, who they'd work with, and which businesses you've backed?
-     - Follow with one short sentence: a dated site, missing bios, a portfolio no one can search, a mobile view that falls apart. Keep it factual, not alarmist.
+     - When a banker sends an owner your name, can they see what you invest in, what kind of capital you provide, who they'd work with, and which businesses you've backed?
+     - Follow with two short sentences: Too often they find a dated site, missing bios, a portfolio no one can search, a mobile view that falls apart. It's the same site a sponsor or an investor finds when they look you up. Keep it factual, not alarmist.
    - **02 Who it's for**
-     - I design and build sites for private equity and private credit funds, SBIC lenders and independent sponsors.
+     - I design and build sites for private equity and private credit funds, SBIC lenders, independent sponsors, search funds and family offices.
+     - Then one line: It's the right fit when your strategy and story are settled and your site hasn't kept up. If you're rethinking your positioning or want your story rewritten, a branding firm is the better choice.
      - Don't repeat the hero offer at length further down the page.
 
 4. **Side by side:** 03 at left, 04 at right.
@@ -55,21 +56,23 @@ One page, in this order. Section labels are bold numbered eyebrows (01, 02 …).
      - On a phone, a banker can check your criteria, find a deal and email the right person
      - Launch coordinated with your IT provider, so your email keeps working
      - You own everything, and updates are a quick email to me
-     - Then one line: Your existing content is the starting point. New copy, logos and brand strategy aren't included; if you have new material, I'll place it.
+     - A static site: no plugins or database to patch, and every change can be rolled back
+     - Then one line: A website project, not a rebrand: no workshops, and nothing new for your partners to write or approve. Your existing content is the starting point. New copy, logos and brand strategy aren't included; if you have new material, I'll place it.
    - **04 How it works** (six steps, with large Instrument Serif numerals)
      1. Send your URL. I capture your whole current site (every page, bio, deal and criterion) so nothing is lost in the move.
      2. See your homepage concept within a week.
      3. Fixed quote after a short call.
      4. Content and compliance review: your team approves everything, and I never write performance figures or investor claims.
-     5. Build and launch in about four weeks, coordinated with your IT provider.
+     5. Build and launch in about four weeks, coordinated with your IT provider. Your review time sets the final date.
      6. Optional ongoing care.
+     - Then one line: Your approved copy carries over word for word, anything I add is flagged for your review, and your compliance reviewer gets a private staging link before launch.
      - Then one line: 50% to start, 40% on approval, 10% at launch.
 
 5. **Final band:** 05, 06 and the closing URL field in one band.
    - **05 Pricing**
      - Every project is a fixed price, quoted after a short call, once you've seen your homepage concept.
      - Right under it: No hourly billing and no surprises. The price depends mainly on how many pages, people and deals your site carries.
-     - Ongoing care is available after launch. (One line only; no monthly price on the site.)
+     - Ongoing care after launch keeps your site current: new deals, exits, hires and title changes. (One line only; no monthly price on the site.)
      - No price anywhere on the site, in its copy or its metadata. The browser illustration's fictional EBITDA range isn't a price and stays.
    - **06 About**
      - I'm Hiatt Gafnea. I started Celnu in Greensboro to build websites for private investment firms. I studied business at UNCG's Bryan School, and I care as much about what your site tells an owner or a banker as how it looks. When you work with Celnu, you work with me: I do the research, the design and the build, and I answer my own email. I'm in Greensboro and glad to meet in person anywhere in North Carolina.

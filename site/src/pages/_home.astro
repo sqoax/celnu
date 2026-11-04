@@ -7,10 +7,10 @@ import { CONTACT_EMAIL } from '../config';
 import hiatt from '../assets/hiatt.jpg';
 
 const promise =
-  'I rebuild your website around the content you already have (your team, criteria and deals) so owners and bankers can find what they need in seconds, on any device. You don’t write anything new, and you approve every word.';
+  'I rebuild your website around the content you already have (your team, criteria and deals) so owners and bankers can find what they need on any device. You don’t write anything new, and you approve every word.';
 
 const offer =
-  'I’ll design a free homepage concept from it. You’ll see it within a week, before you decide whether to hire me.';
+  'I’ll design a free homepage concept from what’s already public on your site. You’ll see it within a week, before you decide whether to hire me.';
 
 const included = [
   'Team and bio pages',
@@ -19,6 +19,7 @@ const included = [
   'On a phone, a banker can check your criteria, find a deal and email the right person',
   'Launch coordinated with your IT provider, so your email keeps working',
   'You own everything, and updates are a quick email to me',
+  'A static site: no plugins or database to patch, and every change can be rolled back',
 ];
 
 const steps = [
@@ -26,7 +27,7 @@ const steps = [
   'See your homepage concept within a week.',
   'Fixed quote after a short call.',
   'Content and compliance review: your team approves everything, and I never write performance figures or investor claims.',
-  'Build and launch in about four weeks, coordinated with your IT provider.',
+  'Build and launch in about four weeks, coordinated with your IT provider. Your review time sets the final date.',
   'Optional ongoing care.',
 ];
 
@@ -67,19 +68,25 @@ const year = new Date().getFullYear();
         <section aria-labelledby="problem">
           <h2 class="eyebrow" id="problem">01 The problem</h2>
           <p class="statement">
-            When a banker sends an owner your name, can they see what you invest in, who they’d work
-            with, and which businesses you’ve backed?
+            When a banker sends an owner your name, can they see what you invest in, what kind of
+            capital you provide, who they’d work with, and which businesses you’ve backed?
           </p>
           <p class="prose">
             Too often they find a dated site, missing bios, a portfolio no one can search, a mobile
-            view that falls apart.
+            view that falls apart. It’s the same site a sponsor or an investor finds when they look
+            you up.
           </p>
         </section>
         <section aria-labelledby="who">
           <h2 class="eyebrow" id="who">02 Who it’s for</h2>
           <p class="feature">
-            I design and build sites for private equity and private credit funds, SBIC lenders and
-            independent sponsors.
+            I design and build sites for private equity and private credit funds, SBIC lenders,
+            independent sponsors, search funds and family offices.
+          </p>
+          <p class="prose">
+            It’s the right fit when your strategy and story are settled and your site hasn’t kept
+            up. If you’re rethinking your positioning or want your story rewritten, a branding firm
+            is the better choice.
           </p>
         </section>
       </div>
@@ -93,8 +100,9 @@ const year = new Date().getFullYear();
             {included.map((item) => <li>{item}</li>)}
           </ul>
           <p class="prose">
-            Your existing content is the starting point. New copy, logos and brand strategy aren’t
-            included; if you have new material, I’ll place it.
+            A website project, not a rebrand: no workshops, and nothing new for your partners to
+            write or approve. Your existing content is the starting point. New copy, logos and brand
+            strategy aren’t included; if you have new material, I’ll place it.
           </p>
         </section>
         <section aria-labelledby="how">
@@ -102,6 +110,10 @@ const year = new Date().getFullYear();
           <ol class="rows steps" role="list">
             {steps.map((step) => <li>{step}</li>)}
           </ol>
+          <p class="prose">
+            Your approved copy carries over word for word, anything I add is flagged for your
+            review, and your compliance reviewer gets a private staging link before launch.
+          </p>
           <p class="prose">50% to start, 40% on approval, 10% at launch.</p>
         </section>
       </div>
@@ -120,7 +132,10 @@ const year = new Date().getFullYear();
               No hourly billing and no surprises. The price depends mainly on how many pages, people
               and deals your site carries.
             </p>
-            <p class="prose">Ongoing care is available after launch.</p>
+            <p class="prose">
+              Ongoing care after launch keeps your site current: new deals, exits, hires and title
+              changes.
+            </p>
           </section>
           <section aria-labelledby="about">
             <h2 class="eyebrow" id="about">06 About</h2>
