@@ -42,6 +42,7 @@ const errorId = `${id}-error`;
 <script>
   import { CONTACT_EMAIL } from '../config';
   import { buildMailto, cleanUrl, domainOf } from '../mailto';
+  import { track } from '../analytics';
 
   const address = document.querySelector<HTMLElement>('[data-browser-address]');
   const defaultAddress = address?.textContent ?? '';
@@ -70,6 +71,8 @@ const errorId = `${id}-error`;
         return;
       }
       clearError();
+      // Counted only when a draft actually opens, never for an empty field.
+      track('Open email draft');
       window.location.href = buildMailto(CONTACT_EMAIL, url);
     });
   });

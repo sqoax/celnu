@@ -21,8 +21,24 @@ const { title, description } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <!-- Lets CSS swap the URL field's plain mailto fallback for the form, with no flash. -->
     <script is:inline>document.documentElement.classList.add('js');</script>
+    <!-- Plausible: cookieless visit counts. Custom events are sent from site/src/analytics.ts. -->
+    <script is:inline async src="https://plausible.io/js/pa-P_za568SlYquNST4IZ576.js"></script>
+    <script is:inline>
+      window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+      plausible.init()
+    </script>
   </head>
   <body>
     <slot />
+    <script>
+      import { track } from '../analytics';
+
+      // Every mailto link on the page (the "Email me directly" lines and the footer) counts the
+      // same. The link still opens the visitor's email app as usual.
+      document.addEventListener('click', (event) => {
+        const link = (event.target as Element | null)?.closest?.('a[href^="mailto:"]');
+        if (link) track('Email address click');
+      });
+    </script>
   </body>
 </html>

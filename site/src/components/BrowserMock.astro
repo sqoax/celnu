@@ -122,8 +122,15 @@ const team = ['Jordan Avery, Principal', 'Sam Ortiz, Partner'];
 <script>
   // The fade is switched on at the first switch, not on load: if the page's first style pass runs
   // before the stylesheet applies, a fade that is already on makes Before fade out on load.
+  import { track } from '../analytics';
+
   const mock = document.querySelector<HTMLElement>('[data-browser-mock]');
   mock?.addEventListener('change', () => mock.classList.add('can-fade'), { once: true });
+
+  // Counts how many visitors actually look at the Before view (it opens on After).
+  mock?.addEventListener('change', (event) => {
+    if ((event.target as HTMLInputElement).value === 'before') track('View Before');
+  });
 </script>
 
 <style>

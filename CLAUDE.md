@@ -4,7 +4,8 @@ The one-page website for Celnu, a one-person studio that builds websites for pri
 
 ## Ground rules
 
-- Hosted on GitHub Pages at celnu.com, from the repo `sqoax/celnu`. Pushing to `main` deploys through `.github/workflows/deploy.yml`, so `main` is the live site. No analytics, no backend.
+- Hosted on GitHub Pages at celnu.com, from the repo `sqoax/celnu`. Pushing to `main` deploys through `.github/workflows/deploy.yml`, so `main` is the live site. No backend.
+- Analytics: Plausible only (cookieless, no banner needed), loaded in `site/src/layouts/Base.astro`. Three custom events go through `site/src/analytics.ts`, each set up as a "Custom event" goal in Plausible under the same name: "Open email draft" (the URL field opens a draft, never for an empty field), "Email address click" (any `mailto:` link) and "View Before" (the illustration's Before tab). No other trackers, and never add open or click tracking to outreach emails.
 - No form backend. The call to action is a `mailto:` link (see "The URL field" below). Don't add Cloudflare Workers, Resend, Formspree or any other service.
 - Earlier celnu.com builds are scrapped. If any exist in this folder, move them into `archive/` before starting. Never delete them, and never reuse their design.
 - The new site lives in `site/` (Astro, static output).
