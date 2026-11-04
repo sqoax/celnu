@@ -74,6 +74,7 @@ One page, in this order. Section labels are bold numbered eyebrows (01, 02 …).
    - **06 About**
      - I'm Hiatt Gafnea. I started Celnu in Greensboro to build websites for private investment firms. I studied business at UNCG's Bryan School, and I care as much about what your site tells an owner or a banker as how it looks. When you work with Celnu, you work with me: I do the research, the design and the build, and I answer my own email. I'm in Greensboro and glad to meet in person anywhere in North Carolina.
      - A 4:5 portrait beside the bio, alt text "Portrait of Hiatt Gafnea". The source is `site/src/assets/hiatt.jpg`, processed by Astro's image pipeline so only resized versions ship.
+     - Under the bio, a "LinkedIn" text link to https://www.linkedin.com/in/hiattg/, led by LinkedIn's "in" mark drawn as an inline SVG in `--accent`. It's the only icon on the page.
    - **Closing:** repeat the URL field with one short line above it, e.g. "Send your URL. I'll show you what it could be."
 
 6. **Footer:** hiatt@celnu.com, Greensboro, NC, and a copyright line.
@@ -143,7 +144,7 @@ Verify every text/background pair meets WCAG AA and record the ratios in comment
 - Use the full width: two-column bands, left-aligned, with a max content width of about 1440px. Below about 1024px everything stacks into one column.
 - Keep the page short: about half the height of a single-column layout.
 - Bands separated by background tone and space.
-- No screenshots, and no images apart from the browser illustration and the About portrait. Typography, the URL field and the illustration carry the page.
+- No screenshots, and no images apart from the browser illustration, the About portrait and the LinkedIn mark beside the About link. Typography, the URL field and the illustration carry the page.
 - Motion: only the illustration's crossfade when a visitor switches views, disabled under `prefers-reduced-motion`.
 
 ## Hard rules

@@ -137,13 +137,25 @@ const year = new Date().getFullYear();
                   format="webp"
                 />
               </div>
-              <p class="prose">
-                I’m Hiatt Gafnea. I started Celnu in Greensboro to build websites for private
-                investment firms. I studied business at UNCG’s Bryan School, and I care as much about
-                what your site tells an owner or a banker as how it looks. When you work with Celnu,
-                you work with me: I do the research, the design and the build, and I answer my own
-                email. I’m in Greensboro and glad to meet in person anywhere in North Carolina.
-              </p>
+              <div>
+                <p class="prose">
+                  I’m Hiatt Gafnea. I started Celnu in Greensboro to build websites for private
+                  investment firms. I studied business at UNCG’s Bryan School, and I care as much
+                  about what your site tells an owner or a banker as how it looks. When you work with
+                  Celnu, you work with me: I do the research, the design and the build, and I answer
+                  my own email. I’m in Greensboro and glad to meet in person anywhere in North
+                  Carolina.
+                </p>
+                <a class="linkedin" href="https://www.linkedin.com/in/hiattg/" rel="me">
+                  <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+                    <path
+                      fill="currentColor"
+                      d="M22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0ZM7.12 20.45H3.56V9h3.56v11.45ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13Zm15.11 13.02h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28Z"
+                    />
+                  </svg>
+                  LinkedIn
+                </a>
+              </div>
             </div>
           </section>
         </div>
@@ -368,6 +380,22 @@ const year = new Date().getFullYear();
 
   .about-body .prose {
     margin-top: 0;
+  }
+
+  /* The "in" mark takes the link color (--accent), so it matches the site's green.
+     Non-text contrast: --accent on --paper-2 is 7.73, well over the 3:1 AA minimum. */
+  .linkedin {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    font-size: 1.0625rem;
+  }
+
+  .linkedin svg {
+    flex: none;
+    width: 1.5rem;
+    height: 1.5rem;
   }
 
   .portrait {
